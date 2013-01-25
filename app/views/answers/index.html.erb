@@ -75,14 +75,15 @@
       </div>
 
       <hr>
+      <h3>question history</h3>
 
-      <div class="jumbotron">
-        <h3>question history</h3>
        
        <% @answers.each do |a| %>
-
+           
+           <div class="jumbotron">
+            <p class="lead"><%= a.created_at.to_date.to_s(:long)%></p>
            <p class="lead"> <%= a.question.body %></p>
-           <p class="lead"> <%= a.body %> <%= a.created_at %></p>
+           <p class="lead"> <%= a.body %> </p>
 
         <% end %>
         

@@ -82,8 +82,8 @@
        <h2> <%= @question.body %></h2>
 
         <%= form_tag answers_path do %>
-          <%= text_area_tag :body %>
-          <p><a class="btn btn-large btn-success" href="/answers"><%= submit_tag("Submit") %></a></p>
+          <%= text_area_tag :body, nil, :class => "input answerbox" %>
+          <p><a href="/answers"><%= submit_tag "Submit", :class => "btn btn-large btn-success" %></a></p>
           <%= hidden_field_tag :question_id, @question.id %>
 
         <% end %>
