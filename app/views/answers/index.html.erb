@@ -28,7 +28,7 @@
       /* Main marketing message and sign up button */
       .jumbotron {
         margin: 60px 0;
-        text-align: center;
+        text-align: left;
       }
       .jumbotron h1 {
         font-size: 72px;
@@ -81,9 +81,9 @@
        <% @answers.each do |a| %>
            
            <div class="jumbotron">
-            <p class="lead"><%= a.created_at.to_date.to_s(:long)%></p>
-           <p class="lead"> <%= a.question.body %></p>
-           <p class="lead"> <%= a.body %> </p>
+           <p class="lead"><h4><%= a.created_at.to_date.to_s(:long)%></h4></p>
+           <p class="lead"> Q: <%= a.question.body %></p>
+           <p class="lead"> A: <%= a.body %> </p>
 
         <% end %>
         
