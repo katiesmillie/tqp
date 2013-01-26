@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
   end
   
   def index
-    @answers=Answer.all
+    @answers=Answer.all(:order => "created_at DESC")
   end
   
 end
