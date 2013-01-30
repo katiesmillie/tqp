@@ -4,6 +4,10 @@ TheQuestionProject::Application.routes.draw do
   devise_for :users
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  
+  root :to => "answers#new"
+  
+  match "/about" => "pages#about"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
