@@ -1,17 +1,22 @@
 class AnswersController < ApplicationController
   
+  before_filter :require_user, :except => :new
+  
   def new
-    @question=Question.all.sample
+    @question=Question.scoped.sample
   end
   
   def create
-    @answer=Answer.create :body => params[:body], :question_id => params[:question_id]
+    @answer=Answer.new :body => params[:body], :question_id => params[:question_id]
+    @answer.user = current_user
+    @answer.save
     redirect_to answers_path
     
   end
   
   def index
-    @answers=Answer.all(:order => "created_at DESC")
+    @answers=current_user.answers.order "created_at DESC"
   end
   
 end
+  
