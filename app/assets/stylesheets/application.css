@@ -29,7 +29,11 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   margin: 60px 0;
-  text-align: left;
+  text-align: center;
+}
+
+.history{
+  text-align: left; 
 }
 .jumbotron h1 {
   font-size: 72px;
@@ -47,3 +51,11 @@ body {
 .marketing p + h4 {
   margin-top: 28px;
 }
+
+.roboto {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.roboto p {font-weight: 300;
+font-size: 18px;
+line-height: 24px;}

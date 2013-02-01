@@ -1,14 +1,19 @@
 
-      <h3>question history</h3>
+      
+    <div class ="roboto">
+    
+      <h3>history</h3>
 
        
        <% @answers.each do |a| %>
            
-           <div class="jumbotron">
+           <div class="history">
+            
            <p class="lead"><h4><%= a.created_at.to_date.to_s(:long)%></h4></p>
-           <p class="lead"> Q: <%= a.question.body %></p>
-           <p class="lead"> A: <%= a.body %> </p>
+           <p> Q: <%= a.question.body %></p>
+           <p> A: <%= a.body %> </p>
 
         <% end %>
-        
+        </div>
       </div>
+    </div>
