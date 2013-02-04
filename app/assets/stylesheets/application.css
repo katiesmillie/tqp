@@ -59,3 +59,9 @@ body {
 .roboto p {font-weight: 300;
 font-size: 18px;
 line-height: 24px;}
+
+.roboto .date {
+  color: #333;
+/*  text-align: right;*/
+  font-size: 14px;
+}
