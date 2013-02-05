@@ -9,4 +9,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   has_many :answers
+  
+  def self.mail_question
+    User.all.each do |u|
+      @question=Question.scoped.sample
+      QuestionsMailer.daily_question(u,@question).deliver
+    end
+  end
+  
 end
