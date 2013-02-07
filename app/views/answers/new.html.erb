@@ -11,7 +11,14 @@
 
         <% end %>
         <p class="roboto"><a href="/answers/new">show me a different question</a></p>
+      
         
     </div>
-      </div>
+    <% @user_answers.each do |a| %>
+        <p><%= a.created_at.to_date.to_s(:long)%></p>
+        <h4><%= a.question.body %></h4>
+        <p><%= a.body %> </p>
+    <%end%>
+    
+  </div>
 
