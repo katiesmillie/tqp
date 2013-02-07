@@ -12,8 +12,9 @@
           
            <p class="roboto date"><%= a.created_at.to_date.to_s(:long)%></p>
            <h4><%= a.question.body %></h4>
-       
            <p><%= a.body %> </p>
+           <p><%= link_to "edit", edit_answer_path(a)%>
+           <p><%= link_to "delete", answer_path(a), :method => "delete"%>
          </div>
         <% end %>
           
