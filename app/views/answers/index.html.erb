@@ -4,19 +4,16 @@
     
       <h3>history</h3>
 
-       
        <% @answers.each do |a| %>
            
-       
         <div class="well">
-          
            <p class="roboto date"><%= a.created_at.to_date.to_s(:long)%></p>
            <h4><%= a.question.body %></h4>
            <p><%= a.body %> </p>
-           <p><%= link_to "edit", edit_answer_path(a)%>
-           <p><%= link_to "delete", answer_path(a), :method => "delete"%>
+           <p class="tiny"><%= link_to "edit", edit_answer_path(a)%> / <%= link_to "delete", answer_path(a), :method => "delete"%></p>
          </div>
         <% end %>
           
         </div>
+        
       </div>

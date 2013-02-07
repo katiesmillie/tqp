@@ -1,5 +1,6 @@
   
   <div class ="roboto">
+    
       <div class="jumbotron">
         
        <h3> <%= @question.body %></h3>
@@ -8,12 +9,12 @@
         <%= text_area_tag :body, nil, :class => "input answerbox roboto" %>
         <p><a href="/answers"><%= submit_tag "Submit", :class => "btn btn-large btn-success roboto" %></a></p>
         <%= hidden_field_tag :question_id, @question.id %>
-
         <% end %>
-        <p class="roboto"><a href="/answers/new">show me a different question</a></p>
-      
-        
-    </div>
+
+        <p class="roboto"><a href="/answers/new">show me a different question</a></p>        
+
+      </div>
+    
     <% @user_answers.each do |a| %>
         <p><%= a.created_at.to_date.to_s(:long)%></p>
         <h4><%= a.question.body %></h4>
