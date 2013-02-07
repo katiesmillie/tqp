@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
   before_filter :require_user, :except => :new
   
   def new
-    @question=UserQuestion.scoped.sample
+    @question=Question.scoped.sample
     @user_answers=@question.answers.where(:user_id => current_user.id)
   end
   
