@@ -226,12 +226,12 @@ body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
-  color: #333333;
+  color: #000;
   background-color: #ffffff;
 }
 
 a {
-  color: #0088cc;
+  color: #000099;
   text-decoration: none;
 }
 

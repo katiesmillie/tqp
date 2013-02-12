@@ -35,9 +35,10 @@ body {
 .history{
   text-align: left; 
 }
-.jumbotron h1 {
-  font-size: 72px;
-  line-height: 1;
+.jumbotron h3 {
+  font-size: 30px;
+  font-weight: 100;
+  line-height: 1.2;
 }
 .jumbotron .btn {
   font-size: 21px;
@@ -54,11 +55,14 @@ body {
 
 .roboto {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100px;
 }
 
 .roboto p {font-weight: 300;
 font-size: 18px;
-line-height: 24px;}
+line-height: 24px;
+font-weight: 100;
+}
 
 .roboto .date {
   font-size: 14px;
@@ -68,3 +72,14 @@ line-height: 24px;}
   text-align: right;
   font-size: 12px;
 }
+
+.roboto h1 {
+  font-size: 26px;
+  font-weight: 100;
+  font-color: #000033;
+}
+
+.roboto a {
+  font-color: #000033;
+}
+
