@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129223000) do
+ActiveRecord::Schema.define(:version => 20130212233840) do
 
   create_table "answers", :force => true do |t|
     t.string   "body"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(:version => 20130129223000) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.integer  "round_id"
+  end
+
+  create_table "pairs", :force => true do |t|
+    t.integer  "user1_id"
+    t.integer  "user2_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "questions", :force => true do |t|
@@ -39,6 +47,13 @@ ActiveRecord::Schema.define(:version => 20130129223000) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "rounds", :force => true do |t|
+    t.integer  "pair_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -22,7 +22,11 @@ TheQuestionProject::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :answers
+  resources :answers, :only => [:create, :new, :edit, :update, :destroy, :index]
+  resources :questions, :only => [:create]
+  resources :rounds, :only => [:show]
+  resources :pairs, :only => [:create]
+  
 
   # Sample resource route with options:
   #   resources :products do

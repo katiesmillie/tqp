@@ -9,6 +9,7 @@
         <%= text_area_tag :body, nil, :class => "input answerbox roboto" %>
         <p><a href="/answers"><%= submit_tag "Submit", :class => "btn btn-large btn-success roboto" %></a></p>
         <%= hidden_field_tag :question_id, @question.id %>
+        <%= hidden_field_tag :round_id, @round.id %>
         <% end %>
 
         <p class="roboto"><a href="/answers/new">show me a different question</a></p>        

@@ -1,14 +1,16 @@
 class AnswersController < ApplicationController
   
   before_filter :require_user, :except => :new
+  before_filter :require_no_answer, :only => :new
   
   def new
-    @question=Question.scoped.sample
+    @round=Round.find params[:round_id]
+    @question=@round.question
     @user_answers=@question.answers.where(:user_id => current_user.id)
   end
   
   def create
-    @answer=Answer.new :body => params[:body], :question_id => params[:question_id]
+    @answer=Answer.new :body => params[:body], :question_id => params[:question_id], :round_id => params[:round_id]
     @answer.user = current_user
     @answer.save
     redirect_to answers_path
@@ -34,6 +36,13 @@ class AnswersController < ApplicationController
     @answer=Answer.find params[:id]
     @answer.delete
     redirect_to answers_path
+  end
+  
+  protected 
+  def require_no_answer
+    if current_user.answers.where(:round_id => params[:round_id]).first
+      redirect_to round_path(:id => params[:round_id])
+    end
   end
 
   
