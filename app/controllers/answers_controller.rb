@@ -13,7 +13,13 @@ class AnswersController < ApplicationController
     @answer=Answer.new :body => params[:body], :question_id => params[:question_id], :round_id => params[:round_id]
     @answer.user = current_user
     @answer.save
-    redirect_to answers_path
+    
+    if @answer=Answer.where (:round_id => params[:round_id]).count > 1
+      redirect_to round_path(:id => params[:round_id])
+    else
+      redirect_to new_question_path
+    end
+    
   end
   
   def index

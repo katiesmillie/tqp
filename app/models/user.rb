@@ -12,9 +12,15 @@ class User < ActiveRecord::Base
   
   def self.mail_question
     User.all.each do |u|
-      @question=Question.scoped.sample
+      # @question=Question.scoped.sample
+      @pair=u.pair
+      @round=Round.create :question_id => @question.id, :pair_id => @pair.id
       QuestionsMailer.daily_question(u,@question).deliver
     end
+  end
+  
+  def pair
+    Pair.where("user1_id = ? OR user2_id = ?", current_user.id, current_user.id).first
   end
   
 end

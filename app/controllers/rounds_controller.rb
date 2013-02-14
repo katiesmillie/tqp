@@ -8,6 +8,7 @@ class RoundsController < ApplicationController
     @answers=@round.answers
   end
   
+
   protected 
   def require_answer
     if current_user.answers.where(:round_id => params[:id]).first.nil?
