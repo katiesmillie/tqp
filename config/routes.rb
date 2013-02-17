@@ -8,7 +8,8 @@ TheQuestionProject::Application.routes.draw do
   root :to => "rounds#index"
   
   match "/about" => "pages#about"
-
+  match "/welcome" => "pages#signed_out"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
