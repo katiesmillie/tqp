@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212233840) do
+ActiveRecord::Schema.define(:version => 20130217020651) do
 
   create_table "answers", :force => true do |t|
     t.string   "body"
@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(:version => 20130212233840) do
   create_table "questions", :force => true do |t|
     t.string   "body"
     t.string   "category"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "question_id"
+    t.integer  "author_id"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -53,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20130212233840) do
     t.integer  "question_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.date     "round_id"
+    t.date     "round_date"
   end
 
   create_table "users", :force => true do |t|
@@ -68,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20130212233840) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
