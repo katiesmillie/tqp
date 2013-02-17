@@ -5,7 +5,7 @@ TheQuestionProject::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
-  root :to => "answers#new"
+  root :to => "rounds#index"
   
   match "/about" => "pages#about"
 
