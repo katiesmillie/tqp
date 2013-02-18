@@ -19,13 +19,12 @@ class QuestionsController < ApplicationController
       @question=Question.find params[:question_id]
     end
 
-    @pair=current_user.pair
+    @pair=Pair.where("user1_id = ? OR user2_id = ?", current_user.id, current_user.id).first
     @last_round=@pair.rounds.last
-    @round=Round.create :question_id => @question.id, :pair_id => @pair.id
+    @round=Round.create :question_id => @question.id, :pair_id => @pair.id, :round_date => 1.day.from_now
   
     redirect_to round_path(:id => @last_round.id)
-    
-    
+     
   end
 
 end
