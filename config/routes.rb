@@ -27,6 +27,7 @@ TheQuestionProject::Application.routes.draw do
   resources :questions, :only => [:create, :new]
   resources :rounds, :only => [:show]
   resources :pairs, :only => [:create]
+  resources :comments, :only => :create
   
 
   # Sample resource route with options:
