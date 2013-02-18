@@ -7,6 +7,15 @@ class AnswersController < ApplicationController
     @round=Round.find params[:round_id]
     @question=@round.question
     @user_answers=@question.answers.where(:user_id => current_user.id)
+    
+#How do I access the pair model from here, so that I can get the first name of the user's partner
+
+      if @round.answers.count < 1
+        @pair_status = "Your partner has not answered"
+       else
+         @pair_status = "Submit your reponse to see your partner's answer"
+       end
+  
   end
   
   def create
