@@ -3,11 +3,18 @@ class RoundsController < ApplicationController
   before_filter :require_answer, :only => [:show]
   before_filter :require_user
   
+
+  
 #each round is a question per day for a pair, each round has a page
   def show
     @round=Round.find params[:id]
     @question=@round.question
     @answers=@round.answers
+    @comments=@round.comments
+    @comment_author=User.where (:user_id => :author_id)
+    # @first_name=@comment_author.first_name
+  
+  
   end
   
   def index

@@ -1,13 +1,32 @@
 
 
     
- <div class="well">
+<div class="well">
     <p class="roboto date">Question for <%= @round.created_at.to_date.to_s(:long)%></p>
     <h4><%= @question.body %></h4>
     
     <% @answers.each do |a| %>
-        <p><%= a.user.email %> <%= a.body %> </p>
+        <p><%= a.user.first_name %>: <%= a.body %> </p>
         <p class="tiny"><%= link_to "edit", edit_answer_path(a)%> / <%= link_to "delete", answer_path(a), :method => "delete"%></p>
     <% end %>
- 
+    
+</div>   
+     
+<div class="well">
+  
+       <h4>Comments</h4>
+       
+    <!-- How do I map a form to the right route? comment#create?   --> 
+    
+       <%= form_tag comments_path do %>
+       <%= text_area_tag :body %>
+       <p><%= submit_tag "Submit", :class => "btn btn-success roboto"%></p>
+       <%= hidden_field_tag :round_id, @round.id %>
+       <% end %>
+       
+      <% @comments.each do |c| %>
+          <p><%= c.created_at.to_date.to_s(:short)%> - <%=@first_name%> <%= c.body %></p>
+
+      <% end %>
+
 </div>
