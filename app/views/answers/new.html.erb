@@ -12,14 +12,16 @@
         <%= hidden_field_tag :round_id, @round.id %>
         <% end %>
 
-        <p class="roboto"><a href="/answers/new">show me a different question</a></p>        
+
+        <%= @pair_status %>
+        <!-- <p class="roboto"><a href="/answers/new">show me a different question</a></p>         -->
 
       </div>
     
-    <% @user_answers.each do |a| %>
+    <!-- <% @user_answers.each do |a| %>
         <h5><%= a.created_at.to_date.to_s(:long)%></h5>
         <p><%= a.body %></p>
-    <%end%>
+    <%end%> -->
   
   </div>
 
