@@ -1,12 +1,14 @@
 
 
+
+
   <% @rounds.each do |r| %>
        
     <div class="well">
       <%= r.round_date %>
       <%= r.question.body %>
        
-       <%= link_to @answer_label, round_path(r) %>
+       <%= link_to answer_label(r), round_path(r) %>
      
      </div>
     <% end %>
