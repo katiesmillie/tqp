@@ -6,7 +6,8 @@ class Round < ActiveRecord::Base
    has_many :comments
    attr_accessible :pair_id, :question_id, :round_date
    
-   def current_pair
+   def self.recent
+     order("round_date DESC").where("round_date <= ?", Time.now)
    end
    
 end
