@@ -1,7 +1,7 @@
 TheQuestionProject::Application.routes.draw do
   
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
@@ -26,8 +26,8 @@ TheQuestionProject::Application.routes.draw do
   resources :answers, :only => [:create, :new, :edit, :update, :destroy, :index]
   resources :questions, :only => [:create, :new]
   resources :rounds, :only => [:show]
-  resources :pairs, :only => [:create]
-  resources :comments, :only => :create
+  resources :pairs, :only => [:create, :new]
+  resources :comments, :only => [:create, :edit, :update]
   
 
   # Sample resource route with options:
