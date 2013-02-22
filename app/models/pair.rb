@@ -4,4 +4,13 @@ class Pair < ActiveRecord::Base
   belongs_to :user2, :class_name => "User"
   has_many :rounds
   attr_accessible :user1_id, :user2_id
+  
+  def partner(user_id)
+    if user_id == self.user1_id  # checking equality, comparing ids is faster then checking the user
+      user2  # assigning is one equal, don't need to include partner =, ruby returns the last thing
+    else
+      user1
+    end
+  end
+  
 end
