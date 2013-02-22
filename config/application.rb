@@ -30,6 +30,9 @@ module TheQuestionProject
     # config.time_zone = 'Central Time (US & Canada)'
     
     config.time_zone = 'Pacific Time (US & Canada)'
+    config.active_record.default_timezone = :local
+    
+    #Katie added from Rails guide --> config.active_record.default_timezone determines whether to use Time.local (if set to :local) or Time.utc (if set to :utc) when pulling dates and times from the database. The default is :utc for Rails, although Active Record defaults to :local when used outside of Rails.
     
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
