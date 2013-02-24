@@ -12,19 +12,19 @@ class QuestionsController < ApplicationController
   def create
     if params[:body].present? #user created a new question
       @question=Question.new :body => params[:body]
-      # @question.author = current_user
       @question.save
     
     else #user selected a exisitng question
       @question=Question.find params[:question_id]
     end
 
-    @pair=Pair.where("user1_id = ? OR user2_id = ?", current_user.id, current_user.id).first
+    @pair=current_user.pair
     @last_round=@pair.rounds.last
-    @round=Round.create :question_id => @question.id, :pair_id => @pair.id, :round_date => 1.day.from_now
-  
-    redirect_to round_path(:id => @last_round.id)
-     
-  end
+    
+    @round=Round.where(:round_date => 1.day.from_now.midnight).first_or_create(:question_id => @question.id, :pair_id => @pair.id)
+      redirect_to round_path(:id => @last_round.id) 
+      
+    end      
 
+  end
 end
