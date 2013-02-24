@@ -7,7 +7,7 @@
 
         <%= form_tag answers_path do %>
         <%= text_area_tag :body, nil, :class => "input answerbox roboto" %>
-        <p><a href="/answers"><%= submit_tag "Submit", :class => "btn btn-large btn-success roboto" %></a></p>
+        <p><%= submit_tag "Submit", :class => "btn btn-large btn-success roboto" %></p>
         <%= hidden_field_tag :question_id, @question.id %>
         <%= hidden_field_tag :round_id, @round.id %>
         <% end %>
