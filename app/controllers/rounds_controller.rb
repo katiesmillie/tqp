@@ -2,7 +2,7 @@ class RoundsController < ApplicationController
   
   before_filter :require_answer, :only => [:show]
   before_filter :require_user
-  
+  before_filter :require_pair
 
   
 #each round is a question per day for a pair, each round has a page
@@ -11,35 +11,30 @@ class RoundsController < ApplicationController
     @question=@round.question
     @answers=@round.answers
     @comments=@round.comments
-    @comment_author=User.where (:user_id => :author_id)
-    # @first_name=@comment_author.first_name
-  
-  
   end
   
   def index
-    @pair=Pair.where("user1_id = ? OR user2_id = ?", current_user.id, current_user.id)
-    @rounds=Round.order "round_date DESC"
-      
-      @rounds.each do |r|
-        if r.answers.count > 0
-          @answer_label = "View Round"
-        else
-          @answer_label = "Answer Question" 
-        end
-      end
-      
+    @pair=current_user.pair
+    @rounds=@pair.rounds.recent 
   end
+
   
   def require_user
     redirect_to welcome_path unless current_user 
   end
-
+  
+  def require_pair  
+    @pair=current_user.pair
+    redirect_to new_pair_path unless @pair
+ end
+  
   protected 
   def require_answer
     if current_user.answers.where(:round_id => params[:id]).first.nil?
       redirect_to new_answer_path(:round_id => params[:id])
     end
   end
+  
+  
   
 end
