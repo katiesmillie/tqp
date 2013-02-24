@@ -2,29 +2,29 @@ class AnswersController < ApplicationController
   
   before_filter :require_user, :except => :new
   before_filter :require_no_answer, :only => :new
+  before_filter :protect_round,  :only => :new
   
   def new
-    @round=Round.find params[:round_id]
+   
     @question=@round.question
     @user_answers=@question.answers.where(:user_id => current_user.id)
-    
-#How do I access the pair model from here, so that I can get the first name of the user's partner
 
-      if @round.answers.count < 1
-        @pair_status = "Your partner has not answered"
-       else
-         @pair_status = "Submit your reponse to see your partner's answer"
-       end
-  
   end
   
   def create
-    @answer=Answer.new :body => params[:body], :question_id => params[:question_id], :round_id => params[:round_id]
-    @answer.user = current_user
-    @answer.save
+    @round=Round.find params[:round_id]
+   
+    # if Time.today >= @round.round_date  
+    #   @answer=Answer.new :body => params[:body], :question_id => params[:question_id], :round_id => params[:round_id]
+    #   @answer.user = current_user
+    #   @answer.save
+    # end
+    #   
     
     if @answer=Answer.where (:round_id => params[:round_id]).count > 1
-      redirect_to round_path(:id => params[:round_id])
+      redirect_to round_path(:id => params[:round_id])  
+    elsif @answer=Answer.where (:round_id => params[:round_id]).count < 1
+      redirect_to round_path(:id => params[:round_id]) #I want to put an error message here
     else
       redirect_to new_question_path
     end
@@ -33,6 +33,8 @@ class AnswersController < ApplicationController
   
   def index
     @answers=current_user.answers.order "created_at DESC"
+    @pair=current_user.pair
+    
   end
   
   def edit
@@ -46,12 +48,7 @@ class AnswersController < ApplicationController
     @answer.save
     redirect_to answers_path
   end
-  
-  def destroy
-    @answer=Answer.find params[:id]
-    @answer.delete
-    redirect_to answers_path
-  end
+
   
   protected 
   def require_no_answer
@@ -59,6 +56,13 @@ class AnswersController < ApplicationController
       redirect_to round_path(:id => params[:round_id])
     end
   end
+  
+  def protect_round
+    @pair=current_user.pair
+    @round=Round.where(:pair_id => @pair.id, :id => params[:round_id]).first
+    redirect_to root_path if @round.nil?
+   end
+   
 
   
 end
