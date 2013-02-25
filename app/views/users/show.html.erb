@@ -1,0 +1,10 @@
+
+<p> <%= "Your partner is #{@pair.partner(current_user.id).first_name} #{@pair.partner(current_user.id).last_name}!" %> <%= link_to "edit", pair_path(current_user.id) %></p>
+
+
+<p><%= link_to "Your answer history", answers_path %></p>
+
+<p><%= link_to "Edit profile", edit_user_registration_path %></p>
+
+
+

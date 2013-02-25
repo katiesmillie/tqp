@@ -59,7 +59,7 @@
       <ul class="nav nav-pills pull-right">
         <li><%= link_to "about", about_path %></li>
             <% if current_user %>
-            <li><%= link_to current_user.email, answers_path %></li>
+            <li><%= link_to full_name(@user), user_path(current_user.id) %></li>
             <li><%= link_to "logout", destroy_user_session_path, :method => :delete %></li>
             <% else %>
             <li><%= link_to "login", new_user_session_path %></li>
