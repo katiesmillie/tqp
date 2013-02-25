@@ -28,6 +28,7 @@ TheQuestionProject::Application.routes.draw do
   resources :rounds, :only => [:show]
   resources :pairs, :only => [:create, :new, :show, :destroy]
   resources :comments, :only => [:create, :edit, :update]
+  resources :users, :only => :show
   
 
   # Sample resource route with options:
