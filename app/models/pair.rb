@@ -7,10 +7,22 @@ class Pair < ActiveRecord::Base
   
   def partner(user_id)
     if user_id == self.user1_id  # checking equality, comparing ids is faster then checking the user
-      user2  # assigning is one equal, don't need to include partner =, ruby returns the last thing
+      user2  # assigning is one equal sign, don't need to include partner =, ruby returns the last thing
     else
       user1
     end
   end
-  
+
+    
+  def self.auto_create
+    Pair.all.each do |p|
+      @question=Question.scoped.sample
+    
+      if p.rounds.where (:round_date => Time.now.midnight).first.nil?
+           @round=Round.create :question_id => @question.id, :pair_id => p.id, :round_date => Time.now.midnight
+      end
+           
+    end
+  end
+      
 end
