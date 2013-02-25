@@ -13,18 +13,12 @@ class AnswersController < ApplicationController
   
   def create
     @round=Round.find params[:round_id]
-   
-    # if Time.today >= @round.round_date  
-    #   @answer=Answer.new :body => params[:body], :question_id => params[:question_id], :round_id => params[:round_id]
-    #   @answer.user = current_user
-    #   @answer.save
-    # end
-    #   
+    @answer=Answer.new :body => params[:body], :question_id => params[:question_id], :round_id => params[:round_id]
+    @answer.user = current_user
+    @answer.save
     
     if @answer=Answer.where (:round_id => params[:round_id]).count > 1
       redirect_to round_path(:id => params[:round_id])  
-    elsif @answer=Answer.where (:round_id => params[:round_id]).count < 1
-      redirect_to round_path(:id => params[:round_id]) #I want to put an error message here
     else
       redirect_to new_question_path
     end
