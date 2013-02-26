@@ -5,10 +5,8 @@ class AnswersController < ApplicationController
   before_filter :protect_round,  :only => :new
   
   def new
-   
     @question=@round.question
     @user_answers=@question.answers.where(:user_id => current_user.id)
-
   end
   
   def create
@@ -17,18 +15,16 @@ class AnswersController < ApplicationController
     @answer.user = current_user
     @answer.save
     
-    if @answer=Answer.where (:round_id => params[:round_id]).count > 1
+    if @answer=Answer.where(:round_id => params[:round_id]).count > 1
       redirect_to round_path(:id => params[:round_id])  
     else
       redirect_to new_question_path
     end
-    
   end
   
   def index
     @answers=current_user.answers.order "created_at DESC"
     @pair=current_user.pair
-    
   end
   
   def edit
