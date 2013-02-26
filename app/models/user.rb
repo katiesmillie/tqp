@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   def self.mail_question
     User.all.each do |u|
       @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
-      @round=@pair.Rounds.where :round_date => Time.now.midnight
+      @round=@pair.Rounds.where(:round_date => Time.now.midnight).first
       @question=@round.question
       QuestionsMailer.daily_question(u,@question).deliver
     end
@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   def self.mail_answer
     User.all.each do |u|
       @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
-      @round=@pair.Rounds.where :round_date => Time.now.midnight
+      @round=@pair.Rounds.where(:round_date => Time.now.midnight).first
       @question=@round.question
       @partner=Pair.partner(u.id)
       
