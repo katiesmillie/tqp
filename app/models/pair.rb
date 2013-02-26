@@ -18,7 +18,7 @@ class Pair < ActiveRecord::Base
     Pair.all.each do |p|
       @question=Question.scoped.sample
     
-      if p.rounds.where (:round_date => Time.now.midnight).first.nil?
+      if p.rounds.where(:round_date => Time.now.midnight).first.nil?
            @round=Round.create :question_id => @question.id, :pair_id => p.id, :round_date => Time.now.midnight
       end
            
