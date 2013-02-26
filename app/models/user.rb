@@ -21,21 +21,22 @@ class User < ActiveRecord::Base
   
   
   
-  def self.mail_answer
-    User.all.each do |u|
-      @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
-      @round=@pair.Rounds.where(:round_date => Time.now.midnight).first
+  def self.mail_answer(user)
+      @user=user
+      @pair=Pair.where("user1_id = ? OR user2_id = ?", @user.id, @user.id).first
+      @round=@pair.rounds.where(:round_date => Time.now.midnight).first
       @question=@round.question
-      @partner=Pair.partner(u.id)
+      @partner= @user.pair.partner(@user.id)
+      @partner_answer=@round.answers.where(:user_id => @partner.id).first
       
-      if @round.answer.where(:user_id => @partner.id).first.nil?
-         @partner_answer = "You must answer today's question to see  #{@partner.first_name} answered"
+      if @round.answers.where(:user_id => @partner.id).first.nil?
+         @display_answer = "You have to answer the question too in order to see #{@partner.first_name}'s answer"
        else
-         @partner_answer = @round.answer.where(:user_id => @partner.id).first
+         @display_answerr = "#{@partner.first_name} said: #{@answer.body}"
        end
       
-      QuestionsMailer.pair_answered(u,@pair, @round, @question, @partner).deliver
-    end
+      QuestionsMailer.pair_answered(@user, @question, @partner, @display_answer).deliver
+    
   end
   
   

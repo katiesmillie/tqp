@@ -15,11 +15,16 @@ class AnswersController < ApplicationController
     @answer.user = current_user
     @answer.save
     
+    User.mail_answer(current_user)
+    
+    
     if @answer=Answer.where(:round_id => params[:round_id]).count > 1
       redirect_to round_path(:id => params[:round_id])  
     else
       redirect_to new_question_path
     end
+    
+
   end
   
   def index

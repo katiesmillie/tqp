@@ -3,19 +3,17 @@ class QuestionsMailer < ActionMailer::Base
    
   def daily_question(user, question)
      @user = user
-     @question = question
-     @url = "http://thequestionproject.com"
+     @question = question.body
+     @url = "http://beta.thequestionproject.com"
      mail(:to => user.email, :subject => "Your Daily Question")
   end
   
-  def pair_answered (user, pair, round, question, partner, answer)
+  def pair_answered(user, question, partner, display_answer)
     @user = user
-    @pair = pair
-    @round = round
-    @question = question
-    @partner = partner
-    @answer = answer
-    mail(:to => user.email, :subject => "#{@parter.first_name} answered today's question")
+    @question = question.body
+    @partner = partner.first_name
+    @display_answer = display_answer
+    mail(:to => user.email, :subject => "#{@partner} answered today's question")
   end
 
 end

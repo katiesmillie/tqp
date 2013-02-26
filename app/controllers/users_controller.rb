@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   
     def show
       @pair=current_user.pair
-      
     end
 
 end

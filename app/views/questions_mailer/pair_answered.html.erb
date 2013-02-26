@@ -5,11 +5,11 @@
   </head>
   
   <body>
-      <p>Hi! <%= @partner.first_name %> answered today's Question</p>
+      <p><%= @partner %> just answered today's question:s</p>
       
       <p><%= @question %></p>
       
-      <p><%= "#{@partner.first_name} said: #{@partner_answer}" %> </p>
+      <p><%= "#{@display_answer}" %> </p>
     
 
   </body>
