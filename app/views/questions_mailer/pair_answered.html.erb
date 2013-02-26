@@ -5,12 +5,12 @@
   </head>
   
   <body>
-      <p>Hi! Heres's your question for today's round:</p>
+      <p>Hi! <%= @partner.first_name %> answered today's Question</p>
       
       <p><%= @question %></p>
-        
-       <p>Answer it at <%= @url, "The Question Project" %></p>
       
+      <p><%= "#{@partner.first_name} said: #{@partner_answer}" %> </p>
     
+
   </body>
 </html>
