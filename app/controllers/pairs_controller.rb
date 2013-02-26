@@ -12,7 +12,7 @@ class PairsController < ApplicationController
 
     if current_user.pair.nil? && @partner.pair.nil?
       @pair=Pair.create :user1_id => current_user.id, :user2_id => params[:partner_id]
-      redirect_to pair_path(current_user.id)
+      redirect_to user_path(current_user.id)
     else
       redirect_to new_pair_path
     end
