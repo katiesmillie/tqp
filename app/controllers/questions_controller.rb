@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
     @last_round=@pair.rounds.last
     
     @round=Round.where(:round_date => 1.day.from_now.midnight).first_or_create(:question_id => @question.id, :pair_id => @pair.id)
-      redirect_to round_path(:id => @last_round.id) 
+      redirect_to root_path
       
     end      
 
