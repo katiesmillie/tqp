@@ -1,7 +1,9 @@
 
-<p>To get started you need a friend to join you. Right now you can only have one friend, so choose wisely! </p>
+<p>> To get started you need a friend to be your partner. Right now you can only have one partner. </p>
   
-<p>Enter your friend's email address below to search for them. </p>
+<p>> Enter your friend's email address below to search for them.</p> 
+
+<p>> If your friend hasn't signed up for The Question Project yet, you can send them an invite.</p> </p>
     
 
 
@@ -13,11 +15,9 @@
 
 
   <div class="well">
-    <p>If your friend hasn't signed up for The Question Project yet, you can send them an invite.</p>
-    
     <% @partners.each do |p| %>
     <h5><%= "Friends found:" %></h5>
-    <p><%= p.first_name %> <%= p.last_name %> (<%= p.email %>) <%= link_to "Select as partner", pairs_path(:partner_id => p.id), :method => "post" %></p>
+    <p><%= p.first_name %> <%= p.last_name %> <%= link_to "Select as partner", pairs_path(:partner_id => p.id), :method => "post" %></p>
     <% end %>
 
   </div>
