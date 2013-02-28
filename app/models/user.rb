@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
       @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
       @round=@pair.rounds.where(:round_date => Time.now.midnight).first
       @question=@round.question
-      QuestionsMailer.daily_question(u,@question).deliver
+      @url="beta.thequestionproject.com/rounds/#{@round.id}"
+      QuestionsMailer.daily_question(u,@question,@url).deliver
     end
   end
   
@@ -26,16 +27,18 @@ class User < ActiveRecord::Base
       @pair=Pair.where("user1_id = ? OR user2_id = ?", @user.id, @user.id).first
       @round=@pair.rounds.where(:round_date => Time.now.midnight).first
       @question=@round.question
-      @partner= @user.pair.partner(@user.id)
-      @partner_answer=@round.answers.where(:user_id => @partner.id).first
+      @partner= @pair.partner(@user.id)
+      @answer=@round.answers.where(:user_id => @user.id).first
+      @url="beta.thequestionproject.com/rounds/#{@round.id}"
       
-      if @round.answers.where(:user_id => @partner.id).first.nil?
-         @display_answer = "You have to answer the question too in order to see #{@partner.first_name}'s answer"
+      
+      if @round.answers.where(:user_id => @user.id).first.nil?
+         @display_answer = "You have to answer the question to see #{@user.first_name}'s answer"
        else
-         @display_answerr = "#{@partner.first_name} said: #{@answer.body}"
+         @display_answer = "#{@user.first_name} said: #{@answer.body}"
        end
       
-      QuestionsMailer.pair_answered(@user, @question, @partner, @display_answer).deliver
+      QuestionsMailer.pair_answered(@user,@question,@partner,@display_answer,@url).deliver
     
   end
   
