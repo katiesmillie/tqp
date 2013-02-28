@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+
+
+
+
+
+  #call $ rake db:seed RAILS_ENV=production 
+#   
+# group :production do
+#   fileData = File.read (RailsRoot + "db/data-file.csv")
+# end
+
