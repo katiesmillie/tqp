@@ -1,7 +1,5 @@
 
       
-    <div class ="roboto">
-
 
        <% @answers.each do |a| %>
            
@@ -9,10 +7,8 @@
            <p class="roboto date"><%= a.created_at.to_date.to_s(:long)%></p>
            <h4><%= a.question.body %></h4>
            <p><%= a.body %> </p>
-           <p class="tiny"><%= link_to "edit", edit_answer_path(a)%> / <%= link_to "delete", answer_path(a), :method => "delete"%></p>
+           <p class="tiny"><%= link_to "edit", edit_answer_path(a)%></p>
          </div>
         <% end %>
           
         </div>
-        
-      </div>
