@@ -22,10 +22,10 @@ class User < ActiveRecord::Base
   
   
   
-  def self.mail_answer(user)
+  def self.mail_answer(user, round)
       @user=user
+      @round=round
       @pair=Pair.where("user1_id = ? OR user2_id = ?", @user.id, @user.id).first
-      @round=@pair.rounds.where(:round_date => Time.now.midnight).first
       @question=@round.question
       @partner= @pair.partner(@user.id)
       @answer=@round.answers.where(:user_id => @user.id).first
