@@ -14,8 +14,9 @@ class AnswersController < ApplicationController
     @answer=Answer.new :body => params[:body], :question_id => params[:question_id], :round_id => params[:round_id]
     @answer.user = current_user
     @answer.save
-    
-    User.mail_answer(current_user, @round)
+
+    # commented out email to see if causing bug
+    # User.mail_answer(current_user, @round)
     
     
     if @answer=Answer.where(:round_id => params[:round_id]).count > 1
