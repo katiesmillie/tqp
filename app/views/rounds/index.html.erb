@@ -5,7 +5,7 @@
   <% @rounds.each do |r| %>
        
     <div class="well">
-      <%= r.round_date %>
+      <span class ="muted"><%= r.round_date.to_date.to_s(:long) %></span>
       <%= r.question.body %>
        
        <%= link_to answer_label(r), round_path(r) %>

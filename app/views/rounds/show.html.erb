@@ -1,33 +1,45 @@
 
 
+
    <p class="roboto date">Question for <%= @round.round_date.to_date.to_s(:long)%></p>
    
    <h3><%= @question.body %></h3>
+ 
+    <% @answers.each do |a| %>    
 
-
-  
-    <% @answers.each do |a| %>
-      <div class="well">    
-        <p><%= a.user.first_name %>: <%= a.body %> </p>
-        <p class = "tiny"><%= link_to "edit", edit_answer_path(a)%></p>
+      <div class="well">
+        <p><span class = "username"><%= a.user.first_name %></span> <%= a.body %> 
+          
+          <% answer_edit(a) do %>
+            <span class = "edit pull-right"><%= link_to "edit", edit_answer_path(a)%></span></p>
+          <% end %>
       </div>   
+
     <% end %>
+            
+<hr>
     
-
-       
-     <h4>Conversation</h4>    
-
-     <div class="well"> 
+  <div class="container-narrow comments">
+    <% comment_present(@round) do %>
+            
         <% @comments.each do |c| %>
-          <p class ="tiny>"><%= c.created_at.to_date.to_s(:short)%></p>         
-          <p> <%=c.author.first_name%>: <%= c.body %></p>
-          <p class ="tiny"><%= link_to "edit", edit_comment_path(c)%></p>
+          <p><span class = "username"><%=c.author.first_name%></span>
+          <%= c.body %>
+         
+            <% comment_edit(c) do %>
+              <span class ="edit pull-right"><%= link_to "edit", edit_comment_path(c)%></span></p>
+            <% end %>
+          <p class ="tiny muted"><%= c.created_at.to_date.to_s(:long)%>        
+          </p>
         <% end %>
-     </div>
+
+    <% end %>
       
       <%= form_tag comments_path do %>
-      <%= text_area_tag :body, nil, :class => "input answerbox roboto" %>
+      <%= text_area_tag :body, nil, :class => "input commentbox roboto" %>
       <p><%= submit_tag "add a comment", :class => "btn btn-success roboto"%></p>
       <%= hidden_field_tag :round_id, @round.id %>
       <% end %>
+    </div>
+
 
