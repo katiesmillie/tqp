@@ -55,31 +55,18 @@ body {
 
 .roboto {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: 100px;
-}
-
-.roboto p {font-weight: 300;
-font-size: 18px;
-line-height: 24px;
-font-weight: 100;
-}
-
-.roboto .date {
-  font-size: 14px;
-}
-
-.tiny {
-  text-align: right;
-  font-size: 12px;
+  font-weight: lighter;
 }
 
 .roboto h1 {
   font-size: 26px;
-  font-weight: 100;
-  font-color: #000033;
+  font-weight: lighter;
+  
 }
 
 .roboto a {
   font-color: #000033;
+  font-weight: lighter;
 }
+
 
