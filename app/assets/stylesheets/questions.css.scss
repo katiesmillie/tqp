@@ -10,17 +10,15 @@ textarea {
   width: 600px;
 }
 
-input.question , label.question  {
+
+div.align_input {
   float:left;
-  vertical-align: baseline;
-}
-      
-input.question   {
-  clear: left;  
+  clear: left;
+  margin: 0px 10px 0px 0px;
 }
 
-label.question {
-  margin: 0px 10px 0px 10px;
+label {
+  vertical-align: baseline;
   line-height: 2em;
   font-weight: lighter;
 }

@@ -1,27 +1,26 @@
 
 
-<div class ="question">
+
 
     <h4>Oh heeeey. You were the first to answer today’s question so you get to choose 
       the question for tomorrow.</h4>
 
       <%= form_tag questions_path do %>
       
+        <div class = "align_input"><%= radio_button_tag(:question_id, @question1.id)%></div>
+        <%= label_tag(:question_1, @question1.body) %>
+        <div class  = "align_input"><%= radio_button_tag(:question_id, @question2.id) %></div>
+        <%= label_tag(:question_2, @question2.body) %>
+        <div class  = "align_input"><%= radio_button_tag(:question_id, @question3.id) %></div>
+        <%= label_tag(:question_3, @question3.body) %>
       
-      <%= radio_button_tag(:question_id, @question1.id)%>
-      <%= label_tag(:question_1, @question1.body) %>
-      <%= radio_button_tag(:question_id, @question2.id) %>
-      <%= label_tag(:question_2, @question2.body) %>
-      <%= radio_button_tag(:question_id, @question3.id) %>
-      <%= label_tag(:question_3, @question3.body) %>
+        <div class  = "align_input"><%= radio_button_tag (:question_id, "") %></div>
+        <%= label_tag(:question_4, "Create new:") %>
+        <%= text_area_tag :body, nil %>
       
-      <%= radio_button_tag (:question_id, "") %>
-      <%= label_tag(:question_4, "Create new:") %>
-      <%= text_area_tag :body, nil %>
       
-      <p><%= submit_tag "select", :class => "btn btn-success roboto"%></p>
+        <p><%= submit_tag "select", :class => "btn btn-success roboto"%></p>
             
 
       <% end %>
 
-</div>
