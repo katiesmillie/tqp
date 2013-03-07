@@ -1,4 +1,6 @@
-<h2>Sign up</h2>
+
+
+<h3>Sign up</h3>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -18,7 +20,8 @@
   <div><%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div><%= f.submit "Sign up", :class => "btn btn-success roboto" %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+  <p id ="float"> <%= render "devise/shared/links" %></p>
+
