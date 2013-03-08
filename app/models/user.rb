@@ -33,9 +33,9 @@ class User < ActiveRecord::Base
       
       
       if @round.answers.where(:user_id => @user.id).first.nil?
-         @display_answer = "You have to answer the question to see #{@user.first_name}'s answer"
+         @display_answer = "Sorry you gotta answer it first to see what they said. Hey, I didn't make the rules!  Oh wait, I did."
        else
-         @display_answer = "#{@user.first_name} said: #{@answer.body}"
+         @display_answer = "#{@answer.body}"
        end
       
       QuestionsMailer.pair_answered(@user,@question,@partner,@display_answer,@url).deliver

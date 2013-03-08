@@ -5,13 +5,11 @@
   </head>
   
   <body>
-      <p><%= @user %> just answered a question</p>
+      <p><%= @user %> just answered: <strong><%= @question %></p></strong>.
       
-      <p><strong><%= @question %></p></strong>
+      <p>"<%= "#{@display_answer}" %>" </p>
       
-      <p><%= "#{@display_answer}" %> </p>
-      
-      <p> Leave a comment <a href="<%= @url %>"> here</a>.</p>
+      <p>I know you wanna <a href="<%= @url %>">say something</a>.</p>
     
 
   </body>

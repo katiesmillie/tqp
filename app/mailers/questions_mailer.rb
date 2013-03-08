@@ -1,6 +1,6 @@
 class QuestionsMailer < ActionMailer::Base
-  default :from => "hello@thequestionproject.com"
-   
+  default :from => "Hello Question <hello@thequestionproject.com>"
+     
   def daily_question(user, question, url)
      @user = user
      @question = question.body
