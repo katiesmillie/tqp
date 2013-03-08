@@ -1,10 +1,16 @@
 
-<p> <%= "Your partner is #{@pair.partner(current_user.id).first_name} #{@pair.partner(current_user.id).last_name}!" %> <%= link_to "edit", pair_path(current_user.id) %></p>
+
+<p class = "align"><%= gravatar_for @user, :size => 80 %></p>
+
+<p><i class="icon-edit"> </i> <%= link_to "Edit profile", edit_user_registration_path %></p>
 
 
-<p><%= link_to "Your answer history", answers_path %></p>
+<p><i class="icon-user"> </i> <%= "Your partner is #{@pair.partner(current_user.id).first_name} #{@pair.partner(current_user.id).last_name}!" %> <%= link_to "(delete)", pair_path(current_user.id) %></p>
 
-<p><%= link_to "Edit profile", edit_user_registration_path %></p>
+
+<p><i class="icon-list"> </i> <%= link_to "Your answer history", answers_path %></p>
+
+
 
 
 

@@ -4,6 +4,11 @@
 
 <h3>Edit <%= resource_name.to_s.humanize %></h3>
 
+
+
+<p class = "align"><%= gravatar_for @user, :size => 80 %></p>
+<p>Your profile image comes from gravatar (globally recognized avatars). You can set your image at <a href ="https://en.gravatar.com">gravatar.com</a> using the same email address as below. 
+
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
   
