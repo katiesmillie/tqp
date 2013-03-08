@@ -1,6 +1,6 @@
 
 
-<h4><%= "Your partner is #{@pair.partner(current_user.id).first_name} #{@pair.partner(current_user.id).last_name}!" %> </h4>
+<p><%= "To delete your partnership with #{@pair.partner(current_user.id).first_name} #{@pair.partner(current_user.id).last_name} click the link below. There is no undo!" %></p>
 
-<%= link_to "Delete partnership", pair_path(@pair), :method => "delete"%> 
-  <p>Are you sure? You cannot undo this :( </p>
+
+<%= link_to "I understand, delete anyway", pair_path(@pair), :method => "delete"%> 
