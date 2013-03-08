@@ -4,10 +4,11 @@
        <% @answers.each do |a| %>
            
         <div class="well">
-           <p class="roboto date"><%= a.created_at.to_date.to_s(:long)%></p>
-           <h4><%= a.question.body %></h4>
-           <p><%= a.body %> </p>
-           <p class="tiny"><i class="icon-edit"></i> <%= link_to " edit", edit_answer_path(a)%></p>
+           <p class="roboto date tiny muted"><%= a.created_at.to_date.to_s(:long)%></p>
+           <h5 class = "roboto"><%= a.question.body %></h5>
+           <%= a.body %>
+           <span class="edit pull-right"><i class="icon-edit"></i> <%= link_to " edit", edit_answer_path(a)%></span>
+         
          </div>
         <% end %>
           

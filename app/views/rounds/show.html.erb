@@ -8,10 +8,12 @@
     <% @answers.each do |a| %>    
 
       <div class="well">
-        <p><%= gravatar_for a.user, :size => 60, :class => "align" %> <span class = "username"><%= a.user.first_name %></span> <%= a.body %> 
-          
-          <% answer_edit(a) do %>
-            <span class = "edit pull-right"><i class="icon-edit"> </i> <%= link_to "edit", edit_answer_path(a)%></span></p>
+        <%= gravatar_for a.user, :size => 60, :class => "pic" %> 
+        <span class = "username"><%= a.user.first_name %></span>
+        <%= a.body %> 
+        <% answer_edit(a) do %>
+        <span class = "edit pull-right"><i class="icon-edit"> </i> <%= link_to "edit", edit_answer_path(a)%></span>
+        
           <% end %>
       </div>   
 
