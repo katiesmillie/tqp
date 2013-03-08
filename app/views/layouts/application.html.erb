@@ -65,7 +65,7 @@
             <li><%= link_to "login", new_user_session_path %></li>
             <% end %>
       </ul>
-      <h1><%= link_to "The Question Project", root_path %></a>
+      <h1><%= link_to "the question project", root_path %></a>
     </div>
     </div>
     <hr>
@@ -73,10 +73,13 @@
   
 
 <%= yield %>
-
-<!--       <div class="footer">
-        <p>&copy; tqp 2013</p>
-      </div> -->
+<div class="container-narrow">
+    <hr>
+      <div class="footer">
+        <p class ="muted foot">the question project by <a href="http://twitter.com/katiesmillie">@katiesmillie</a></p>
+        <div class = "foot"><a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a></div>
+      </div>
+        </div>
 
     </div> <!-- /container -->
 
