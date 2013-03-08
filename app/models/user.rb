@@ -42,6 +42,21 @@ class User < ActiveRecord::Base
     
   end
   
+  def self.mail_comment(user, round, comment)
+      @user=user
+      @round=round
+      @comment=comment
+      @pair=Pair.where("user1_id = ? OR user2_id = ?", @user.id, @user.id).first
+      @question=@round.question
+      @partner= @pair.partner(@user.id)
+      @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
+      
+      
+      QuestionsMailer.pair_commented(@user,@comment,@question,@partner,@url).deliver
+    
+  end
+  
+  
   
   
   def pair
