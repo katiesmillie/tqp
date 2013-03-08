@@ -1,14 +1,14 @@
 
-<p><i class="icon-user"> </i> To get started you need a partner. Right now you can only have one partner. </p>
+<p><i class="icon-user">  </i>  To get started you need a partner. Right now you can only have one partner, so pick someone you like. </p>
   
-<p><i class="icon-search"> </i> Enter a friend's email address below to search for them.</p> 
+<p><i class="icon-search">  </i>  Enter a friend's email address below to search for them.</p> 
 
-<p><i class="icon-envelope"> </i> If your friend hasn't signed up for The Question Project yet, you can invite them.</p> </p>
+<p><i class="icon-signal">  </i>  If your friend hasn't signed up for The Question Project yet, invite them.  Dude, just text them the URL! </p> </p>
     
 
 
     <%= form_tag new_pair_path, :method => "get" do %>
-      <%= text_area_tag :email, nil, :class => "input commentbox roboto" %>
+      <%= text_area_tag :email, nil, :class => "input emailbox roboto" %>
       <p><%= submit_tag "search", :class => "btn btn-success roboto" %></p>
     <% end %>
     
