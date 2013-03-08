@@ -15,8 +15,8 @@ class AnswersController < ApplicationController
     @answer.user = current_user
     @answer.save
 
-    # commented out email to see if causing bug
-    # User.mail_answer(current_user, @round)
+
+    User.mail_answer(current_user, @round)
     
     
     if @answer=Answer.where(:round_id => params[:round_id]).count > 1
