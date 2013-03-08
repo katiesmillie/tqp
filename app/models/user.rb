@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
       @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
       @round=@pair.rounds.where(:round_date => Time.now.midnight).first
       @question=@round.question
-      @url="beta.thequestionproject.com/rounds/#{@round.id}"
+      @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       QuestionsMailer.daily_question(u,@question,@url).deliver
     end
   end
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
       @question=@round.question
       @partner= @pair.partner(@user.id)
       @answer=@round.answers.where(:user_id => @user.id).first
-      @url="beta.thequestionproject.com/rounds/#{@round.id}"
+      @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       
       
       if @round.answers.where(:user_id => @user.id).first.nil?
