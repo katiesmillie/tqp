@@ -2,8 +2,7 @@
 
 
 
-    <h4>Oh heeeey. You were the first to answer today’s question so you get to choose 
-      the question for tomorrow.</h4>
+    <h4> Jackpot! You get to choose the question for tomorrow.</h4>
 
       <%= form_tag questions_path do %>
       
@@ -20,9 +19,11 @@
       
       
         <p><%= submit_tag "select", :class => "btn btn-success roboto"%></p>
+      
         
-        <p><i class="icon-refresh"> </i> <%= link_to "Refresh for more questions ", new_question_path%>
-        <p> <i class="icon-wrench"> </i> Pssst. If you create a new question it gets added to the master list of questions which everyone gets. I'm sure your inside jokes are super funny, but for now keep the questions generic if you can. I'll fix this soon! - Katie
+        <p><i class="icon-refresh"> </i> <%= link_to "Refresh for more questions ", new_question_path%> 
+          <p><i class="icon-arrow-right"> </i> <%= link_to "Skip this step", root_path %>
+        <p> <i class="icon-wrench"> </i> Pssst. When you create a new question it gets added to the master list of questions which everyone sees.
             
 
       <% end %>
