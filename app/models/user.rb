@@ -28,12 +28,12 @@ class User < ActiveRecord::Base
       @pair=Pair.where("user1_id = ? OR user2_id = ?", @user.id, @user.id).first
       @question=@round.question
       @partner= @pair.partner(@user.id)
-      @answer=@round.answers.where(:user_id => @user.id).first
+      @answer=@round.answers.where(:user_id => @partner.id).first
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       
       
-      if @round.answers.where(:user_id => @user.id).first.nil?
-         @display_answer = "Sorry you gotta answer it first to see what they said. Hey, I didn't make the rules!  Oh wait, I did."
+      if @answer.nil?
+         @display_answer = "You gotta answer the question to see what they said."
        else
          @display_answer = "#{@answer.body}"
        end
