@@ -7,23 +7,28 @@ class AnswersController < ApplicationController
   def new
     @question=@round.question
     @user_answers=@question.answers.where(:user_id => current_user.id)
+    flash[:mixpanel_record] = "'Question Answered'"
+
   end
   
   def create
     @round=Round.find params[:round_id]
     @answer=Answer.new :body => params[:body], :question_id => params[:question_id], :round_id => params[:round_id]
-    @answer.user = current_user
+    @answer.user=current_user
     @answer.save
+    @pair=current_user.pair
+    @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
 
 
     User.mail_answer(current_user, @round)
     
     
-    if @answer=Answer.where(:round_id => params[:round_id]).count > 1
-      redirect_to round_path(:id => params[:round_id])  
-    else
+    if @future_round.nil?
       redirect_to new_question_path
+    else
+      redirect_to round_path(:id => params[:round_id])  
     end
+    
     
 
   end
