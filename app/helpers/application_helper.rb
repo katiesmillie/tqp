@@ -8,4 +8,9 @@ module ApplicationHelper
       image_tag url, options
   end
   
+  def record_mixpanel(mixpanel_to_record)
+      "<script type='text/javascript'>mpmetrics.track(#{mixpanel_to_record});</script>" if mixpanel_to_record.present? 
+      #it'll only fire, if there is some event to record.
+   end
+  
 end
