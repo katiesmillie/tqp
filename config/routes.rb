@@ -30,8 +30,6 @@ TheQuestionProject::Application.routes.draw do
   resources :comments, :only => [:create, :edit, :update]
   resources :users, :only => :show
   
-   resources :incoming_mails
-  
 
   # Sample resource route with options:
   #   resources :products do
