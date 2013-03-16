@@ -10,11 +10,11 @@
     <% @answers.each do |a| %>    
 
       <div class="well">
-        <%= gravatar_for a.user, :size => 60, :class => "pic" %> 
-        <span class = "username"><%= a.user.first_name %></span>
+       <%= gravatar_for a.user, :size => 60, :class => "pic" %> 
+       <p>  <span class = "username"><%= a.user.first_name %></span>
         <%= a.body %> 
         <% answer_edit(a) do %>
-        <span class = "edit pull-right"><i class="icon-edit"> </i> <%= link_to "edit", edit_answer_path(a)%></span>
+        <span class = "edit pull-right"><%= link_to "edit", edit_answer_path(a)%></span></p>
         
           <% end %>
       </div>   
@@ -31,7 +31,7 @@
           <%= c.body %>
          
             <% comment_edit(c) do %>
-              <span class ="edit pull-right"><i class="icon-edit"> </i> <%= link_to "edit", edit_comment_path(c)%></span></p>
+              <span class ="edit pull-right"><%= link_to "edit", edit_comment_path(c)%></span></p>
             <% end %>
           <p class ="tiny muted"><%= c.created_at.to_date.to_s(:long)%>        
           </p>
