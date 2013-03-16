@@ -16,10 +16,9 @@ class User < ActiveRecord::Base
       @round=@pair.rounds.where(:round_date => Time.now.midnight).first
       @question=@round.question
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
-      QuestionsMailer.daily_question(u,@question,@url).deliver
+      QuestionsMailer.daily_question(u,@round,@question,@url).deliver
     end
   end
-  
   
   
   def self.mail_answer(user, round)
