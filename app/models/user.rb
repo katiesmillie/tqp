@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
          @display_answer = "#{@answer.body}"
        end
       
-      QuestionsMailer.pair_answered(@user,@question,@partner,@display_answer,@url).deliver
+      NotificationsMailer.pair_answered(@user,@question,@partner,@display_answer,@url).deliver
     
   end
   
@@ -51,8 +51,7 @@ class User < ActiveRecord::Base
       @partner= @pair.partner(@user.id)
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       
-      
-      QuestionsMailer.pair_commented(@user,@comment,@question,@partner,@url).deliver
+      NotificationsMailer.pair_commented(@user,@comment,@question,@partner,@url).deliver
     
   end
   
