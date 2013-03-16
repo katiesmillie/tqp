@@ -17,9 +17,9 @@ class IncomingMailsController < ApplicationController
       @answer=Answer.new :round_id => @round_id, :question_id => @question.id
       
       if params[:plain].nil?
-        @answer.body=params[:plain]
-      else
         @answer.body=params[:html]
+      else
+        @answer.body=params[:plain]
       end
       
       @answer.user=User.where(:email => params[:envelope][:from]).first
