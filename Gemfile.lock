@@ -172,6 +172,7 @@ DEPENDENCIES
   jquery-rails
   json
   letter_opener
+  mail
   newrelic_rpm
   pg
   rails (= 3.2.3)
