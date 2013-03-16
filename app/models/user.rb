@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
       @pair=Pair.where("user1_id = ? OR user2_id = ?", @user.id, @user.id).first
       @question=@round.question
       @partner= @pair.partner(@user.id)
-      @answer=@round.answers.where(:user_id => @partner.id).first
+      @answer=@round.answers.where(:user_id => @user.id).first
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       
       
