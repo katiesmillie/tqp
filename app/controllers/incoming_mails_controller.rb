@@ -11,7 +11,7 @@ class IncomingMailsController < ApplicationController
       @subject=params[:headers][:subject]
       IncomingMails.get_round(@subject)
       
-      @question=Question.where (:round_id => @round.id)
+      @question=Question.where(:round_id => @round.id)
 
       # @answer=Answer.new :round_id => params[:headers][X-Round_Id], :question_id => params[:headers][X-Question-Id]
       @answer=Answer.new :round_id => @round_id, :question_id => @question.id
