@@ -10,7 +10,7 @@
     <% @answers.each do |a| %>    
 
       <div class="well">
-       <%= gravatar_for a.user, :size => 60, :class => "pic" %> 
+       <%= gravatar_for a.user, :size => 40, :class => "pic" %> 
        <p>  <span class = "username"><%= a.user.first_name %></span>
         <%= a.body %> 
         <% answer_edit(a) do %>
