@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226023153) do
+ActiveRecord::Schema.define(:version => 20130320043106) do
 
   create_table "answers", :force => true do |t|
     t.string   "body"
@@ -27,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20130226023153) do
     t.integer  "round_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "invites", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "email"
+    t.integer  "user_id"
   end
 
   create_table "pairs", :force => true do |t|

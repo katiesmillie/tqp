@@ -1,0 +1,10 @@
+
+
+<p>Enter an email address to invite:</p>
+ 
+ 
+  <%= form_tag invites_path do %>
+  <%= text_area_tag :email, nil, :class => "input emailbox roboto" %>
+  <p><%= submit_tag "send", :class => "btn btn-large btn-success roboto" %></p>
+
+  <% end %>
