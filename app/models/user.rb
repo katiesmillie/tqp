@@ -5,18 +5,27 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # belongs_to :pair  --> should this be here?
   has_many :answers
+  has_many :invites
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
  
   def self.mail_question
     User.all.each do |u|
-      @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
-      @round=@pair.rounds.where(:round_date => Time.now.midnight).first
-      @question=@round.question
-      @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
-      QuestionsMailer.daily_question(u,@round,@question,@url).deliver
+      
+      if Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first.nil?
+     
+      else
+        @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
+        
+        if @pair.rounds.where(:round_date => Time.now.midnight).first.nil?
+        else
+          @round=@pair.rounds.where(:round_date => Time.now.midnight).first
+          @question=@round.question
+          @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
+          QuestionsMailer.daily_question(u,@round,@question,@url).deliver 
+        end
+      end
     end
   end
   
