@@ -39,14 +39,12 @@ class User < ActiveRecord::Base
       @answer=@round.answers.where(:user_id => @user.id).first
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       
-      
-      if @answer.nil?
-         @display_answer = "You gotta answer the question to see what they said."
+      if @round.answers.where(:user_id => @partner.id).first.nil?
+        NotificationsMailer.pair_answered_hidden(@user,@question,@partner,@display_answer,@url).deliver
        else
-         @display_answer = "#{@answer.body}"
+        NotificationsMailer.pair_answered(@user,@question,@partner,@display_answer,@url).deliver
        end
       
-      NotificationsMailer.pair_answered(@user,@question,@partner,@display_answer,@url).deliver
     
   end
   
