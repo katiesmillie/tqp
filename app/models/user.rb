@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   def self.mail_question
     User.all.each do |u|
       @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
-      @round=@pair.Rounds.where(:round_date => Time.now.midnight).first
+      @round=@pair.rounds.where(:round_date => Time.now.midnight).first
       @question=@round.question
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       QuestionsMailer.daily_question(u,@round,@question,@url).deliver
