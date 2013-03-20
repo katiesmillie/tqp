@@ -4,6 +4,7 @@ class QuestionsMailer < ActionMailer::Base
      
   def daily_question(user, round, question, url)
      @question=question.body
+     @round=round
      @url=url
      @user=user.first_name
      mail(:to => user.email, :subject => "Your Daily Question (#{round.id})")
