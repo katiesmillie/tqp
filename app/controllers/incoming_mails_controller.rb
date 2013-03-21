@@ -9,16 +9,11 @@ class IncomingMailsController < ApplicationController
       # Rails.logger.info params[:html]    
 
       @subject=params[:headers][:Subject]    
-      @round=Round.where(:id => @subject[/\d+/])
-      @question=Question.where(:round_id => @round.id)
+      @round=Round.where(:id => @subject[/\d+/]).first
+      @question=Question.where(:round_id => @round.id).first
 
-      @answer=Answer.new :round_id => @round_id, :question_id => @question.id
-      
-      if params[:plain].nil?
-        @answer.body=params[:html]
-      else
-        @answer.body=params[:plain]
-      end
+      @answer=Answer.new :round_id => @round.id, :question_id => @question.id
+      @answer.body=params[:reply_plain]
       
       @answer.user=User.where(:email => params[:envelope][:from]).first
       
@@ -29,15 +24,11 @@ class IncomingMailsController < ApplicationController
       
       if @round.pair == @pair && @round.question.answer.nil?
         @answer.save 
+        render :text => 'Answer saved', :status => 200
       else
-        # return some error email or just do nothing
+        render :text => 'Answer not saved', :status => 400
       end
      
-      # if params[:envelope][:from] != 'expected_user@example.com'
-      #        render :text => 'success', :status => 200
-      #      else
-      #        render :text => 'Unknown user', :status => 404 # 404 would reject the mail
-      #      end
     
     end
 
