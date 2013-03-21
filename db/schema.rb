@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321003147) do
+ActiveRecord::Schema.define(:version => 20130321175653) do
 
   create_table "answers", :force => true do |t|
     t.string   "body"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130321003147) do
     t.string   "email"
     t.integer  "user_id"
     t.string   "message"
+    t.string   "type"
   end
 
   create_table "pairs", :force => true do |t|
