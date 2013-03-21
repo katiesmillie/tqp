@@ -10,8 +10,8 @@ class IncomingMailsController < ApplicationController
 
       @subject=params[:headers][:Subject]    
       @round=Round.where(:id => @subject[/\d+/]).first
-      @question=Question.where(:round_id => @round.id).first
-
+      @question=@round.question
+      
       @answer=Answer.new :round_id => @round.id, :question_id => @question.id
       @answer.body=params[:reply_plain]
       
