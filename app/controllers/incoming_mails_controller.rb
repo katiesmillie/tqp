@@ -8,12 +8,10 @@ class IncomingMailsController < ApplicationController
       # Rails.logger.info params[:plain]
       # Rails.logger.info params[:html]    
 
-      @subject=params[:headers][:subject]
-      IncomingMails.get_round(@subject)
-      
+      @subject=params[:headers][:subject]      
+      @round=Round.where(:id => @subject[/\d+/])
       @question=Question.where(:round_id => @round.id)
 
-      # @answer=Answer.new :round_id => params[:headers][X-Round_Id], :question_id => params[:headers][X-Question-Id]
       @answer=Answer.new :round_id => @round_id, :question_id => @question.id
       
       if params[:plain].nil?
