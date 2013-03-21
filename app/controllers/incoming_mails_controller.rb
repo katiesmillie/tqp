@@ -3,12 +3,12 @@ class IncomingMailsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
    def create
-      # Rails.logger.info params[:headers][:subject] #why do I need to log all this stuff? do i?
+      # Rails.logger.info params[:headers][:subject]
       # Rails.logger.info params[:envelope][:from]
       # Rails.logger.info params[:plain]
       # Rails.logger.info params[:html]    
 
-      @subject=params[:headers][:subject]      
+      @subject=params[:Subject]    
       @round=Round.where(:id => @subject[/\d+/])
       @question=Question.where(:round_id => @round.id)
 
