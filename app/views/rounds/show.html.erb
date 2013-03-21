@@ -11,7 +11,7 @@
 
       <div class="well">
        <%= gravatar_for a.user, :size => 40, :class => "pic" %> 
-       <p>  <span class = "username"><%= a.user.first_name %></span>
+       <p>  <!-- <span class = "username"><%= a.user.first_name %></span> -->
         <%= a.body %> 
         <% answer_edit(a) do %>
         <span class = "edit pull-right"><%= link_to "edit", edit_answer_path(a)%></span></p>
@@ -27,7 +27,8 @@
     <% comment_present(@round) do %>
             
         <% @comments.each do |c| %>
-          <p><span class = "username"><%=c.author.first_name%></span>
+        <%= gravatar_for c.author, :size => 30, :class => "pic" %> 
+          <p><!-- <span class = "username"><%=c.author.first_name%></span> -->
           <%= c.body %>
          
             <% comment_edit(c) do %>
