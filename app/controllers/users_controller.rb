@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     def show
       @pair=current_user.pair
       @user=current_user
+      @partner=@pair.partner(@pair.id)
     end
 
 end
