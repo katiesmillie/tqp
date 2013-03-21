@@ -1,10 +1,12 @@
 
-
-<p>Enter an email address to invite:</p>
- 
- 
+  <p> Friend's email address:</p>
   <%= form_tag invites_path do %>
-  <%= text_area_tag :email, nil, :class => "input emailbox roboto" %>
-  <p><%= submit_tag "send", :class => "btn btn-large btn-success roboto" %></p>
+  <%= text_area_tag :email, nil, :class => "input emailbox roboto" %></p>
+
+  
+  <p>Add a personal message (optional):</p>
+  <%= text_area_tag :body, nil, :class => "input commentbox roboto" %>
+  
+  <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
 
   <% end %>

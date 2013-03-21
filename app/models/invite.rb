@@ -1,18 +1,24 @@
 class Invite < ActiveRecord::Base
   validates_presence_of :email, :user_id
   belongs_to :user
-  attr_accessible :email, :user_id
+  attr_accessible :email, :user_id, :message
   
   
-  def self.mail_invite(email, user)
+  def self.mail_invite(user, email, message)
     @user=user
     @email=email
-    @url="http://beta.thequestionproject.com"
+    @message=message
     
-    InvitesMailer.invited(@user,@email,@url).deliver
+    if message.to_s == ''
+      @display_message= ''
+    else
+      @display_message="#{@user.first_name} left you a message:"
+    end
+    
+    @url="http://beta.thequestionproject.com"
+   
+    InvitesMailer.invite_partner(@user,@email,@message,@display_message, @url).deliver
     
   end
-  
-  
   
 end
