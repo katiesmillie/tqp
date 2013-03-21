@@ -36,6 +36,14 @@ class AnswersController < ApplicationController
   def index
     @answers=current_user.answers.order "created_at DESC"
     @pair=current_user.pair
+    
+    if current_user.answers.count == 0
+      @label="You don't have any answers yet!"
+    else
+      @label="" 
+      
+    end
+  
   end
   
   def edit
