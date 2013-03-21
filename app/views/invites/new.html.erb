@@ -1,12 +1,38 @@
 
-  <p> Friend's email address:</p>
+<i class="icon-envelope">  </i> Invite a friend to be your partner <br/>
+
+
+  
+  <%= label_tag("Friend's email address:") %>
   <%= form_tag invites_path do %>
   <%= text_area_tag :email, nil, :class => "input emailbox roboto" %></p>
 
   
-  <p>Add a personal message (optional):</p>
-  <%= text_area_tag :body, nil, :class => "input commentbox roboto" %>
+
+  <%= label_tag("Add a personal message (optional):") %>
+  <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
+  <%= hidden_field_tag :type, "partner" %>
   
   <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
+  
+    <% end %>
+  <hr>
+  
+ <i class="icon-bullhorn">  </i> Or just tell a friend about The Question Project
+  
+  
+  <%= label_tag("Friend's email address:") %>
+  <%= form_tag invites_path do %>
+  <%= text_area_tag :email, nil, :class => "input emailbox roboto" %></p>
+  <%= hidden_field_tag :type, "share" %>
+
+  
+  <%= label_tag("Add a personal message (optional):") %>
+  <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
+  
+  <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
+  
+
+  
 
   <% end %>

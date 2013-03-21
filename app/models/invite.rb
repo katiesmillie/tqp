@@ -21,4 +21,22 @@ class Invite < ActiveRecord::Base
     
   end
   
+  def self.mail_share(user, email, message)
+    @user=user
+    @email=email
+    @message=message
+    
+    if message.to_s == ''
+      @display_message= ''
+    else
+      @display_message="#{@user.first_name} left you a message:"
+    end
+    
+    @url="http://beta.thequestionproject.com"
+   
+    InvitesMailer.invite_share(@user,@email,@message,@display_message, @url).deliver
+    
+  end
+    
+  
 end

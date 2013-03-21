@@ -9,10 +9,19 @@ class InvitesController < ApplicationController
   def create
     @invite=Invite.new :email => params[:email], :message => params[:body]
     @invite.user=current_user
-    @invite.save 
     
-    Invite.mail_invite(current_user, @invite.email, @invite.message)
     
+    if params[:type] == "partner"
+      @invite.type="partner"
+      @invite.save 
+      Invite.mail_invite(current_user, @invite.email, @invite.message)
+    elsif params[:type] == "share"
+      @invite.type="share"
+      @invite.save 
+      Invite.mail_share(current_user, @invite.email, @invite.message)
+    end
+    
+
     redirect_to new_pair_path 
   end
   
