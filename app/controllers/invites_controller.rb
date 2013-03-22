@@ -11,11 +11,11 @@ class InvitesController < ApplicationController
     @invite.user=current_user
     
     
-    if params[:type] == "partner"
+    if params[:kind] == "partner"
       @invite.type="partner"
       @invite.save 
       Invite.mail_invite(current_user, @invite.email, @invite.message)
-    elsif params[:type] == "share"
+    elsif params[:kind] == "share"
       @invite.type="share"
       @invite.save 
       Invite.mail_share(current_user, @invite.email, @invite.message)

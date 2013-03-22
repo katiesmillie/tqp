@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20130321175653) do
     t.string   "email"
     t.integer  "user_id"
     t.string   "message"
-    t.string   "type"
+    t.string   "kind"
   end
 
   create_table "pairs", :force => true do |t|

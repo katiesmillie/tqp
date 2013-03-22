@@ -11,7 +11,7 @@
 
   <%= label_tag("Add a personal message (optional):") %>
   <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
-  <%= hidden_field_tag :type, "partner" %>
+  <%= hidden_field_tag :kind, "partner" %>
   
   <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
   
@@ -24,7 +24,7 @@
   <%= label_tag("Friend's email address:") %>
   <%= form_tag invites_path do %>
   <%= text_area_tag :email, nil, :class => "input emailbox roboto" %></p>
-  <%= hidden_field_tag :type, "share" %>
+  <%= hidden_field_tag :kind, "share" %>
 
   
   <%= label_tag("Add a personal message (optional):") %>
