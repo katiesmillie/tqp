@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
   before_filter :require_user, :except => :new
   before_filter :require_no_answer, :only => :new
   before_filter :protect_round,  :only => :new
-  
+    
   def new
     @question=@round.question
     @user_answers=@question.answers.where(:user_id => current_user.id)
@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
     else
       redirect_to round_path(:id => params[:round_id])  
     end
-    
+
     
 
   end
@@ -38,10 +38,7 @@ class AnswersController < ApplicationController
     @pair=current_user.pair
     
     if current_user.answers.count == 0
-      @label="You don't have any answers yet!"
-    else
-      @label="" 
-      
+      @label="You don't have any answers yet!"      
     end
   
   end
