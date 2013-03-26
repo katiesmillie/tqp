@@ -23,7 +23,7 @@ class PairsController < ApplicationController
       @round=Round.create :question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight
       redirect_to root_path
     else
-      flash[:notice]="User already has a partner!"
+      flash[:error]="User already has a partner!"
       redirect_to new_pair_path
     end
     
