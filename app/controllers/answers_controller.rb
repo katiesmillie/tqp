@@ -45,14 +45,16 @@ class AnswersController < ApplicationController
   
   def edit
     @answer=Answer.find params[:id]
+    @round=@answer.round
     @question=@answer.question
   end
   
   def update
+    @round=Round.find params[:round_id]
     @answer=Answer.find params[:id]
     @answer.body = params[:body]
     @answer.save
-    redirect_to answers_path
+    redirect_to round_path(:id => @round.id)
   end
 
   
