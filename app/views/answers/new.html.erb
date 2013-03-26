@@ -8,7 +8,7 @@
        <h3> <%= @question.body %></h3>
 
         <%= form_tag answers_path do %>
-        <%= text_area_tag :body, nil, :class => "input answerbox roboto" %>
+        <%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
         <p><%= submit_tag "submit", :class => "btn btn-large btn-success roboto" %></p>
         <%= hidden_field_tag :question_id, @question.id %>
         <%= hidden_field_tag :round_id, @round.id %>
