@@ -5,7 +5,7 @@ module AnswersHelper
     
       if round.answers.count < 1
        else
-         "Submit your reponse to see #{@partner_name}'s answer"
+         "Submit your response to see #{@partner_name}'s answer"
       end
     
   end
