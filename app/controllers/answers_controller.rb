@@ -19,9 +19,7 @@ class AnswersController < ApplicationController
     @pair=current_user.pair
     @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
 
-
     User.mail_answer(current_user, @round)
-    
     
     if @future_round.nil?
       redirect_to new_question_path
@@ -29,7 +27,6 @@ class AnswersController < ApplicationController
       redirect_to round_path(:id => params[:round_id])  
     end
 
-    
 
   end
   
@@ -37,9 +34,7 @@ class AnswersController < ApplicationController
     @answers=current_user.answers.order "created_at DESC"
     @pair=current_user.pair
     
-    if current_user.answers.count == 0
-      @label="You don't have any answers yet!"      
-    end
+
   
   end
   
@@ -71,7 +66,6 @@ class AnswersController < ApplicationController
     redirect_to root_path if @round.nil?
    end
    
-
   
 end
   

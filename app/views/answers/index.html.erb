@@ -1,6 +1,9 @@
 
-  <p><%= @label %></p>
-      
+
+    
+      <% if current_user.answers.empty? %>
+        <p><%= "You don't have any answers yet!" %></p>
+      <% end %>
 
        <% @answers.each do |a| %>
            
