@@ -1,10 +1,19 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   
+  
     def show
       @pair=current_user.pair
       @user=current_user
-      @partner=@pair.partner(@pair.id)
+      
+      if @pair
+        @partner=@pair.partner(@pair.id)
+      else
+        redirect_to root_path
+      end
+
     end
+    
+
 
 end
