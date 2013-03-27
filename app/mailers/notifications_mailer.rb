@@ -1,21 +1,20 @@
 class NotificationsMailer < ActionMailer::Base
    default :from => "hello@thequestionproject.com"
 
-    def pair_answered(user, question, partner, display_answer, url)
+    def pair_answered(user, question, partner, answer, url)
       @user = user.first_name
       @question = question.body
       @partner = partner
-      @display_answer = display_answer
+      @answer = answer.body
       @url = url
       mail(:to => partner.email, :subject => "#{@user} answered a question")
     end
     
     
-      def pair_answered_hidden(user, question, partner, display_answer, url)
+      def pair_answered_hidden(user, question, partner, url)
         @user = user.first_name
         @question = question.body
         @partner = partner
-        @display_answer = display_answer
         @url = url
         mail(:to => partner.email, :subject => "#{@user} answered a question")
       end

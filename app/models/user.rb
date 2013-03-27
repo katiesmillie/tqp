@@ -40,11 +40,10 @@ class User < ActiveRecord::Base
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       
       if @round.answers.where(:user_id => @partner.id).first.nil?
-        NotificationsMailer.pair_answered_hidden(@user,@question,@partner,@display_answer,@url).deliver
-       else
-        NotificationsMailer.pair_answered(@user,@question,@partner,@display_answer,@url).deliver
-       end
-      
+        NotificationsMailer.pair_answered_hidden(@user,@question,@partner,@url).deliver
+      else
+        NotificationsMailer.pair_answered(@user,@question,@partner,@answer,@url).deliver
+      end
     
   end
   
