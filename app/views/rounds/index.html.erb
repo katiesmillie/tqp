@@ -10,7 +10,11 @@
       <span class ="muted"><%= r.round_date.to_date.to_s(:long) %></span>
       <%= r.question.body %>
        
-       <%= link_to answer_label(r), round_path(r) %>
-     
+       <%  if r.answers.where(:user_id => current_user.id).present? %>
+          <%= link_to "View Round", round_path(r) %>
+       <% else %>
+          <%= link_to "Answer Question", round_path(r)  %>
+       <% end %>
+       
      </div>
-    <% end %>
+  <% end %>

@@ -1,12 +1,5 @@
 module RoundsHelper
-  
-  def answer_label(round)
-     if round.answers.count > 0
-        "View Round"
-      else
-        "Answer Question" 
-      end
-  end
+
   
   def comment_present(round)
     if round.comments.count > 0
