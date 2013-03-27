@@ -19,11 +19,11 @@ class PairsController < ApplicationController
 
     if current_user.pair.nil? && @partner.pair.nil?
       @pair=Pair.create :user1_id => current_user.id, :user2_id => params[:partner_id]
-      @question=Question.scoped.sample
-      @round=Round.create :question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight
+      # @question=Question.scoped.sample
+      # @round=Round.create :question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight
       redirect_to root_path
     else
-      flash[:error]="User already has a partner!"
+      flash[:alert]="User already has a partner!"
       redirect_to new_pair_path
     end
     
