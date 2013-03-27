@@ -11,9 +11,11 @@
     <p><%= submit_tag "search", :class => "btn btn-success roboto" %></p>
     <% end %>
     
-    <% if params[:email].present? %>
-   <p><%= @label %></p>
-   <% end %>
+    <% if @partners.present? %>
+    <% else %>
+      <p><%= "No results found. Try again or invite your friend to join!" %></p>
+    <% end %>
+   
 
     <% search_result(@partners) do %>
  
@@ -21,7 +23,14 @@
    
           <% @partners.each do |p| %>
             <h5><%= "Friend found!" %></h5>
-            <p><%= p.first_name %> <%= p.last_name %> <%= link_to "Select as partner", pairs_path(:partner_id => p.id), :method => "post" %></p>
+            <p><%= p.first_name %> <%= p.last_name %> 
+            
+          <% if p.pair.nil? %>  
+            <%= link_to "Select as partner", pairs_path(:partner_id => p.id), :method => "post" %></p>
+          <% else %>
+            <%= "(This user already has a partner)" %></p>
+          <% end %>
+          
           <% end %>
     
         </div>
