@@ -1,16 +1,9 @@
 class PairsController < ApplicationController
 
-# connecting two users together as a pair, this happens on registration
+before_filter :require_no_pair, :only => [:new]
 
   def new
     @partners=User.where(:email => params[:email])
-    
-    if User.where(:email => params[:email]).count == 0
-      @label = "No results found. Try again or invite your friend to join!"
-    else
-      @label = ""
-    end
-    
   end
 
 
@@ -19,8 +12,6 @@ class PairsController < ApplicationController
 
     if current_user.pair.nil? && @partner.pair.nil?
       @pair=Pair.create :user1_id => current_user.id, :user2_id => params[:partner_id]
-      # @question=Question.scoped.sample
-      # @round=Round.create :question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight
       redirect_to root_path
     else
       flash[:alert]="User already has a partner!"
@@ -37,6 +28,13 @@ class PairsController < ApplicationController
     @pair=current_user.pair
     @pair.delete
     redirect_to pair_path
+  end
+
+  def require_no_pair  
+     @pair=current_user.pair
+     if @pair
+       redirect_to root_path
+     end
   end
 
 
