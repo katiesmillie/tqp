@@ -1,38 +1,32 @@
 
-<i class="icon-envelope">  </i> Invite a friend to be your partner <br/>
+<% if @pair.present? %>
 
+  <i class="icon-bullhorn">  </i> Tell a friend about The Question Project
+  <%= label_tag("Friend's email address:") %>
+  <%= form_tag invites_path do %>
+    <%= text_area_tag :email, nil, :class => "input emailbox roboto" %></p>
+    <%= hidden_field_tag :kind, "share" %>
+
+    <%= label_tag("Add a personal message (optional):") %>
+    <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
+
+    <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
+    <% end %>
 
   
+<% else %>
+  
+  <i class="icon-envelope">  </i> Invite a friend to be your partner <br/>
   <%= label_tag("Friend's email address:") %>
   <%= form_tag invites_path do %>
   <%= text_area_tag :email, nil, :class => "input emailbox roboto" %></p>
-
-  
 
   <%= label_tag("Add a personal message (optional):") %>
   <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
   <%= hidden_field_tag :kind, "partner" %>
   
   <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
-  
-    <% end %>
-  <hr>
-  
- <i class="icon-bullhorn">  </i> Or just tell a friend about The Question Project
-  
-  
-  <%= label_tag("Friend's email address:") %>
-  <%= form_tag invites_path do %>
-  <%= text_area_tag :email, nil, :class => "input emailbox roboto" %></p>
-  <%= hidden_field_tag :kind, "share" %>
-
-  
-  <%= label_tag("Add a personal message (optional):") %>
-  <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
-  
-  <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
-  
-
-  
-
   <% end %>
+
+  
+<% end %>
