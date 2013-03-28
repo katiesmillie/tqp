@@ -9,12 +9,13 @@ class User < ActiveRecord::Base
   has_many :invites
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
+  after_create :setup_pair_if_invited
+  
  
   def self.mail_question
     User.all.each do |u|
       
       if Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first.nil?
-     
       else
         @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
         
@@ -60,7 +61,23 @@ class User < ActiveRecord::Base
     
   end
   
-  
+  def setup_pair_if_invited
+      @user=User.where(:id => self.id).first
+      # or should I use user.last
+      @invite=Invite.where(:email => @user.email).first
+      @partner=User.where(:id =>@invite.user_id).first
+
+      if @invite
+        @invite.accepted = true
+        @invite.save
+      if @user.pair.nil? && @partner.pair.nil?
+        @pair=Pair.create(:user1_id => @invite.user_id, :user2_id => @user.id)
+      end
+        
+        
+      end
+  end
+
   
   
   def pair
