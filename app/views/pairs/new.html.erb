@@ -12,7 +12,7 @@
     <% end %>
     
     <% if @partners.present? %>
-    <% else %>
+    <% elsif params[:email].present? %>
       <p><%= "No results found. Try again or invite your friend to join!" %></p>
     <% end %>
    
