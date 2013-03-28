@@ -9,6 +9,7 @@ TheQuestionProject::Application.routes.draw do
   
   match "/about" => "pages#about"
   match "/welcome" => "pages#signed_out"
+  match "/new" => "pages#new_user"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
