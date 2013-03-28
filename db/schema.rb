@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321175653) do
+ActiveRecord::Schema.define(:version => 20130326043157) do
 
   create_table "answers", :force => true do |t|
     t.string   "body"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130321175653) do
     t.integer  "user_id"
     t.string   "message"
     t.string   "kind"
+    t.boolean  "accepted"
   end
 
   create_table "pairs", :force => true do |t|
