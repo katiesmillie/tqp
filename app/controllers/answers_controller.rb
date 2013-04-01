@@ -17,15 +17,16 @@ class AnswersController < ApplicationController
     @answer.user=current_user
     @answer.save
     @pair=current_user.pair
-    @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
 
     User.mail_answer(current_user, @round)
     
-    if @future_round.nil?
-      redirect_to new_question_path
-    else
-      redirect_to round_path(:id => params[:round_id])  
-    end
+# removed redirect to new question path for now
+    # @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
+    # if @future_round.nil?
+    #   redirect_to new_question_path
+    # else
+    #   redirect_to round_path(:id => params[:round_id])  
+    # end
 
 
   end
@@ -33,9 +34,6 @@ class AnswersController < ApplicationController
   def index
     @answers=current_user.answers.order "created_at DESC"
     @pair=current_user.pair
-    
-
-  
   end
   
   def edit
@@ -51,7 +49,6 @@ class AnswersController < ApplicationController
     @answer.save
     redirect_to round_path(:id => @round.id)
   end
-
   
   protected 
   def require_no_answer
