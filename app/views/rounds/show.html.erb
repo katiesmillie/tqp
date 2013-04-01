@@ -2,6 +2,11 @@
     mixpanel.track("View Round")
 </script>
 
+<% if @future_round.present? %>
+  <% else %>
+ <div class="alert alert-success">
+ <%=  link_to "Choose tomorrow's question!", new_question_path %></div>
+ <% end %>
 
    <p class="roboto date">Question for <%= @round.round_date.to_date.to_s(:long)%></p>
    
@@ -41,7 +46,7 @@
     <% end %>
       
       <%= form_tag comments_path do %>
-      <%= text_area_tag :body, nil, :class => "input commentbox roboto" %>
+      <%= text_area_tag :body, nil, :class => "input commentbox roboto", :maxlength =>"255" %>
       <p><%= submit_tag "add a comment", :class => "btn btn-success roboto"%></p>
       <%= hidden_field_tag :round_id, @round.id %>
       <% end %>
