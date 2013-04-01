@@ -1,9 +1,18 @@
 
-<% if @pair.present? %>
-  <p><%=  link_to "Tell your friends about The Question Project!", new_invite_path, :class => "btn" %></p>
-<% else %>
-  <p><%=  link_to "Invite a friend to be your partner!", new_invite_path, :class => "btn" %></p>
+  
+  
+  
+  <% if @pair.present? %>
+  <div class="alert alert-info">
+  <i class="icon-bullhorn"> </i>
+  <%=  link_to "Tell your friends about The Question Project!", new_invite_path %>
+  <% else %>
+  <i class="icon-envelope"> </i>
+  <%=  link_to "Invite a friend to be your partner!", new_invite_path %>
+  </div>
 <% end %>
+
+</div>
 
 <p class = "align"><%= gravatar_for @user, :size => 80 %></p>
 <p>That's you!</p>
