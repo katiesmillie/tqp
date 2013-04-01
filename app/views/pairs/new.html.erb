@@ -1,4 +1,29 @@
 
+
+ <% search_result(@partners) do %>
+
+        <% @partners.each do |p| %>
+        <h5> Friends found:</h5>
+          <p class="alert alert-success"><%= p.first_name %> <%= p.last_name %> 
+          
+        <% if p.pair.nil? %> 
+          <%= link_to "Select as partner", pairs_path(:partner_id => p.id), :method => "post" %></p>
+        <% else %>
+          <%= "(This user already has a partner)" %></p>
+        <% end %>
+        
+        <% end %>
+  
+      
+      <% end %>
+
+      <% if @partners.present? %>
+      <% elsif params[:email].present? %>
+        <p class ="alert alert-warning"><%= "No results found. Try again or invite your friend to join!" %></p>
+      <% end %>
+
+
+
 <p><i class="icon-user">  </i>  To get started you need a partner. Right now you can only have one partner, so pick someone you like. </p>
   
 <p><i class="icon-search">  </i>  Enter a friend's email address below to search for them.</p> 
@@ -11,28 +36,6 @@
     <p><%= submit_tag "search", :class => "btn btn-success roboto" %></p>
     <% end %>
     
-    <% if @partners.present? %>
-    <% elsif params[:email].present? %>
-      <p><%= "No results found. Try again or invite your friend to join!" %></p>
-    <% end %>
-   
+  
 
-    <% search_result(@partners) do %>
- 
-      <div class="well">
    
-          <% @partners.each do |p| %>
-            <h5><%= "Friend found!" %></h5>
-            <p><%= p.first_name %> <%= p.last_name %> 
-            
-          <% if p.pair.nil? %>  
-            <%= link_to "Select as partner", pairs_path(:partner_id => p.id), :method => "post" %></p>
-          <% else %>
-            <%= "(This user already has a partner)" %></p>
-          <% end %>
-          
-          <% end %>
-    
-        </div>
-
-<% end %>
