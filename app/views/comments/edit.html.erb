@@ -2,7 +2,7 @@
      <h3> Edit comment</h3>
 
       <%= form_tag comment_path(@comment.id), :method => "put" do %>
-      <%= text_area_tag :body, @comment.body, :class => "input answerbox roboto" %>
+      <%= text_area_tag :body, @comment.body, :class => "input answerbox roboto", :maxlength =>"255" %>
       <p><%= submit_tag "Save", :class => "btn btn-success roboto" %></a></p>
 
       <% end %>
