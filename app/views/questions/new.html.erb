@@ -1,8 +1,11 @@
 
 
 
-
     <h4> Jackpot! You get to choose the question for tomorrow.</h4>
+    <p><i class="icon-refresh"> </i> <%= link_to "Refresh to see different questions", new_question_path%> 
+      
+    
+    <div class = "well">
 
       <%= form_tag questions_path do %>
       
@@ -19,12 +22,9 @@
       
       
         <p><%= submit_tag "select", :class => "btn btn-success roboto"%></p>
-      
-        
-        <p><i class="icon-refresh"> </i> <%= link_to "Refresh for more questions ", new_question_path%> 
-          <p><i class="icon-arrow-right"> </i> <%= link_to "Skip this step", root_path %>
-        <p> <i class="icon-wrench"> </i> Pssst. When you create a new question it gets added to the master list of questions which everyone sees.
-            
+     </div> 
+     
+        <p> <i class="icon-wrench"> </i> Pssst. If you don't choose a question we'll randomly choose one for you. When you create a new question it gets added to the master list which everyone sees. </p>
 
       <% end %>
 
