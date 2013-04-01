@@ -70,7 +70,12 @@
     </div>
     <hr>
   
-<p class = "flash"><%= flash[:alert]%></p>
+  <% if flash[:alert].present? %>
+    <div class="alert alert-block">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <%= flash[:alert]%></div>
+  <% end %>
+
 
 <%= yield %>
 <div class="container-narrow">
