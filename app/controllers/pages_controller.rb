@@ -10,9 +10,12 @@ class PagesController < ApplicationController
   def new_user
     @user=current_user
     @pair=@user.pair
-    @partner=@pair.partner(@user.id)
+    
+    @partner=@pair.try(:partner, @user.id)
+    return redirect_to new_pair_path unless @partner
     @round=Round.where(:pair_id => @pair.id).first
     @question=@round.question
+
   end
   
   
