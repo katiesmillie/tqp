@@ -1,14 +1,15 @@
+<script type="text/javascript">
+    mixpanel.track("New User Page Loaded")
+</script>
+
 
 <div align="center">Thanks for joining The Question Project! </div> <br>
 
-
-<% if @partner.present? %>
 <p class = "align"><%= gravatar_for @partner, :size => 60 %> <%= "Your partner is #{@partner.first_name} #{@partner.last_name}." %> </p>
 
 <p>Every day you will both receive an email with a question. Once you each answer the question you can view your partner's answer and leave comments.</p>
 
 <hr>
-
 
 <p> Answer your first question now: </p>
 
@@ -20,10 +21,3 @@
   <%= hidden_field_tag :question_id, @question.id %>
   <%= hidden_field_tag :round_id, @round.id %>
   <% end %>
-
-
-<% else %>
-
-To get started, you need to" <%= link_to "invite a friend", pairs_new_path %> to be your partner.
-
-<% end %>
