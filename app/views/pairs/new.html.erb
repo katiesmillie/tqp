@@ -1,3 +1,10 @@
+<% if @partners.present? %>
+ <% elsif params[:email].present? %>
+ 
+   <div class ="alert alert-warning"><%= "No results found. Try again or invite your friend to join!" %>
+   <button type="button" class="close" data-dismiss="alert">&times;</button>
+   </div>
+ <% end %> 
 
 
  <% search_result(@partners) do %>
@@ -17,24 +24,46 @@
       
       <% end %>
 
-      <% if @partners.present? %>
-      <% elsif params[:email].present? %>
-        <p class ="alert alert-warning"><%= "No results found. Try again or invite your friend to join!" %></p>
-      <% end %>
+     
+      
+      <div align="center">Thanks for joining The Question Project! </div> <br>
+      
 
+<div class = "well">
+  
 
 
 <p><i class="icon-user">  </i>  To get started you need a partner. Right now you can only have one partner, so pick someone you like. </p>
-  
-<p><i class="icon-search">  </i>  Enter a friend's email address below to search for them.</p> 
+<p><i class="icon-search">  </i>  Enter a friend's email address below to search for them:</p> 
 
-<p><i class="icon-signal">  </i>  If your friend hasn't signed up for The Question Project yet, <a href="/invites/new">invite them.</a> </p>
-    
 
     <%= form_tag new_pair_path, :method => "get" do %>
     <%= text_area_tag :email, nil, :class => "input emailbox roboto" %>
     <p><%= submit_tag "search", :class => "btn btn-success roboto" %></p>
     <% end %>
+    
+</div>
+
+<div class = "well">
+    
+<p><i class="icon-envelope">  </i>  If your friend hasn't signed up for The Question Project yet, invite them.</p>  
+
+     <%= label_tag("Friend's email address:") %>
+     <%= form_tag invites_path do %>
+     <%= text_area_tag :email, nil, :class => "input emailbox roboto" %>
+
+     <%= label_tag("Add a personal message (optional):") %>
+     <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
+     <%= hidden_field_tag :kind, "partner" %>
+
+     <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
+     <% end %>
+     
+     
+</div>
+    
+<p><i class="icon-edit"> </i> <%= link_to "Edit profile", edit_user_registration_path %></p>
+    
     
   
 
