@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :answers
   has_many :invites
+  has_many :comments, :foreign_key => :author_id
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
   after_create :setup_pair_if_invited
