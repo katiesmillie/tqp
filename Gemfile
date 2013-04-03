@@ -48,11 +48,16 @@ gem 'rails_admin'
 
 
 gem "devise"
-
 gem "letter_opener", :group => :development
-
 gem "airbrake"
-
 gem 'newrelic_rpm'
-
 gem 'mail'
+gem 'better_errors', :group => :development
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'omniauth-github'
+gem 'omniauth-openid'
+gem 'pry'
+gem 'pry-nav'
+
