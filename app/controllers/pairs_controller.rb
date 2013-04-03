@@ -14,7 +14,7 @@ before_filter :require_no_pair, :only => [:new]
       @pair=Pair.create :user1_id => current_user.id, :user2_id => params[:partner_id]
       redirect_to root_path
     else
-      flash[:alert]="User already has a partner!"
+      flash[:alert_custom]="User already has a partner!"
       redirect_to new_pair_path
     end
     

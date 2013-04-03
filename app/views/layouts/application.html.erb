@@ -70,11 +70,17 @@
     </div>
     <hr>
   
-  <% if flash[:alert].present? %>
+  <% if flash[:alert_custom].present? %>
     <div class="alert alert-block">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <%= flash[:alert]%></div>
+  <%= flash[:alert_custom]%></div>
   <% end %>
+  
+  <% if flash[:success].present? %>
+     <div class="alert alert-success">
+     <button type="button" class="close" data-dismiss="alert">&times;</button>
+   <%= flash[:success]%></div>
+   <% end %>
 
 
 <%= yield %>
