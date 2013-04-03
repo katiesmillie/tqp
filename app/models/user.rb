@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
       @round=round
       @pair=Pair.where("user1_id = ? OR user2_id = ?", @user.id, @user.id).first
       @question=@round.question
+      
+      return unless @pair
       @partner= @pair.partner(@user.id)
       @answer=@round.answers.where(:user_id => @user.id).first
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
@@ -63,21 +65,17 @@ class User < ActiveRecord::Base
   
   def setup_pair_if_invited
       @user=User.where(:id => self.id).first
-      # or should I use user.last
       @invite=Invite.where(:email => @user.email).first
+
+      return unless @invite
       @partner=User.where(:id =>@invite.user_id).first
-
-      if @invite
-        @invite.accepted = true
-        @invite.save
-      if @user.pair.nil? && @partner.pair.nil?
-        @pair=Pair.create(:user1_id => @invite.user_id, :user2_id => @user.id)
-      end
+      @invite.accepted = true
+      @invite.save
+      return if @user.pair || @partner.pair
+      @pair=Pair.create(:user1_id => @invite.user_id, :user2_id => @user.id)
+      @invite.mail_accepted(@user,@partner,@pair)
         
-        
-      end
   end
-
   
   
   def pair
