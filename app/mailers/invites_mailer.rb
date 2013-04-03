@@ -1,5 +1,7 @@
 class InvitesMailer < ActionMailer::Base
-  default from: "hello@thequestionproject.com"
+  default from: "invite@thequestionproject.com"
+  layout "mailer"
+
   
   def invite_partner(user, email, message, display_message, url)
     @user_first=user.first_name
@@ -23,5 +25,17 @@ class InvitesMailer < ActionMailer::Base
   end
   
   
+  def invite_accepted(user, partner, pair, round, url, question)
+      @user=user
+      @partner=partner
+      @pair=pair
+      @round=round
+      @url=url
+      @question=question
+      mail(:to => @partner.email, :subject => "#{@user.first_name} is your new partner at The Question Project")
+    
+  end
+  
+
   
 end
