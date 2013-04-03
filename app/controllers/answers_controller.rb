@@ -20,6 +20,8 @@ class AnswersController < ApplicationController
 
     User.mail_answer(current_user, @round)
     
+    redirect_to round_path(:id => params[:round_id]) 
+    
 # removed redirect to new question path for now
     # @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
     # if @future_round.nil?
