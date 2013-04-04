@@ -1,6 +1,6 @@
 class InvitesMailer < ActionMailer::Base
   default from: "invite@thequestionproject.com"
-  layout "mailer"
+
 
   
   def invite_partner(user, email, message, display_message, url)
