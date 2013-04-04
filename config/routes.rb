@@ -5,11 +5,14 @@ TheQuestionProject::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
+  resources :authentications
+  match '/auth/:provider/callback' => 'authentications#create'
   root :to => "rounds#index"
   
   match "/about" => "pages#about"
   match "/welcome" => "pages#signed_out"
   match "/new" => "pages#new_user"
+  match "/testing" => "pages#testing"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
