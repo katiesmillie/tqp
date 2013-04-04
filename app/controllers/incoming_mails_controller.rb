@@ -23,4 +23,5 @@ class IncomingMailsController < ApplicationController
         render :text => 'Answer not saved', :status => 400
       end
      
+    end
 end
