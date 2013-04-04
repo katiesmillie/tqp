@@ -2,11 +2,10 @@
     mixpanel.track("View Round")
 </script>
 
-<% if @future_round.present? %>
-  <% else %>
+<% if @future_round.nil? %>
  <div class="alert alert-success">
  <%=  link_to "Choose tomorrow's question!", new_question_path %></div>
- <% end %>
+<% end %>
 
    <p class="roboto date">Question for <%= @round.round_date.to_date.to_s(:long)%></p>
    

@@ -12,16 +12,12 @@ class RoundsController < ApplicationController
     @answers=@round.answers
     @comments=@round.comments
     @pair=current_user.pair
-    @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
-  
+    @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight.to_date).first
   end
   
   def index
     @pair=current_user.pair
     @rounds=@pair.rounds.recent 
-    @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
-        
-
   end
 
   
