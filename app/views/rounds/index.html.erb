@@ -2,11 +2,6 @@
     mixpanel.track("Home Page Loaded")
 </script>
 
-  <% if @future_round.present? %>
-   <% else %>
-  <div class="alert alert-success">
-  <%=  link_to "Choose tomorrow's question!", new_question_path %></div>
-  <% end %>
 
   <% @rounds.each do |r| %>
        
