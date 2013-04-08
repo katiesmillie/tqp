@@ -7,7 +7,7 @@
  <%=  link_to "Choose tomorrow's question!", new_question_path %></div>
 <% end %>
 
-   <p class="roboto date">Question for <%= @round.round_date.to_date.to_s(:long)%></p>
+   <%= @round.round_date.to_date.to_s(:long)%></p>
    
    <h3><%= @question.body %></h3>
  
