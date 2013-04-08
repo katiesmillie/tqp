@@ -66,11 +66,11 @@ class User < ActiveRecord::Base
       @answer=@round.answers.where(:user_id => @user.id).first
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       
-      if @round.answers.where(:user_id => @partner.id).first.nil?
-        NotificationsMailer.pair_answered_hidden(@user,@question,@partner,@url).deliver
-      else
-        NotificationsMailer.pair_answered(@user,@question,@partner,@answer,@url).deliver
-      end
+      # if @round.answers.where(:user_id => @partner.id).first.nil?
+      #         NotificationsMailer.pair_answered_hidden(@user,@question,@partner,@url).deliver
+      #       else
+      #         NotificationsMailer.pair_answered(@user,@question,@partner,@answer,@url).deliver
+      #       end
     
   end
   
@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
       @partner= @pair.partner(@user.id)
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       
-      NotificationsMailer.pair_commented(@user,@comment,@question,@partner,@url).deliver
+      # NotificationsMailer.pair_commented(@user,@comment,@question,@partner,@url).deliver
     
   end
   
