@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  
+  <body>
+
+<div class="header">
+ <h4><%= link_to "the question project", root_path %></h4>
+  
+</div>
+
+     <% if @round %>
+       <h4>Howdy <%= @user.first_name %>! Here's today's question:</h4>
+       <p><%= @question %></p>  
+       <p>You can answer <a href="<%= @url %>">here</a>, or just reply to this email without changing the subject line.</p>
+      <% end %>
+      
+        <hr>
+      
+        <h4>You still need to answer these questions!</h4>
+        <% @rounds.each do |r| %>
+          <% if r.answers.where(:user_id => @user.id).first %>
+          <% else %>
+            <p><%= r.question.body %>
+            <%= link_to "Answer me", round_path(r.id) %></p>
+          <% end %>  
+        <% end %>   
+
+        <hr>
+
+        <% if @answers.empty? && @comments.empty? %>
+        <% else %>
+          <h4><%= "Check out #{@partner}'s recent activity" %></h4>
+        <% end %>
+
+        <% if @answers %>
+          <% @answers.each do |a| %>
+           <p><%= a.question.body %></p>
+           <p><%= "#{a.user.first_name} said: #{a.body}" %>
+           <%= link_to "Comment", round_path(a.round.id) %></p>
+          <% end %>
+        <% end %>
+
+          <% if @comments %>
+          <% @comments.each do |c| %> 
+            <p><%= c.round.question.body %></p>
+            <p><%= "#{c.author.first_name} said: #{c.body}" %>
+            <%= link_to "Comment", round_path(c.round.id) %></p>
+          <% end %>
+        <% end %>
+        
+        <hr>
+
+          <% if @last_month %> 
+            <h4>Remember this from a month ago?</h4>
+            <p><%= @last_month.question.body%></p>
+            <p> You answered: <%= @last_month.body%></p>
+
+          <% elsif @last_week %> 
+            <h4>Remember this from a week ago?</h4>
+            <p><%= @last_week.question.body%></p>
+            <p> You answered: <%= @last_week.body%><p>
+          <% end %>
+
+    </div>
+  </body>
+</html>

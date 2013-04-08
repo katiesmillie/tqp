@@ -31,6 +31,29 @@ class User < ActiveRecord::Base
     end
   end
   
+  def self.daily_mail
+    User.all.each do |u|
+    @pair=Pair.where("user1_id = ? OR user2_id = ?", u.id, u.id).first
+        
+        next unless @pair
+        @partner=@pair.partner(u.id)
+        @answers=@partner.answers.where("created_at > ?", 1.day.ago).all
+        @comments=Comment.where("created_at > ? AND author_id =?", 1.day.ago, @partner).all
+        @round=@pair.rounds.where(:round_date => Time.now.midnight).first
+        @rounds=@pair.rounds
+         
+        next unless @round
+        @question=@round.question
+        @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
+        
+        @last_month=Answer.where("created_at < ? AND created_at > ? AND user_id = ?", 30.days.ago, 31.days.ago, u.id).first   
+        @last_week=Answer.where("created_at < ? AND created_at > ? AND user_id = ?", 7.days.ago, 8.days.ago, u.id).first
+        
+        QuestionsMailer.daily_email(u,@round,@rounds,@question,@partner,@answers,@comments,@url,@last_month,@last_week).deliver 
+    end
+  end
+  
+  
   
   def self.mail_answer(user, round)
       @user=user
