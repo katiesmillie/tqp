@@ -6,8 +6,13 @@ class Round < ActiveRecord::Base
    has_many :comments
    attr_accessible :pair_id, :question_id, :round_date
    
+   
    def self.recent
      order("round_date DESC").where("round_date <= ?", Time.now)
+   end
+   
+   def self.recent_minus_day
+     order("round_date DESC").where("round_date <= ?", 1.day.ago.midnight)
    end
    
 end

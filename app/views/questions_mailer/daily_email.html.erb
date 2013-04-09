@@ -19,19 +19,18 @@
       
         <hr>
       
-        <h4>You still need to answer these questions!</h4>
-        <% @rounds.each do |r| %>
-          <% if r.answers.where(:user_id => @user.id).first %>
-          <% else %>
-            <p><%= r.question.body %>
-            <%= link_to "Answer me", round_path(r.id) %></p>
-          <% end %>  
-        <% end %>   
+        <h4>You still need to answer these questions:</h4>
 
-        <hr>
+        <% @rounds.all.each do |r| %>
+          <% next if r.answers.where(:user_id => @user.id).first %>
+          <p><%= r.question.body %>
+            <%= link_to "Answer", round_path(r.id) %></p>
+        <% end %>
+
 
         <% if @answers.empty? && @comments.empty? %>
         <% else %>
+          <hr>
           <h4><%= "Check out #{@partner}'s recent activity" %></h4>
         <% end %>
 
@@ -51,17 +50,22 @@
           <% end %>
         <% end %>
         
-        <hr>
 
           <% if @last_month %> 
+            <hr>
             <h4>Remember this from a month ago?</h4>
             <p><%= @last_month.question.body%></p>
-            <p> You answered: <%= @last_month.body%></p>
+            <p> You answered: <%= @last_month.body%>
+            <%= link_to "View question", round_path(@last_week.id)%>
+            
 
-          <% elsif @last_week %> 
+          <% elsif @last_week %>
+            <hr>
             <h4>Remember this from a week ago?</h4>
             <p><%= @last_week.question.body%></p>
-            <p> You answered: <%= @last_week.body%><p>
+            <p> You answered: <%= @last_week.body%>
+            <%= link_to "View question", round_path(@last_week.id)%>
+              
           <% end %>
 
     </div>

@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
         @answers=@partner.answers.where("created_at > ?", 1.day.ago).all
         @comments=Comment.where("created_at > ? AND author_id =?", 1.day.ago, @partner).all
         @round=@pair.rounds.where(:round_date => Time.now.midnight).first
-        @rounds=@pair.rounds
+        @rounds=@pair.rounds.recent_minus_day
          
         next unless @round
         @question=@round.question
@@ -52,9 +52,7 @@ class User < ActiveRecord::Base
         QuestionsMailer.daily_email(u,@round,@rounds,@question,@partner,@answers,@comments,@url,@last_month,@last_week).deliver 
     end
   end
-  
-  
-  
+    
   def self.mail_answer(user, round)
       @user=user
       @round=round
@@ -101,10 +99,8 @@ class User < ActiveRecord::Base
         
   end
   
-  
   def pair
     Pair.where("user1_id = ? OR user2_id = ?", self.id, self.id).first
   end
-  
 
 end
