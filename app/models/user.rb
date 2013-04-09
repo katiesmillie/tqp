@@ -46,8 +46,8 @@ class User < ActiveRecord::Base
         @question=@round.question
         @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
         
-        @last_month=Answer.where("created_at < ? AND created_at > ? AND user_id = ?", 30.days.ago, 31.days.ago, u.id).first   
-        @last_week=Answer.where("created_at < ? AND created_at > ? AND user_id = ?", 7.days.ago, 8.days.ago, u.id).first
+        @last_month=Answer.where("round_date < ? AND round_date > ? AND user_id = ?", 30.days.ago, 31.days.ago, u.id).first   
+        @last_week=Answer.where("round_date < ? AND round_date > ? AND user_id = ?", 7.days.ago, 8.days.ago, u.id).first
         
         QuestionsMailer.daily_email(u,@round,@rounds,@question,@partner,@answers,@comments,@url,@last_month,@last_week).deliver 
     end

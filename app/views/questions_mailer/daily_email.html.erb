@@ -54,7 +54,7 @@
           <% if @last_month %> 
             <hr>
             <h4>Remember this from a month ago?</h4>
-            <p><%= @last_month.question.body%></p>
+            <p><%= @last_mouth.round_date @last_month.question.body %></p>
             <p> You answered: <%= @last_month.body%>
             <%= link_to "View question", round_path(@last_week.id)%>
             
