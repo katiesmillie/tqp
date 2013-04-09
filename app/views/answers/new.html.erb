@@ -1,11 +1,10 @@
        <% yield %>
        <% #{insert the two snippets of javascript that you get from mixpanel with your specific key} %>
        <% record_mixpanel(flash[:mixpanel_record]) # this is a custom method we've defined in application_helper.rb %> 
-  <div class ="roboto">
     
-      <div class="jumbotron">
+  <div align="center">
         
-       <h3> <%= @question.body %></h3>
+        <h3> <%= @question.body %></h3>
 
         <%= form_tag answers_path do %>
         <%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
@@ -16,8 +15,5 @@
   
         <p><%= pair_status(@round) %></p>
         
-
-  
-    </div>
   </div>
 

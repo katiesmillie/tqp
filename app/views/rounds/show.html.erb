@@ -2,14 +2,14 @@
     mixpanel.track("View Round")
 </script>
 
-<% if @future_round.nil? %>
- <div class="alert alert-success">
- <%=  link_to "Choose tomorrow's question!", new_question_path %></div>
+  <% if @future_round.nil? %>
+  <div class="alert alert-success">
+  <%=  link_to "Choose tomorrow's question!", new_question_path %></div>
 <% end %>
 
    <%= @round.round_date.to_date.to_s(:long)%></p>
    
-   <h3><%= @question.body %></h3>
+   <h3 align="center"><%= @question.body %></h3>
  
     <% @answers.each do |a| %>    
 
