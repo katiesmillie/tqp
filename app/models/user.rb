@@ -46,6 +46,14 @@ class User < ActiveRecord::Base
         @question=@round.question
         @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
         
+        @unanswered_rounds = []
+        @rounds.each do |r|
+          answer = r.answers.where(:user_id => u.id)
+          if !answer.first
+            @unanswered_rounds << r  #adds item to array each time
+          end
+        end
+        
         @last_month=Answer.where("created_at < ? AND created_at > ? AND user_id = ?", 30.days.ago, 31.days.ago, u.id).first   
         @last_week=Answer.where("created_at < ? AND created_at > ? AND user_id = ?", 7.days.ago, 8.days.ago, u.id).first
         
