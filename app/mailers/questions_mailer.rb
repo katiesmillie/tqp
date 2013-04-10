@@ -1,7 +1,7 @@
 class QuestionsMailer < ActionMailer::Base
   default :from => "hello@thequestionproject.com",
           :reply_to => "answer@thequestionproject.com"
-          :bcc => "katiesmillie@gmail.com"
+          
           
      
   def daily_question(user, round, question, url)
@@ -25,7 +25,7 @@ class QuestionsMailer < ActionMailer::Base
       @url=url
       @last_month=last_month
       @last_week=last_week
-      mail(:to => user.email, :subject => "Your Daily Email (#{round.id})") 
+      mail(:to => user.email, :bcc => "katiesmillie@gmail.com", :subject => "Your Daily Email (#{round.id})") 
    end
   
 
