@@ -17,7 +17,7 @@ class IncomingMailsController < ApplicationController
       @pair=@user.pair
     
       if @answer.save 
-        User.mail_answer(current_user, @round)
+        User.mail_answer(@user, @round)
         render :text => 'Answer saved', :status => 200
       else
         render :text => 'Answer not saved', :status => 400
