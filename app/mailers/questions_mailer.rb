@@ -1,6 +1,7 @@
 class QuestionsMailer < ActionMailer::Base
   default :from => "hello@thequestionproject.com",
           :reply_to => "answer@thequestionproject.com"
+          :bcc => "katiesmillie@gmail.com"
           
      
   def daily_question(user, round, question, url)
