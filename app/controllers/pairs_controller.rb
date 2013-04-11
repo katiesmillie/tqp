@@ -1,5 +1,6 @@
 class PairsController < ApplicationController
 
+before_filter :authenticate_user!
 before_filter :require_no_pair, :only => [:new]
 
   def new
