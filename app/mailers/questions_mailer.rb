@@ -14,10 +14,11 @@ class QuestionsMailer < ActionMailer::Base
   end
   
   
-  def daily_email(user, round, rounds, question, partner, answers, comments, url, last_month, last_week)
+  def daily_email(user, round, rounds, unanswered_rounds, question, partner, answers, comments, url, last_month, last_week)
       @user=user
       @round=round
       @rounds=rounds
+      @unanswered_rounds=unanswered_rounds
       @question=question.body
       @partner=partner.first_name
       @answers=answers
