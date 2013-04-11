@@ -12,8 +12,15 @@ class RoundsController < ApplicationController
     @answers=@round.answers
     @comments=@round.comments
     @pair=current_user.pair
-    # @past_day_round=@pair.rounds.where(:round_date => @round.round_date-1.day).first
-    # @past_day_round=@pair.rounds.where(:round_date => @round.round_date+1.day).first
+    
+    @past_day_round=@pair.rounds.where(:round_date => @round.round_date-1.day).first
+    @next_day_round=@pair.rounds.where(:round_date => @round.round_date+1.day).first
+    
+    #a better way to do this is probably to find the next round for that pair with an id < @round.id
+    # @past_day_round=@pair.rounds.where("id < ?," @round.id).first --> needs to be ordered correctly
+    
+    
+    
     @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
   end
   

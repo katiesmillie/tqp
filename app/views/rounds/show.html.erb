@@ -3,12 +3,25 @@
 </script>
 
   <% if @future_round.nil? %>
-  <div class="alert alert-success">
-  <%=  link_to "Choose tomorrow's question!", new_question_path %></div>
-<% end %>
+    <div class="alert alert-success"><%=  link_to "Choose tomorrow's question!", new_question_path %></div>
+  <% end %>
+  
+  <p align="center"><%= @round.round_date.to_date.to_s(:long)%></span>
 
-   <%= @round.round_date.to_date.to_s(:long)%></p>
-   
+  <p class="pull-left">
+     <% if @past_day_round %>
+       <%= link_to "< Previous round", round_path(@past_day_round.id)%>
+     <% end %>
+  </p>
+ 
+
+   <p class="pull-right">
+     <% if @next_day_round %>
+       <%= link_to "Next round >", round_path(@next_day_round.id)%>
+     <% end %>
+   </p>
+    
+<br />   
    <h3 align="center"><%= @question.body %></h3>
  
     <% @answers.each do |a| %>    
