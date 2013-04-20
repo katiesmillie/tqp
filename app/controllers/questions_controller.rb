@@ -1,9 +1,16 @@
 class QuestionsController < ApplicationController
 
   def new
-    @question1=Question.scoped.sample
-    @question2=Question.scoped.sample
-    @question3=Question.scoped.sample  
+    @user=current_user
+    @pair=@user.pair
+    @recent_question_ids=Pair.recent_questions(@pair)
+    
+    @question1=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
+    @question2=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
+    @question3=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
+    
+    #want to compare these lists to @recent_question array and elminate any ids that match ids in the array?
+    
   end
   
   def create
