@@ -53,7 +53,7 @@
     <% if @last_month %> 
       <hr>
       <h4>Remember this from a month ago?</h4>
-      <p><%= @last_month.round.round_date.to_date.to_s(:long) %><%= @last_month.question.body %></p>
+      <p><%= @last_month.round.round_date.to_date.to_s(:long) %> <%= @last_month.question.body %></p>
       <p> You answered: <%= @last_month.body %>
       <a href="http://beta.thequestionproject.com/rounds/<%= @last_month.round.id %>">View Question</a>
 
