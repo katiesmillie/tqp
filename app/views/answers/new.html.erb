@@ -5,7 +5,7 @@
   <div align="center">
         
         <h3> <%= @question.body %></h3>
-
+        <p><%= @round.round_date.to_date.to_s(:long) %>
         <%= form_tag answers_path do %>
         <%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
         <p><%= submit_tag "submit", :class => "btn btn-large btn-success roboto" %></p>
