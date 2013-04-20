@@ -28,7 +28,7 @@ before_filter :require_no_pair, :only => [:new]
   def destroy
     @pair=current_user.pair
     @pair.delete
-    redirect_to pair_path
+    redirect_to root_path
   end
 
   def require_no_pair  
