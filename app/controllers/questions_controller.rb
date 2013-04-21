@@ -3,14 +3,19 @@ class QuestionsController < ApplicationController
   def new
     @user=current_user
     @pair=@user.pair
-    @recent_question_ids=Pair.recent_questions(@pair)
+    @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, @pair.id).all
+
+    @recent_question_ids=[]
+    @recent_rounds.each do |r|
+      @recent_question_ids << r.question.id
+    end
     
     @question1=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
+    @recent_question_ids << @question1.id
     @question2=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
+    @recent_question_ids << @question2.id
     @question3=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
-    
-    #want to compare these lists to @recent_question array and elminate any ids that match ids in the array?
-    
+        
   end
   
   def create
