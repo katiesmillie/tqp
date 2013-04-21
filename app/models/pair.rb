@@ -18,7 +18,13 @@ class Pair < ActiveRecord::Base
     
   def self.auto_create
     Pair.all.each do |p|
-      @recent_question_ids=Pair.recent_questions(p)
+      @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, p.id).all
+
+      @recent_question_ids=[]
+      @recent_rounds.each do |r|
+        @recent_question_ids << r.question.id
+      end
+      
       @question=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
     
       if p.rounds.where(:round_date => Time.now.midnight).first.nil?
@@ -35,16 +41,5 @@ class Pair < ActiveRecord::Base
       @round=Round.create :question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight
   end
   
-  
-  def self.recent_questions(pair) #produces a list of questions that pair has seen in last 20 days 
-    @pair=pair
-    @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, @pair.id).all
-
-    @recent_question_ids=[]
-    @recent_rounds.each do |r|
-      @recent_question_ids << r.question.id
-    end
-  
-  end
       
 end
