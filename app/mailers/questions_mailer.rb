@@ -9,7 +9,7 @@ class QuestionsMailer < ActionMailer::Base
      @round=round
      @url=url
      @user=user.first_name
-     mail(:to => user.email, :subject => "Your Question for #{round.date.to_date.to_s(:long)} (#{round.id})"
+     mail(:to => user.email, :subject => "Your Question for #{round.round_date.to_date.to_s(:long)} (#{round.id})"
   
   end
   
@@ -26,7 +26,7 @@ class QuestionsMailer < ActionMailer::Base
       @url=url
       @last_month=last_month
       @last_week=last_week
-      mail(:to => user.email, :bcc => "katiesmillie@gmail.com", :subject => "Your Question for #{round.date.to_date.to_s(:long)} (#{round.id})" 
+      mail(:to => user.email, :bcc => "katiesmillie@gmail.com", :subject => "Your Question for #{round.round_date.to_date.to_s(:long)} (#{round.id})" 
    end
   
 
