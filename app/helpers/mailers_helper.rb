@@ -16,3 +16,5 @@ module MailersHelper
 # end
 
 # <div class="content" style="<%= content_styling %>">
+
+end
