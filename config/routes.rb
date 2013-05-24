@@ -29,7 +29,7 @@ TheQuestionProject::Application.routes.draw do
   #   resources :products
   resources :answers, :only => [:create, :new, :edit, :update, :index]
   resources :questions, :only => [:create, :new]
-  resources :rounds, :only => [:show]
+  resources :rounds, :only => [:new, :show]
   resources :pairs, :only => [:create, :new, :show, :destroy]
   resources :comments, :only => [:create, :edit, :update]
   resources :users, :only => :show

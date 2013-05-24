@@ -4,8 +4,34 @@ class RoundsController < ApplicationController
   before_filter :require_answer, :only => [:show]
   before_filter :require_pair
 
-  
 #each round is a question per day for a pair, each round has a page
+  
+  
+  def new
+    
+      @user=current_user
+      @pair=@user.pair
+      @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, @pair.id).all
+
+      @recent_question_ids=[]
+      @recent_rounds.each do |r|
+        @recent_question_ids << r.question.id
+      end
+    
+      
+      if @recent_question_ids
+        @question=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
+      else
+        @question=Question.scoped.sample
+      end
+        
+    @round=Round.where("round_date = ? AND pair_id = ?", Time.now.midnight, @pair.id).first_or_create(:question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight)
+  
+  
+  end
+  
+
+  
   def show
     @round=Round.find params[:id]
     @question=@round.question
