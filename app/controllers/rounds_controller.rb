@@ -8,7 +8,6 @@ class RoundsController < ApplicationController
   
   
   def new
-    
       @user=current_user
       @pair=@user.pair
       @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, @pair.id).all
@@ -18,18 +17,13 @@ class RoundsController < ApplicationController
         @recent_question_ids << r.question.id
       end
     
-      
       if @recent_question_ids
         @question=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
       else
         @question=Question.scoped.sample
       end
         
-    @round=Round.where("round_date = ? AND pair_id = ?", Time.now.midnight, @pair.id).first_or_create(:question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight)
-  
-  
   end
-  
 
   
   def show
@@ -39,7 +33,7 @@ class RoundsController < ApplicationController
     @comments=@round.comments
     @pair=current_user.pair
     
-    @past_day_round=@pair.rounds.where(:round_date => @round.round_date-1.day).first
+    @past_day_round=@pair.rounds.where("id < ?", @round.id).first
     @next_day_round=@pair.rounds.where(:round_date => @round.round_date+1.day).first
     
     #a better way to do this is probably to find the next round for that pair with an id < @round.id
@@ -51,8 +45,25 @@ class RoundsController < ApplicationController
   end
   
   def index
-    @pair=current_user.pair
-    @rounds=@pair.rounds.recent 
+      @user=current_user
+      @pair=@user.pair
+      # @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, @pair.id).all
+      # 
+      #      @recent_question_ids=[]
+      #      @recent_rounds.each do |r|
+      #        @recent_question_ids << r.question.id
+      #      end
+      #    
+      #      
+      #      if @recent_question_ids
+      #        @question=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
+      #      else
+        @question=Question.scoped.sample
+      # end
+      
+      @rounds=@pair.rounds.recent 
+      
+      @todays_round=@pair.rounds.where(:round_date => Time.now.midnight).first
   end
 
   

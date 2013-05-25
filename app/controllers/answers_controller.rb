@@ -12,15 +12,22 @@ class AnswersController < ApplicationController
   end
   
   def create
-    @round=Round.find params[:round_id]
-    @answer=Answer.new :body => params[:body], :question_id => params[:question_id], :round_id => params[:round_id]
-    @answer.user=current_user
-    @answer.save
     @pair=current_user.pair
-
-    User.mail_answer(current_user, @round)
+    @question=Question.find params[:question_id]
     
-    redirect_to round_path(:id => params[:round_id]) 
+    @round=Round.where("round_date = ? AND pair_id = ?", Time.now.midnight, @pair.id).first_or_create(:question_id => @question.id, :pair_id => @pair.id, :round_date => 1.day.from_now.midnight)
+    
+    
+    if @round
+      @answer=Answer.new :body => params[:body], :question_id => @question.id, :round_id => @round.id
+      @answer.user=current_user
+      @answer.save
+
+      User.mail_answer(current_user, @round)
+    
+    redirect_to root_path
+    
+    end
     
 # removed redirect to new question path for now
     # @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
@@ -29,7 +36,6 @@ class AnswersController < ApplicationController
     # else
     #   redirect_to round_path(:id => params[:round_id])  
     # end
-
 
   end
   
