@@ -2,66 +2,50 @@
     mixpanel.track("View Round")
 </script>
 
-  <% if @future_round.nil? %>
-    <div class="alert alert-success"><%=  link_to "Choose tomorrow's question!", new_question_path %></div>
-  <% end %>
+
+<div class="show-well">
+
   
-  <p align="center"><%= @round.round_date.to_date.to_s(:long)%></span>
-
-  <p class="pull-left">
-     <% if @past_day_round %>
-       <%= link_to "< Previous round", round_path(@past_day_round.id)%>
-     <% end %>
-  </p>
+    <h4><%= @round.round_date.to_date.to_s(:long)%></h4>    
+    <h3><%= @question.body %></h3>
  
-
-   <p class="pull-right">
-     <% if @next_day_round %>
-       <%= link_to "Next round >", round_path(@next_day_round.id)%>
-     <% end %>
-   </p>
-    
-<br />   
-   <h3 align="center"><%= @question.body %></h3>
- 
-    <% @answers.each do |a| %>    
-
-      <div class="well">
-       <%= gravatar_for a.user, :size => 40, :class => "pic" %> 
-       <p>  <!-- <span class = "username"><%= a.user.first_name %></span> -->
-        <%= a.body %> 
-        <% answer_edit(a) do %>
-        <span class = "edit pull-right"><%= link_to "edit", edit_answer_path(a)%></span></p>
-        
-          <% end %>
-      </div>   
-
-    <% end %>
-            
-<hr>
-    
-  <div class="container-narrow comments">
+ <div class="clearfix bottom-padding">
+        <% @answers.each do |a| %>    
+            <%= gravatar_for a.user, :size => 40, :class => "pic" %> 
+            <p><%= a.body %> 
+            <% answer_edit(a) do %>
+            <span class = "edit pull-right"><%= link_to "edit", edit_answer_path(a)%></span></p>
+            <% end %>
+      
+      </div>
+      <% end %>
+      
+          
+<div class="comment-well">
     <% comment_present(@round) do %>
             
         <% @comments.each do |c| %>
-        <%= gravatar_for c.author, :size => 30, :class => "pic" %> 
-          <p><!-- <span class = "username"><%=c.author.first_name%></span> -->
-          <%= c.body %>
-         
+          <%= gravatar_for c.author, :size => 30, :class => "pic" %> 
+          <p><%= c.body %></p>
             <% comment_edit(c) do %>
-              <span class ="edit pull-right"><%= link_to "edit", edit_comment_path(c)%></span></p>
+            <p class ="tiny muted"><%= c.created_at.to_date.to_s(:long)%></p>
+            
+              <!-- <div class ="edit">
+                            <%= link_to "edit", edit_comment_path(c)%></div> -->
             <% end %>
-          <p class ="tiny muted"><%= c.created_at.to_date.to_s(:long)%>        
-          </p>
         <% end %>
 
     <% end %>
       
       <%= form_tag comments_path do %>
       <%= text_area_tag :body, nil, :class => "input commentbox roboto", :maxlength =>"255" %>
-      <p><%= submit_tag "add a comment", :class => "btn btn-success roboto"%></p>
+      <%= submit_tag "Comment", :class => "btn roboto"%>
       <%= hidden_field_tag :round_id, @round.id %>
       <% end %>
-    </div>
+      
+  </div>
+      
+
+    
 
 

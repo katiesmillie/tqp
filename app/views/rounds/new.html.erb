@@ -4,14 +4,18 @@
   
 <div align="center">
       
+      
       <h3> <%= @question.body %></h3>
-      <p><%= @round.round_date.to_date.to_s(:long) %>
+      <p><%= Time.now.to_date.to_s(:long) %>
       <%= form_tag answers_path do %>
       <%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
       <p><%= submit_tag "submit", :class => "btn btn-large btn-success roboto" %></p>
       <%= hidden_field_tag :question_id, @question.id %>
-      <%= hidden_field_tag :round_id, @round.id %>
       <% end %>
+      
+      
+      <div><%=  link_to "I want a different question!", new_round_path %></div>
+      
 
       
 </div>

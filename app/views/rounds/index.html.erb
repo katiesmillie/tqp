@@ -2,20 +2,45 @@
     mixpanel.track("Home Page Loaded")
 </script>
 
+<% if @todays_round %>
+<div class="question-well">You've already answered a question today. Come back tomorrow!</div>
 
-<div class="alert alert-success"><%=  link_to "Get new question!", new_round_path %></div>
+<% else %>
+
+  <div class="question-well">
+      <h4><%= Time.now.to_date.to_s(:long) %></h4>
+      
+      
+      <h3> <%= @question.body %></h3>
+ 
+      <%= form_tag answers_path do %>
+      <%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
+      <p><%= submit_tag "Submit", :class => "btn btn-large roboto" %></p>
+      <div><%=  link_to "I want a different question!", root_path %></div>
+      <%= hidden_field_tag :question_id, @question.id %>
+      <% end %>
+      
+      <% end %>
+  </div>
+
+
+<div class ="container">
+    <div class="row">
 
   <% @rounds.each do |r| %>
-       
-    <div class="well">
-      <span class ="muted"><%= r.round_date.to_date.to_s(:long) %></span>
-      <%= r.question.body %>
-       
-       <%  if r.answers.where(:user_id => current_user.id).present? %>
-          <%= link_to "View Round", round_path(r) %>
-       <% else %>
-          <%= link_to "Answer Question", round_path(r)  %>
-       <% end %>
-       
-     </div>
+       <div class="span3">
+         <div class="index-well">
+           <h4><%= r.round_date.to_date.to_s(:short) %></h4>
+             <p> <%= r.question.body %></p>
+              <%  if r.answers.where(:user_id => current_user.id).present? %>
+                <p><%= link_to "View", round_path(r) %></p>
+              <% else %>
+                <p><%= link_to "Answer", round_path(r)  %></p>
+              <% end %>
+        </div>
+      </div>
   <% end %>
+    </div>
+    
+    </div>
+     
