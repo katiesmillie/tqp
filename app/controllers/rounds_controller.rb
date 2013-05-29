@@ -1,7 +1,7 @@
 class RoundsController < ApplicationController
   
   before_filter :require_user
-  before_filter :require_answer, :only => [:show]
+  # before_filter :require_answer, :only => [:show]
   before_filter :require_pair
 
 #each round is a question per day for a pair, each round has a page

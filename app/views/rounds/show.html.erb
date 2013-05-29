@@ -2,12 +2,32 @@
     mixpanel.track("View Round")
 </script>
 
+<div class="container-narrow">
 
-<div class="show-well">
 
-  
+<%  if @round.answers.where(:user_id => current_user.id).present? %>
+
+  <div class="show-well">
     <h4><%= @round.round_date.to_date.to_s(:long)%></h4>    
     <h3><%= @question.body %></h3>
+    
+  
+<% else %>
+    
+      <div class="show-well">
+        <div class="span4">
+          <h4><%= @round.round_date.to_date.to_s(:long) %></h4>
+          <h3> <%= @question.body %></h3>
+        </div>
+        <div class="span5">
+          <%= form_tag answers_path do %>
+            <%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
+            <%= submit_tag "Submit", :class => "btn btn-large roboto" %>
+            <%= hidden_field_tag :question_id, @question.id %>
+        </div>
+          <% end %>
+    <% end %>
+    
  
  <div class="clearfix bottom-padding">
         <% @answers.each do |a| %>    
@@ -16,9 +36,12 @@
             <% answer_edit(a) do %>
             <span class = "edit pull-right"><%= link_to "edit", edit_answer_path(a)%></span></p>
             <% end %>
-      
       </div>
       <% end %>
+    
+      </div>
+      
+      
       
           
 <div class="comment-well">

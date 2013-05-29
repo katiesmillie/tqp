@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
+    
   
   <!-- Le styles -->
   <link href="../assets/css/bootstrap.css" rel="stylesheet">
@@ -26,7 +27,6 @@
                   <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                 <link rel="shortcut icon" href="../assets/ico/favicon.png">  
                                 
-                                <link href="http://roboto-webfont.googlecode.com/svn/trunk/roboto.all.css" rel="stylesheet" type="text/css">
                                 
   <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
                                 typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,
@@ -53,50 +53,44 @@
 
 <body>
   
-  <div class="container">
+  <div class="container-narrow">
+    
     <div class ="roboto">
-    <div class="masthead">
-      <ul class="nav nav-pills pull-right">
-        <li><%= link_to "about", about_path %></li>
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><%= link_to "about", about_path %></li>
             <% if current_user %>
             <li><%= link_to full_name(@user), user_path(current_user.id) %></li>
             <li><%= link_to "logout", destroy_user_session_path, :method => :delete %></li>
             <% else %>
             <li><%= link_to "login", new_user_session_path %></li>
             <% end %>
-      </ul>
-      <h1><%= link_to "the question project", root_path %></a>
-    </div>
+        </ul>
+        <h1><%= link_to "the question project", root_path %></h1>
+      </div>
     </div>
     <hr>
+    
+    
   
   <% if flash[:alert_custom].present? %>
     <div class="alert alert-block">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <%= flash[:alert_custom]%></div>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:alert_custom]%>
+    </div>
   <% end %>
   
   <% if flash[:success].present? %>
-     <div class="alert alert-success">
-     <button type="button" class="close" data-dismiss="alert">&times;</button>
-   <%= flash[:success]%></div>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:success]%>
+    </div>
    <% end %>
 
 
 <%= yield %>
 
 
-<div class="container-narrow">
-  <hr>
-  
-      <div class="footer">  
-        
-        <p class ="muted foot">the question project by <a href="http://twitter.com/katiesmillie" target="_blank">@katiesmillie</a></p>
-        <!-- <div class = "foot"><a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a></div>
-           </div> -->
-        </div>
-
-    </div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->
