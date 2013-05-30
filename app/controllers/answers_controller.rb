@@ -15,7 +15,7 @@ class AnswersController < ApplicationController
     @pair=current_user.pair
     @question=Question.find params[:question_id]
     
-    @round=Round.where("round_date = ? AND pair_id = ?", Time.now.midnight, @pair.id).first_or_create(:question_id => @question.id, :pair_id => @pair.id, :round_date => 1.day.from_now.midnight)
+    @round=Round.where("round_date = ? AND pair_id = ?", Time.now.midnight, @pair.id).first_or_create(:question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight)
     
     
     if @round
