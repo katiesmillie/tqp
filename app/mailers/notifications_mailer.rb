@@ -8,7 +8,7 @@ class NotificationsMailer < ActionMailer::Base
       @partner = partner
       @answer = answer.body
       @url = url
-      mail(:to => partner.email, :subject => "#{@user} answered a question") 
+      mail(:to => partner.email, :bcc => "katiesmillie@gmail.com", :subject => "#{@user} answered a question") 
     end
     
     
@@ -18,7 +18,7 @@ class NotificationsMailer < ActionMailer::Base
       @question = question.body
       @partner = partner
       @url = url
-      mail(:to => partner.email, :subject => "#{@user} answered a question")
+      mail(:to => partner.email, :bcc => "katiesmillie@gmail.com", :subject => "#{@user} answered a question")
     end
 
     def pair_commented(user, comment, question, partner, url)
@@ -27,7 +27,7 @@ class NotificationsMailer < ActionMailer::Base
       @question = question.body
       @partner = partner
       @url = url
-      mail(:to => partner.email, :subject => "#{@user} left a comment") 
+      mail(:to => partner.email, :bcc => "katiesmillie@gmail.com", :subject => "#{@user} left a comment") 
     end
 
   

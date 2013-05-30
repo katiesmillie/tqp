@@ -21,7 +21,7 @@ class InvitesMailer < ActionMailer::Base
     @message = message
     @display_message = display_message
     @url = url
-    mail(:to => email, :subject => "Your friend #{@user_first} wants you to try The Question Project")
+    mail(:to => email, :bcc => "katiesmillie@gmail.com", :subject => "Your friend #{@user_first} wants you to try The Question Project")
   end
   
   
@@ -32,7 +32,7 @@ class InvitesMailer < ActionMailer::Base
       @round=round
       @url=url
       @question=question
-      mail(:to => @partner.email, :subject => "#{@user.first_name} is your new partner at The Question Project")
+      mail(:to => @partner.email, :bcc => "katiesmillie@gmail.com", :subject => "#{@user.first_name} is your new partner at The Question Project")
     
   end
   
@@ -43,7 +43,7 @@ class InvitesMailer < ActionMailer::Base
     @message = message
     @display_message = display_message
     @url = url
-    mail(:to => email, :subject => "Don't forget! Your friend #{@user_first} wants you to try The Question Project")
+    mail(:to => email, :bcc => "katiesmillie@gmail.com", :subject => "Don't forget! Your friend #{@user_first} wants you to try The Question Project")
   end
 
   
