@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :invites
   has_many :comments, :foreign_key => :author_id
+  has_many :rounds
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
   after_create :setup_pair_if_invited
@@ -72,11 +73,11 @@ class User < ActiveRecord::Base
       @answer=@round.answers.where(:user_id => @user.id).first
       @url="http://beta.thequestionproject.com/rounds/#{@round.id}"
       
-      if @round.answers.where(:user_id => @partner.id).first.nil?
-                 NotificationsMailer.pair_answered_hidden(@user,@question,@partner,@url).deliver
-               else
+      # if @round.answers.where(:user_id => @partner.id).first.nil?
+                 # NotificationsMailer.pair_answered_hidden(@user,@question,@partner,@url).deliver
+                 #               else
                  NotificationsMailer.pair_answered(@user,@question,@partner,@answer,@url).deliver
-               end
+               # end
     
   end
   
