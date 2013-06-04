@@ -12,11 +12,15 @@ class AnswersController < ApplicationController
   end
   
   def create
+    
     @pair=current_user.pair
     @question=Question.find params[:question_id]
     
-    @round=Round.where("round_date = ? AND pair_id = ?", Time.now.midnight, @pair.id).first_or_create(:question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight)
-    
+    if Round.find params[:round_id]
+      @round=Round.find params[:round_id]
+    else
+      @round=Round.where("round_date = ? AND pair_id = ?", Time.now.midnight, @pair.id).first_or_create(:question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight)
+    end
     
     if @round
       @answer=Answer.new :body => params[:body], :question_id => @question.id, :round_id => @round.id

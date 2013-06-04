@@ -21,9 +21,11 @@
         </div>
         <div class="span5">
           <%= form_tag answers_path do %>
-            <%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
+            <p><%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
             <%= submit_tag "Submit", :class => "btn btn-large roboto" %>
             <%= hidden_field_tag :question_id, @question.id %>
+            <%= hidden_field_tag :round_id, @round.id %></p>
+      
         </div>
           <% end %>
     <% end %>
