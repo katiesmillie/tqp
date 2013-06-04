@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
 
       User.mail_answer(current_user, @round)
     
-    redirect_to root_path
+    redirect_to round_path(:id => @round.id)
     
     end
     
