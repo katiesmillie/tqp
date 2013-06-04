@@ -21,7 +21,7 @@ class AuthenticationsController < ApplicationController
         sign_in(user)
       end
       
-      redirect_to root_path
+      redirect_to new_path
       
   end
   
