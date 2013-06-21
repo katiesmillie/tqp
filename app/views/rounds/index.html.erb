@@ -2,8 +2,13 @@
     mixpanel.track("Home Page Loaded")
 </script>
 
-  
-  <% if @my_answer || @my_round %>
+
+  <% if params[:question_id] %>
+    <h4>Nice work answering that question!</h4>
+
+
+
+  <% elsif @my_answer || @my_round %>
     <div class ="row">
       <h4>You've already answered a question today. Come back tomorrow!</h4>
     </div> 
@@ -17,7 +22,7 @@
       <div class="span5">
         <%= form_tag answers_path do %>
         <%= text_area_tag :body, nil, :class => "input answerbox", :maxlength =>"255" %>
-        <%= submit_tag "Submit", :class => "btn btn-primary" %>
+        <%= submit_tag "Submit", :class => "btn" %>
         <%= hidden_field_tag :question_id, @question.id %>
          <% end %>
       </div>
@@ -28,18 +33,18 @@
       <div class="span4">
         <p><%= Time.now.to_date.to_s(:long) %></p>
         <h3> <%= @question.body %></h3>
-        <p><%=  link_to "I want a different question!", root_path %></p>
+        <p><%=  link_to "See a different question!", root_path %></p>
+        <p><%=  link_to "Make your own question", new_question_path %></p>
       </div>
       <div class="span5">
         <%= form_tag answers_path do %>
         <%= text_area_tag :body, nil, :class => "input answerbox", :maxlength =>"255" %>
-        <%= submit_tag "Submit", :class => "btn btn-primary" %>
+        <%= submit_tag "Submit", :class => "btn" %>
         <%= hidden_field_tag :question_id, @question.id %>
         <% end %>
       </div>
     </div>             
   <% end %>
-
 
 <div class="row">
   <% @rounds.each do |r| %>
