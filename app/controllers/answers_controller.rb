@@ -31,8 +31,8 @@ class AnswersController < ApplicationController
 
       User.mail_answer(current_user, @round)
     
-    redirect_to root_path
-    
+    redirect_to root_path(request.parameters)
+
     end
     
 # removed redirect to new question path for now
@@ -63,7 +63,8 @@ class AnswersController < ApplicationController
     @answer.save
     redirect_to round_path(:id => @round.id)
   end
-  
+
+
   protected 
   def require_no_answer
     if current_user.answers.where(:round_id => params[:round_id]).first
@@ -75,7 +76,7 @@ class AnswersController < ApplicationController
     @pair=current_user.pair
     @round=Round.where(:pair_id => @pair.id, :id => params[:round_id]).first
     redirect_to root_path if @round.nil?
-   end
+  end
    
   
 end
