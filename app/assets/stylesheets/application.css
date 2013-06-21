@@ -13,7 +13,6 @@
 */
 
 body {
-  padding-top: 20px;
   padding-bottom: 40px;
 }
 
@@ -21,7 +20,7 @@ body {
 .container-narrow {
   display:block;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 900px;
 }
 .container-narrow > hr {
   margin: 30px 0;
@@ -54,27 +53,12 @@ body {
   margin-top: 28px;
 }
 
-.roboto {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: lighter;
-}
-
-.roboto h1 {
-  font-size: 26px;
-  font-weight: lighter;
-  
-}
-
-.roboto a {
-  font-color: #000033;
-  font-weight: lighter;
-}
 
 .foot {
   font-size: .9em;
   text-align: center;
 }
-
+/*
 .question-well {
   float: left;
   width: 930px;
@@ -82,27 +66,9 @@ body {
   min-height: 20px;
   padding: 12px;
   
-}
+}*/
 
-.index-well {
-  float: left;
-  display: inline;
-  height: 120px;
-  width: 200px;
-  margin-right: 16px;
-  margin-bottom: 20px;
-  vertical-align: baseline;
-  background: #f8f8f8;
-  border-top: 5px solid #9d426b;
-  min-height: 20px;
-  padding: 12px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-}
+
 
 .show-well {
   float: left;
@@ -142,12 +108,8 @@ body {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-.bottom-padding {
-  padding-bottom:5px;
-}
 
 .stick {
-  
   bottom: 0;
   width: 100%;
 }

@@ -1,10 +1,11 @@
 class Round < ActiveRecord::Base
-  validates_presence_of :pair_id, :question_id, :round_date
+  validates_presence_of :question_id, :round_date
    belongs_to :pair
    belongs_to :question
+   belongs_to :user
    has_many :answers
    has_many :comments
-   attr_accessible :pair_id, :question_id, :round_date
+   attr_accessible :pair_id, :user_id, :question_id, :round_date
    
    
    def self.recent

@@ -1,9 +1,9 @@
 
-     <h3> Edit comment</h3>
+     <h4> Edit comment</h4>
 
       <%= form_tag comment_path(@comment.id), :method => "put" do %>
-      <%= text_area_tag :body, @comment.body, :class => "input answerbox roboto", :maxlength =>"255" %>
-      <p><%= submit_tag "Save", :class => "btn btn-success roboto" %></a></p>
+      <%= text_area_tag :body, @comment.body, :class => "input answerbox ", :maxlength =>"255" %>
+      <p><%= submit_tag "Save", :class => "btn btn-primary" %></a></p>
 
       <% end %>
       

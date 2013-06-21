@@ -2,7 +2,7 @@ class RoundsController < ApplicationController
   
   before_filter :require_user
   # before_filter :require_answer, :only => [:show]
-  before_filter :require_pair
+  # before_filter :require_pair
 
 #each round is a question per day for a pair, each round has a page
   
@@ -10,7 +10,13 @@ class RoundsController < ApplicationController
   def new
       @user=current_user
       @pair=@user.pair
-      @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, @pair.id).all
+      
+      if @pair
+        @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, @pair.id).all
+      else
+        @recent_rounds=Round.where("created_at > ? AND user_id = ?", 30.days.ago.midnight, @user.id).all
+      end
+      
 
       @recent_question_ids=[]
       @recent_rounds.each do |r|
@@ -32,21 +38,27 @@ class RoundsController < ApplicationController
     @answers=@round.answers
     @comments=@round.comments
     @pair=current_user.pair
+    @user=current_user
     
-    @past_day_round=@pair.rounds.where("id < ?", @round.id).first
-    @next_day_round=@pair.rounds.where(:round_date => @round.round_date+1.day).first
+    # @past_day_round=@pair.rounds.where("id < ?", @round.id).first
+    #     @next_day_round=@pair.rounds.where(:round_date => @round.round_date+1.day).first
     
     #a better way to do this is probably to find the next round for that pair with an id < @round.id
     # @past_day_round=@pair.rounds.where("id < ?," @round.id).first --> needs to be ordered correctly
     
+    if @pair
+      @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
+    else
+      @future_round=@user.rounds.where(:round_date => 1.day.from_now.midnight).first
+      
+    end
     
-    
-    @future_round=@pair.rounds.where(:round_date => 1.day.from_now.midnight).first
   end
   
   def index
       @user=current_user
       @pair=@user.pair
+      @partner=@pair.partner(@user.id) unless @pair.nil?
       # @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, @pair.id).all
       # 
       #      @recent_question_ids=[]
@@ -58,12 +70,34 @@ class RoundsController < ApplicationController
       #      if @recent_question_ids
       #        @question=Question.where(["id NOT IN (?)", @recent_question_ids]).sample
       #      else
-        @question=Question.scoped.sample
       # end
+
+      if @pair
+        @rounds=@pair.rounds.recent
+        @find_round=@pair.rounds.where(:round_date => Time.now.midnight).first
+
+        if @find_round
+          @my_answer=@find_round.answers.where(:user_id => @user.id).first
+          @partner_answer=@find_round.answers.where(:user_id => @partner.id).first
+          if @parnter_answer
+            @question=@partner_answer.question
+          else
+            @question=Question.where(:author_id => 1).sample
+          end
+        
+        else
+          @question=Question.where(:author_id => 1).sample
+        end
+
       
-      @rounds=@pair.rounds.recent 
+      else
+        @rounds=@user.rounds.recent
+        @my_round=@user.rounds.where(:round_date => Time.now.midnight).first
+        @question=Question.where(:author_id => 1).sample
+        
+      end
       
-      @todays_round=@pair.rounds.where(:round_date => Time.now.midnight).first
+      
   end
 
   

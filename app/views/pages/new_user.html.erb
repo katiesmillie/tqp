@@ -3,21 +3,22 @@
 </script>
 
 
-<div align="center">Thanks for joining The Question Project! </div> <br>
 
-<p class = "align"><%= gravatar_for @partner, :size => 60 %> <%= "Your partner is #{@partner.first_name} #{@partner.last_name}." %> </p>
 
-<p>Every day you will both receive an email with a question. Once you each answer the question you can view your partner's answer and leave comments.</p>
+<h4>Thanks for joining The Question Project!  You can visit each day to answer a new question. </h4>
 
-<hr>
 
-<p> Answer your first question now: </p>
 
- <%= @question.body %>
+<% if @partner %>
+  <p class = "align"><%= gravatar_for @partner, :size => 60 %> <%= "Your partner is #{@partner.first_name} #{@partner.last_name}." %></p>
+  <p> You and your partner will get to answer the same questions, see each other's answers, and leave comments</p>
 
-  <%= form_tag answers_path do %>
-  <%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
-  <p><%= submit_tag "submit", :class => "btn btn-success roboto" %></p>
-  <%= hidden_field_tag :question_id, @question.id %>
-  <%= hidden_field_tag :round_id, @round.id %>
-  <% end %>
+<% else %>
+
+  <p><%=  link_to "Answer your first question now!", root_path, :class => "btn btn-primary" %></p>
+
+<% end %>
+
+
+
+

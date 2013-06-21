@@ -2,47 +2,60 @@
     mixpanel.track("Home Page Loaded")
 </script>
 
-
-<div class="container-narrow">
   
-  <% if @todays_round %>
+  <% if @my_answer || @my_round %>
+    <div class ="row">
+      <h4>You've already answered a question today. Come back tomorrow!</h4>
+    </div> 
 
-    <div class="question-well">
-      You've already answered a question today. Come back tomorrow!
-    </div>
-
-  <% else %>
-
-    <div class="question-well">
+  <% elsif @partner_round %>
+    <div class ="row">
       <div class="span4">
         <h4><%= Time.now.to_date.to_s(:long) %></h4>
+        <h3> <%= @question.body %></h3>
+      </div>
+      <div class="span5">
+        <%= form_tag answers_path do %>
+        <%= text_area_tag :body, nil, :class => "input answerbox", :maxlength =>"255" %>
+        <%= submit_tag "Submit", :class => "btn btn-primary" %>
+        <%= hidden_field_tag :question_id, @question.id %>
+         <% end %>
+      </div>
+    </div> 
+      
+  <% else %>
+   <div class ="row">
+      <div class="span4">
+        <p><%= Time.now.to_date.to_s(:long) %></p>
         <h3> <%= @question.body %></h3>
         <p><%=  link_to "I want a different question!", root_path %></p>
       </div>
       <div class="span5">
         <%= form_tag answers_path do %>
-          <%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
-          <%= submit_tag "Submit", :class => "btn btn-large roboto" %>
-          <%= hidden_field_tag :question_id, @question.id %>
-        </div>
+        <%= text_area_tag :body, nil, :class => "input answerbox", :maxlength =>"255" %>
+        <%= submit_tag "Submit", :class => "btn btn-primary" %>
+        <%= hidden_field_tag :question_id, @question.id %>
         <% end %>
       </div>
-  
+    </div>             
   <% end %>
-  </div>
-  
 
-<div class="container-narrow">
 
+<div class="row">
   <% @rounds.each do |r| %>
-    <div class="index-well">
-      <h4><%= r.round_date.to_date.to_s(:short) %></h4>
+    <div class="index-well"> 
+      <h5><%= r.round_date.to_date.to_s(:short) %></h5>
       <p> <%= r.question.body %></p>
+      <% if r.answers.where(:user_id => @user.id).first %>
         <p><%= link_to "View", round_path(r) %></p>
-   
+      <% elsif r.answers.where(:user_id => @partner.id).first %>
+        <p><%= link_to "#{@partner.first_name}'s answer", round_path(r) %></p>
+      <% else %>
+        <p><%= link_to "Answer now", round_path(r) %></p>
+      <% end %>   
     </div>
   <% end %>
-  </div>
+</div>
   
   
 

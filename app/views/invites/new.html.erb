@@ -1,32 +1,46 @@
 
 <% if @pair.present? %>
 
-  <i class="icon-bullhorn">  </i> Tell a friend about The Question Project
+
+ <h4><i class="icon-bullhorn">  </i> Tell a friend about The Question Project</h4>
+
+<div class = "invite-well">
+
+ 
   <%= label_tag("Friend's email address:") %>
   <%= form_tag invites_path do %>
-    <%= text_area_tag :email, nil, :class => "input emailbox roboto" %></p>
+    <%= text_area_tag :email, nil, :class => "input emailbox " %></p>
     <%= hidden_field_tag :kind, "share" %>
 
     <%= label_tag("Add a personal message (optional):") %>
-    <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
+    <%= text_area_tag :body, nil, :class => "input emailbox " %>
 
-    <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
+    <p><%= submit_tag "send", :class => "btn btn-success " %></p>
     <% end %>
 
   
 <% else %>
-  
-  <i class="icon-envelope">  </i> Invite a friend to be your partner <br/>
-  <%= label_tag("Friend's email address:") %>
-  <%= form_tag invites_path do %>
-  <%= text_area_tag :email, nil, :class => "input emailbox roboto" %></p>
 
-  <%= label_tag("Add a personal message (optional):") %>
-  <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
-  <%= hidden_field_tag :kind, "partner" %>
-  
-  <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
+ <h4><i class="icon-envelope">  </i> Invite a friend to be your partner </h4>
+<div class = "invite-well">
+ <div class="row">
+      <div class="span4">
+        <%= label_tag("Friend's email address:") %>
+        <%= form_tag invites_path do %>
+        <%= text_area_tag :email, nil, :class => "input emailbox" %>
+      </div>
+      <div class="span4">
+        <%= label_tag("Add a personal message:") %>
+        <%= text_area_tag :body, nil, :class => "input emailbox" %>
+        <%= hidden_field_tag :kind, "partner" %>
+      </div>  
+    </div>
+  <div class="row">
+  <div class="span1">
+     <p><%= submit_tag "send", :class => "btn btn-primary" %></p>
+  </div>
+  </div>
   <% end %>
-
-  
+</div>
 <% end %>
+

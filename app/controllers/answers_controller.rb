@@ -12,14 +12,16 @@ class AnswersController < ApplicationController
   end
   
   def create
-    
+    @user=current_user
     @pair=current_user.pair
     @question=Question.find params[:question_id]
-    
-    if Round.find params[:round_id]
+
+    if params[:round_id]
       @round=Round.find params[:round_id]
-    else
+    elsif @pair
       @round=Round.where("round_date = ? AND pair_id = ?", Time.now.midnight, @pair.id).first_or_create(:question_id => @question.id, :pair_id => @pair.id, :round_date => Time.now.midnight)
+    else
+      @round=Round.where("round_date = ? AND user_id = ?", Time.now.midnight, @user.id).first_or_create(:question_id => @question.id, :user_id => @user.id, :round_date => Time.now.midnight)
     end
     
     if @round
@@ -29,7 +31,7 @@ class AnswersController < ApplicationController
 
       User.mail_answer(current_user, @round)
     
-    redirect_to round_path(:id => @round.id)
+    redirect_to root_path
     
     end
     

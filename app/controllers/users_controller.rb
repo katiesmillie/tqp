@@ -5,13 +5,11 @@ class UsersController < ApplicationController
     def show
       @pair=current_user.pair
       @user=current_user
-      
-      if @pair
-        @partner=@pair.partner(@pair.id)
-      else
-        redirect_to root_path
-      end
-
+            
+            if @pair
+              @partner=@pair.partner(@pair.id)
+            end
+  
     end
     
 

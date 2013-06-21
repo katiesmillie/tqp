@@ -2,74 +2,87 @@
     mixpanel.track("View Round")
 </script>
 
-<div class="container-narrow">
 
-
-<%  if @round.answers.where(:user_id => current_user.id).present? %>
-
-  <div class="show-well">
-    <h4><%= @round.round_date.to_date.to_s(:long)%></h4>    
+<% if @round.answers.where(:user_id => current_user.id).present? %>
+    <p><%= @round.round_date.to_date.to_s(:long)%></p>    
     <h3><%= @question.body %></h3>
-    
-  
-<% else %>
-    
-      <div class="show-well">
-        <div class="span4">
-          <h4><%= @round.round_date.to_date.to_s(:long) %></h4>
-          <h3> <%= @question.body %></h3>
-        </div>
-        <div class="span5">
-          <%= form_tag answers_path do %>
-            <p><%= text_area_tag :body, nil, :class => "input answerbox roboto", :maxlength =>"255" %>
-            <%= submit_tag "Submit", :class => "btn btn-large roboto" %>
-            <%= hidden_field_tag :question_id, @question.id %>
-            <%= hidden_field_tag :round_id, @round.id %></p>
-      
-        </div>
-          <% end %>
+<% else %> 
+<div class = "row"> 
+  <div class="span4">
+    <p><%= @round.round_date.to_date.to_s(:long) %></p>
+    <h3> <%= @question.body %></h3>
+  </div>
+  <div class="span4">
+    <%= form_tag answers_path do %>
+    <p><%= text_area_tag :body, nil, :class => "input answerbox", :maxlength =>"255" %>
+    <%= submit_tag "Submit", :class => "btn btn-primary" %>
+    <%= hidden_field_tag :question_id, @question.id %>
+    <%= hidden_field_tag :round_id, @round.id %></p>
     <% end %>
+  </div>
+</div>
+<% end %>
     
- 
- <div class="clearfix bottom-padding">
-        <% @answers.each do |a| %>    
-            <%= gravatar_for a.user, :size => 40, :class => "pic" %> 
-            <p><%= a.body %> 
-            <% answer_edit(a) do %>
-            <span class = "edit pull-right"><%= link_to "edit", edit_answer_path(a)%></span></p>
-            <% end %>
-      </div>
-      <% end %>
-    
-      </div>
-      
-      
-      
-          
-<div class="comment-well">
-    <% comment_present(@round) do %>
-            
-        <% @comments.each do |c| %>
-          <%= gravatar_for c.author, :size => 30, :class => "pic" %> 
-          <p><%= c.body %></p>
-            <% comment_edit(c) do %>
-            <p class ="tiny muted"><%= c.created_at.to_date.to_s(:long)%></p>
-            
-              <!-- <div class ="edit">
-                            <%= link_to "edit", edit_comment_path(c)%></div> -->
-            <% end %>
-        <% end %>
 
-    <% end %>
-      
+<% @answers.each do |a| %> 
+  <div class="row">
+    <div class="span1">   
+      <%= link_to (gravatar_for a.user, :size => 60, :class => "pic"), user_path(@user.id) %>
+      <h5><%= a.user.first_name.upcase %></h5>
+    </div>
+    <div class="span5">
+      <blockquote>
+      <p><%= a.body %></p>
+      </blockquote>
+    </div>
+    <div class="span1">
+      <% answer_edit(a) do %>
+      <%= link_to "edit", edit_answer_path(a), :class => "edit pull-right" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+  
+
+
+<div class="row">
+  <div class="span12">
+    <hr>
+  </div>
+  <div class="span6">
+
       <%= form_tag comments_path do %>
-      <%= text_area_tag :body, nil, :class => "input commentbox roboto", :maxlength =>"255" %>
-      <%= submit_tag "Comment", :class => "btn roboto"%>
+      <%= text_area_tag :body, nil, :class => "input commentbox", :maxlength =>"255" %>
+      <%= submit_tag "Comment", :class => "btn btn-primary"%>
       <%= hidden_field_tag :round_id, @round.id %>
       <% end %>
-      
   </div>
-      
+</div>
+
+
+<% if @pair %>
+  <% comment_present(@round) do %>
+    <% @comments.each do |c| %>
+
+    <div class="row">
+      <div class="span1">
+        <h5><%= c.author.first_name.upcase %></h5>
+        <p class ="tiny muted"><%= c.created_at.to_date.to_s(:short)%></p>
+      </div>   
+      <div class="span5"> 
+        <p><%= c.body %></p>
+      </div>
+      <div class="span1"> 
+        <% comment_edit(c) do %>
+        <%= link_to "edit", edit_comment_path(c), :class => "edit pull-right"%></div>
+        <% end %>
+      </div>
+    
+      <% end %>
+    <% end %>
+  <% end %>
+ </div>
+  
 
     
 

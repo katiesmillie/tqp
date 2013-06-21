@@ -2,13 +2,12 @@
 
 
 <p class = "align"><%= gravatar_for @user, :size => 80 %></p>
-<p>That's you!</p>
-
+<h5>That's you!</h5>
+<p><i class="icon-user"> </i> Set your profile image at <a href="http://www.gravatar.com" target="blank">gravatar.com</a> using the same email address you used to sign up. </p>
 
 <p><i class="icon-edit"> </i> <%= link_to "Edit profile", edit_user_registration_path %></p>
-<p><i class="icon-list"> </i> <%= link_to "View answer history", answers_path %></p>
 
-<% if @partner %>
+<% if @pair %>
   <p class = "align"><%= gravatar_for @partner, :size => 80 %></p>
   <p><i class="icon-user"> </i> <%= "Your partner is #{@pair.partner(current_user.id).first_name}   
   #{@pair.partner(current_user.id).last_name}!" %> <%= link_to "(delete)", pair_path(current_user.id) %></p>

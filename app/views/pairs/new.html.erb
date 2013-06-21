@@ -8,61 +8,51 @@
 
 
  <% search_result(@partners) do %>
-
-        <% @partners.each do |p| %>
-        <h5> Friends found:</h5>
-          <p class="alert alert-success"><%= p.first_name %> <%= p.last_name %> 
-          
-        <% if p.pair.nil? %> 
-          <%= link_to "Select as partner", pairs_path(:partner_id => p.id), :method => "post" %></p>
-        <% else %>
-          <%= "(This user already has a partner)" %></p>
-        <% end %>
-        
-        <% end %>
-  
-      
+  <% @partners.each do |p| %>
+      <h5> Friends found:</h5>
+      <p class="alert alert-success"><%= p.first_name %> <%= p.last_name %> 
+      <% if p.pair.nil? %> 
+        <%= link_to "Select as partner", pairs_path(:partner_id => p.id), :method => "post" %></p>
+      <% else %>
+        <%= "(This user already has a partner)" %></p>
       <% end %>
-
-     
-      
-      <div align="center">Thanks for joining The Question Project! </div> <br>
-      
-
-<div class = "well">
-  
-
-
-<p><i class="icon-user">  </i>  Want to answer questions with a partner? Right now you can only have one partner, so pick someone you like. </p>
-<p><i class="icon-search">  </i>  Or enter a friend's email address below to search for them:</p> 
-
-
-    <%= form_tag new_pair_path, :method => "get" do %>
-    <%= text_area_tag :email, nil, :class => "input emailbox roboto" %>
-    <p><%= submit_tag "search", :class => "btn btn-success roboto" %></p>
     <% end %>
-    
-</div>
-
-<div class = "well">
-    
-<p><i class="icon-envelope">  </i>  If your friend hasn't signed up for The Question Project yet, invite them.</p>  
-
-     <%= label_tag("Friend's email address:") %>
-     <%= form_tag invites_path do %>
-     <%= text_area_tag :email, nil, :class => "input emailbox roboto" %>
-
-     <%= label_tag("Add a personal message (optional):") %>
-     <%= text_area_tag :body, nil, :class => "input emailbox roboto" %>
-     <%= hidden_field_tag :kind, "partner" %>
-
-     <p><%= submit_tag "send", :class => "btn btn-success roboto" %></p>
-     <% end %>
+  <% end %>
      
-     
+
+<h4>  Want to answer questions with a partner? </h4> 
+  <div class = "invite-well">
+    <p><i class="icon-search">  </i>  Enter a friend's email address to search for them:</p> 
+      <%= form_tag new_pair_path, :method => "get" do %>
+      <%= text_area_tag :email, nil, :class => "input emailbox " %>
+      <p><%= submit_tag "search", :class => "btn btn-primary" %></p>
+      <% end %>
+  </div>
+
+  <div class = "invite-well">
+
+     <i class="icon-envelope">  </i>  Or invite your friend to join The Question Project
+     <div class="row">
+      <div class="span4">
+        <%= label_tag("Friend's email address:") %>
+        <%= form_tag invites_path do %>
+        <%= text_area_tag :email, nil, :class => "input emailbox" %>
+      </div>
+      <div class="span4">
+        <%= label_tag("Add a personal message:") %>
+        <%= text_area_tag :body, nil, :class => "input emailbox" %>
+        <%= hidden_field_tag :kind, "partner" %>
+      </div>  
+    </div>
+  <div class="row">
+  <div class="span1">
+     <p><%= submit_tag "send", :class => "btn btn-primary" %></p>
+  </div>
+  </div>
+  <% end %>
+
 </div>
     
-<p><i class="icon-edit"> </i> <%= link_to "Edit profile", edit_user_registration_path %></p>
     
     
   

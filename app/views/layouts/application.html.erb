@@ -52,26 +52,33 @@
 </head>
 
 <body>
-  
-  <div class="container-narrow">
-    
-    <div class ="roboto">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><%= link_to "about", about_path %></li>
+
+   <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container" style="width: auto;">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <%= link_to "The Question Project", root_path, :class => "brand" %>
+        <div class="nav-collapse">
+          <ul class="nav pull-right">
+            <li><%= link_to "about", about_path %></li>
             <% if current_user %>
-            <li><%= link_to full_name(@user), user_path(current_user.id) %></li>
-            <li><%= link_to "logout", destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to full_name(@user), user_path(current_user.id) %></li>
+              <li><%= link_to "logout", destroy_user_session_path, :method => :delete %></li>
             <% else %>
-            <li><%= link_to "login", new_user_session_path %></li>
+              <li><%= link_to "login", new_user_session_path %></li>
             <% end %>
-        </ul>
-        <h1><%= link_to "the question project", root_path %></h1>
+          </ul>
+        </div><!-- /.nav-collapse -->
       </div>
-    </div>
-    <hr>
+    </div><!-- /navbar-inner -->
+  </div><!-- /navbar -->
     
-    
+<div class="container-narrow">
+
   
   <% if flash[:alert_custom].present? %>
     <div class="alert alert-block">
@@ -85,11 +92,10 @@
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <%= flash[:success]%>
     </div>
-   <% end %>
+  <% end %>
 
 
 <%= yield %>
-
 
 
     <!-- Le javascript
@@ -108,6 +114,5 @@
     <script src="../assets/js/bootstrap-collapse.js"></script>
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
-
 </body>
 </html>

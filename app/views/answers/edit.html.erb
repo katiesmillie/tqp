@@ -1,17 +1,13 @@
 
-<div class ="roboto">
-    <div class="jumbotron">
       
-     <h3> <%= @question.body %></h3>
+     <h4> <%= @question.body %></h4>
 
       <%= form_tag answer_path(@answer.id), :method => "put" do %>
-      <%= text_area_tag :body, @answer.body, :class => "input answerbox roboto", :maxlength =>"255"%>
-      <p><a href="/answers"><%= submit_tag "Save", :class => "btn btn-large btn-success roboto" %></a></p>
+      <%= text_area_tag :body, @answer.body, :class => "input answerbox", :maxlength =>"255"%>
+      <p><a href="/answers"><%= submit_tag "Save", :class => "btn btn-primary" %></a></p>
       <%= hidden_field_tag :question_id, @question.id %>
       <%= hidden_field_tag :round_id, @round.id %>
 
       <% end %>
       
-  </div>
-    </div>
 

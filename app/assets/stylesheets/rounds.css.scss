@@ -4,14 +4,9 @@
 
 
 .commentbox {
-  margin: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 0px;
   width: 400px;
   height: 30px;
-}
-
-.username {
-  text-transform: uppercase;
-  font-size: .8em;
 }
 
 .edit {
@@ -28,20 +23,26 @@
   text-align: center;
 }
 
-p {
-  font-weight: lighter;  
-}
-
-h3 {
-  font-weight: lighter;  
-}
-
-.well {
-  font-weight: lighter;
-  
-}
-
 .pic {
   float:left;
   margin: 0px 10px 0px 0px;
 }
+
+.index-well {
+  float: left;
+  diplay: inline;
+  height: 140px;
+  width: 180px;
+  margin-right: 16px;
+  margin-bottom: 20px;
+  vertical-align: baseline;
+  padding: 12px;
+  border: 1px solid #ebeae0;
+  border-bottom: 4px solid #25D9B8;
+  border-radius: 5px;
+  margin: 8px 10px;
+}
+
+
+
+

@@ -11,10 +11,11 @@ class PagesController < ApplicationController
     @user=current_user
     @pair=@user.pair
     
-    @partner=@pair.try(:partner, @user.id)
-    return redirect_to new_pair_path unless @partner
-    @round=Round.where(:pair_id => @pair.id).first
-    @question=@round.question
+    return unless @pair
+    @partner=@pair.partner    
+    
+    # @round=Round.where(:pair_id => @pair.id).first
+    # @question=@round.question
 
   end
   
