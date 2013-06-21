@@ -55,6 +55,7 @@ class RoundsController < ApplicationController
     
   end
   
+
   def index
       @user=current_user
       @pair=@user.pair
@@ -72,7 +73,15 @@ class RoundsController < ApplicationController
       #      else
       # end
 
-      if @pair
+      if flash[:new_question_id]
+        @question=Question.where(:id => flash[:new_question_id]).first
+        if @pair
+          @rounds=@pair.rounds.recent
+        else        
+          @rounds=@user.rounds.recent
+        end
+
+      elsif @pair
         @rounds=@pair.rounds.recent
         @find_round=@pair.rounds.where(:round_date => Time.now.midnight).first
 
@@ -82,22 +91,19 @@ class RoundsController < ApplicationController
           if @parnter_answer
             @question=@partner_answer.question
           else
-            @question=Question.where(:author_id => 1).sample
+        @question=Question.where("author_id IN (?)", [1, @user.id]).sample
           end
         
         else
-          @question=Question.where(:author_id => 1).sample
+        @question=Question.where("author_id IN (?)", [1, @user.id]).sample
         end
 
       
       else
         @rounds=@user.rounds.recent
         @my_round=@user.rounds.where(:round_date => Time.now.midnight).first
-        @question=Question.where(:author_id => 1).sample
-        
+        @question=Question.where("author_id IN (?)", [1, @user.id]).sample
       end
-      
-      
   end
 
   
