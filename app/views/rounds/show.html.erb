@@ -15,7 +15,7 @@
   <div class="span4">
     <%= form_tag answers_path do %>
     <p><%= text_area_tag :body, nil, :class => "input answerbox", :maxlength =>"255" %>
-    <%= submit_tag "Submit", :class => "btn btn-primary" %>
+    <%= submit_tag "Submit", :class => "btn" %>
     <%= hidden_field_tag :question_id, @question.id %>
     <%= hidden_field_tag :round_id, @round.id %></p>
     <% end %>
@@ -50,10 +50,9 @@
     <hr>
   </div>
   <div class="span6">
-
       <%= form_tag comments_path do %>
       <%= text_area_tag :body, nil, :class => "input commentbox", :maxlength =>"255" %>
-      <%= submit_tag "Comment", :class => "btn btn-primary"%>
+      <%= submit_tag "Comment", :class => "btn"%>
       <%= hidden_field_tag :round_id, @round.id %>
       <% end %>
   </div>
@@ -78,10 +77,12 @@
         <% end %>
       </div>
     
+    
       <% end %>
     <% end %>
   <% end %>
- </div>
+  </div>
+ 
   
 
     
