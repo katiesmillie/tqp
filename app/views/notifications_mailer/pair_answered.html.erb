@@ -1,4 +1,36 @@
 
 
+  <tr><td class="w640" width="640" height="30" bgcolor="#ffffff"></td></tr>
+                <tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff">
+    <table class="w640" width="640" cellpadding="0" cellspacing="0" border="0">
+        <tbody><tr>
+            <td class="w30" width="30"></td>
+            <td class="w580" width="580">
+                <repeater>
+                    
+                    <layout label="Text only">
+                        <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
+                            <tbody><tr>
+                                <td class="w580" width="580">
+                                  
+                                    <p align="center" class="article-title"><multiline label="Description"><strong><%= @question %></strong></multiline>
+                                    </p>
+                                    <div align="center" class="article-content">
+                                        <multiline label="Description"><%= "#{@user} just answered: " %><em><%= "#{@answer}" %></em></multiline>
+                                    </div>
+                                    <div align="center" class="article-title" style= "background: #ececec; border-radius: 5px; margin-left: 230px; margin-right: 240px; margin-top 10px; padding: 5px;">
+                                      <a href="<%= @url %>"> Check it out</a></div>
+                                </td>
+                            </tr>
+                            <tr><td class="w580" width="580" height="10"></td></tr>
+                        </tbody></table>
+                    </layout>
+				</repeater>
+            </td>
+            <td class="w30" width="30"></td>
+        </tr>
+    </tbody></table>
+</td></tr>
+
     
 

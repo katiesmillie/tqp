@@ -60,7 +60,7 @@ code {
 
 #top-bar { border-radius:6px 6px 0px 0px; -moz-border-radius: 6px 6px 0px 0px; -webkit-border-radius:6px 6px 0px 0px; -webkit-font-smoothing: antialiased; background-color: #ffffff; color: #4d4c4a;}
 #top-bar a { font-weight: bold; color: #5e095e; text-decoration: none;}
-#header {   border-bottom: 2px solid #ebeae0;}
+#header { border-bottom: 2px solid #ebeae0;}
 #footer { border-radius:0px 0px 6px 6px; -moz-border-radius: 0px 0px 6px 6px; -webkit-border-radius:0px 0px 6px 6px; -webkit-font-smoothing: antialiased; }
 
 
@@ -75,7 +75,7 @@ body, td { font-family: 'Georgia', 'Helvetica Neue', Arial, Helvetica, Geneva, s
 .article-title.with-meta {margin-bottom: 0;}
 .article-meta { font-size: 13px; line-height: 20px; color: #ccc; font-weight: bold; margin-top: 0;}
 .article-content { font-size: 16px; line-height: 22px; color: #444444; margin-top: 0px; margin-bottom: 18px; font-family: 'Georgia', 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; }
-.article-content a { color: #5E095E; font-weight:bold; text-decoration:none; }
+.article-content a { color: #444444; font-weight:bold; text-decoration:none; }
 .article-content img { max-width: 100% }
 .article-content ol, .article-content ul { margin-top:0px; margin-bottom:18px; margin-left:19px; padding:0; }
 .article-content li { font-size: 16px; line-height: 22px; color: #444444; }
@@ -149,7 +149,7 @@ body, td { font-family: 'Georgia', 'Helvetica Neue', Arial, Helvetica, Geneva, s
         <tr>
             <td class="w30" width="30"></td>
             <td class="w580" width="580">
-                <div align="center" id="headline">
+                <div align="center" id="headline" style="font-size: 24px; text-decoration: none;"
                     <p>
                         <strong><a href="http://beta.thequestionproject.com"><singleline label="Title">THE QUESTION PROJECT</singleline></a></strong>
                     </p>
@@ -163,39 +163,7 @@ body, td { font-family: 'Georgia', 'Helvetica Neue', Arial, Helvetica, Geneva, s
 </td>
  </tr>
                 
-
-  <tr><td class="w640" width="640" height="30" bgcolor="#ffffff"></td></tr>
-                <tr id="simple-content-row"><td class="w640" width="640" bgcolor="#ffffff">
-    <table class="w640" width="640" cellpadding="0" cellspacing="0" border="0">
-        <tbody><tr>
-            <td class="w30" width="30"></td>
-            <td class="w580" width="580">
-                <repeater>
-                    
-                    <layout label="Text only">
-                        <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
-                            <tbody><tr>
-                                <td class="w580" width="580">
-                                  
-                                    <p align="center" class="article-title"><multiline label="Description"><%= @question %></multiline>
-                                    </p>
-                                    <div align="center" class="article-content">
-                                        <multiline label="Description"><%= "#{@user} just answered: " %><em><%= "#{@answer}" %></em></multiline>
-                                    </div>
-                                    <div align="center" class="article-title" style= "background: #ececec; border-radius: 5px; margin-left: 230px; margin-right: 240px; padding: 5px;">
-                                      <a href="<%= @url %>"> Check it out</a></div>
-                                </td>
-                            </tr>
-                            <tr><td class="w580" width="580" height="10"></td></tr>
-                        </tbody></table>
-                    </layout>
-				</repeater>
-            </td>
-            <td class="w30" width="30"></td>
-        </tr>
-    </tbody></table>
-</td></tr>
-
+<%= yield %>
                
                 <tr><td class="w640" width="640" height="15" bgcolor="#ffffff"></td></tr>
                 
