@@ -7,3 +7,32 @@
   width: 400px;
   height: 100px;
 }
+
+
+.show-well {
+  float: left;
+  display: inline;
+  vertical-align: baseline;
+  width: 930px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  background: #f8f8f8;
+  border-top: 5px solid #9d426b;
+  min-height: 20px;
+  padding: 19px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+
+
+
+.stick {
+  bottom: 0;
+  width: 100%;
+}
