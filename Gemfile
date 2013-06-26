@@ -61,3 +61,6 @@ gem 'omniauth-openid'
 gem 'pry'
 gem 'pry-nav'
 
+gem 'bootstrap-sass'
+gem 'bootswatch-rails'
+

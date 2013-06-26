@@ -40,6 +40,8 @@ GEM
       erubis (>= 2.6.6)
     bootstrap-sass (2.3.0.1)
       sass (~> 3.2)
+    bootswatch-rails (0.5.0)
+      railties (>= 3.1)
     builder (3.0.4)
     coderay (1.0.9)
     coffee-rails (3.2.2)
@@ -216,6 +218,8 @@ PLATFORMS
 DEPENDENCIES
   airbrake
   better_errors
+  bootstrap-sass
+  bootswatch-rails
   coffee-rails (~> 3.2.1)
   devise
   fastercsv
