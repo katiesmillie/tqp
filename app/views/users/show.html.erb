@@ -1,27 +1,37 @@
 
+<div class="row">
+
+   <% if @pair.present? %>
+    <div class="btn btn-invite"><i class="icon-bullhorn"> </i>  <%=  link_to "Tell your friends about The Question Project!", new_invite_path %></div>
+    <% else %>
+    <h4><i class="icon-envelope"> </i><%=  link_to "Invite a friend", new_pair_path %></h4>
+  <% end %>
+
+</div>
+
+<div class="row">
+  <div class="spacing20"></div>
+</div>
 
 
-<%= gravatar_for @user, :size => 80 %>
-<h5>THAT'S YOU</h5>
-<p><i class="icon-user"> </i> Set your profile image at <a href="http://www.gravatar.com" target="blank">gravatar.com</a>. </p>
-
-<p><i class="icon-edit"> </i> <%= link_to "Edit your info", edit_user_registration_path %></p>
+<div class="row">
+  <div class="span5">
+    <%= gravatar_for @user, :size => 80 %>
+    <h5>THAT'S YOU!</h5>
+    <p>Set your profile image at <a href="http://www.gravatar.com" target="blank">gravatar.com</a>.</p>
+    <p><%= link_to "Edit your info", edit_user_registration_path %></p>
+</div>
 
 <% if @pair %>
-  <p class = "align"><%= gravatar_for @partner, :size => 80 %></p>
-  <p><i class="icon-user"> </i> <%= "Your partner is #{@pair.partner(current_user.id).first_name}   
-  #{@pair.partner(current_user.id).last_name}!" %> <%= link_to "(delete)", pair_path(current_user.id) %></p>
+  <div class="span5">
+    <%= gravatar_for @partner, :size => 80 %>
+    <h5>YOUR PARTNER</h5>
+    <p><%= "Your partner is #{@pair.partner(current_user.id).first_name} #{@pair.partner(current_user.id).last_name}!" %> <%= link_to "(delete)", pair_path(current_user.id) %></p>
 <% end %>
 
+  </div>
+</div>
 
-
-   <p> <% if @pair.present? %>
-    <i class="icon-bullhorn"> </i>
-    <%=  link_to "Tell your friends about The Question Project!", new_invite_path %>
-    <% else %>
-    <i class="icon-envelope"> </i>
-    <%=  link_to "Invite a friend", new_pair_path %>
-  <% end %></p>
 
 
 
