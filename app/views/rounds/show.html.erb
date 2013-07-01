@@ -4,6 +4,7 @@
 
 
 <% if @round.answers.where(:user_id => current_user.id).present? %>
+<div class = "row"> 
     <p><%= @round.round_date.to_date.to_s(:long)%></p>    
     <h3><%= @question.body %></h3>
 <% else %> 
@@ -20,8 +21,12 @@
     <%= hidden_field_tag :round_id, @round.id %></p>
     <% end %>
   </div>
-</div>
 <% end %>
+</div>
+
+<div class="row">
+    <div class="spacing40"></div>
+</div>
     
 
 <% @answers.each do |a| %> 
@@ -49,7 +54,7 @@
   <div class="span12">
     <hr>
   </div>
-  <div class="span6">
+  <div class="span12">
       <%= form_tag comments_path do %>
       <%= text_area_tag :body, nil, :class => "input commentbox", :maxlength =>"255" %>
       <%= submit_tag "Comment", :class => "btn"%>

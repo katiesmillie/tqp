@@ -15,7 +15,7 @@
 
   <% elsif @partner_round %>
     <div class ="row">
-      <div class="span4">
+      <div class="span5">
         <h4><%= Time.now.to_date.to_s(:long) %></h4>
         <h3> <%= @question.body %></h3>
       </div>
@@ -30,37 +30,78 @@
       
   <% else %>
    <div class ="row">
-      <div class="span4">
+      <div class="span5">
         <p><%= Time.now.to_date.to_s(:long) %></p>
         <h3> <%= @question.body %></h3>
-        <p><%=  link_to "See a different question!", root_path %></p>
-        <p><%=  link_to "Make your own question", new_question_path %></p>
+        <div class="spacing20"></div>
+        <p><%=  link_to "New question", root_path %> </p>
+        <p><%=  link_to "Create your own", new_question_path %></p>
       </div>
+
       <div class="span5">
+           <div class="spacing20">  </div>   
         <%= form_tag answers_path do %>
         <%= text_area_tag :body, nil, :class => "input answerbox", :maxlength =>"255" %>
         <%= submit_tag "Submit", :class => "btn" %>
         <%= hidden_field_tag :question_id, @question.id %>
         <% end %>
       </div>
-    </div>             
+    </div>  
+           
   <% end %>
+
+
+<div class="row">
+  <div class="spacing20"></div>
+</div>
 
 <div class="row">
   <% @rounds.each do |r| %>
-    <div class="index-well"> 
+   
+
+    <% if r.round_date.month == 1 %>
+      <div class="index-well jan"> 
+    <% elsif r.round_date.month == 2 %>
+      <div class="index-well feb"> 
+    <% elsif r.round_date.month == 3 %>
+      <div class="index-well mar">
+    <% elsif r.round_date.month == 4 %>
+      <div class="index-well apr">
+    <% elsif r.round_date.month == 5 %>
+      <div class="index-well may">
+    <% elsif r.round_date.month == 6 %>
+      <div class="index-well jun">
+    <% elsif r.round_date.month == 7 %>
+      <div class="index-well jul">
+    <% elsif r.round_date.month == 8 %>
+      <div class="index-well aug">
+
+    <%end%>
+
+      <div class="top">
       <h5><%= r.round_date.to_date.to_s(:short) %></h5>
       <p> <%= r.question.body %></p>
+      </div>
+
+ <div class="clearfix">
+  <div class="bottom">
+
       <% if r.answers.where(:user_id => @user.id).first %>
-        <p><%= link_to "View", round_path(r) %></p>
+       <p class="bottom-label"> <%= link_to "View", round_path(r) %></p>
       <% elsif r.answers.where(:user_id => @partner.id).first %>
-        <p><%= link_to "#{@partner.first_name}'s answer", round_path(r) %></p>
+      <p class="bottom-label"><%= link_to "#{@partner.first_name}'s answer", round_path(r) %></p>
       <% else %>
-        <p><%= link_to "Answer now", round_path(r) %></p>
-      <% end %>   
+        <p class="bottom-label"><%= link_to "Answer", round_path(r) %></p>
+       
+      <% end %> 
+
+
+  </div> 
+ </div>
+
+  
+
     </div>
   <% end %>
-</div>
-  
-  
+  </div>
 

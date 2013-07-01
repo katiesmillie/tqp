@@ -38,11 +38,58 @@
   vertical-align: baseline;
   padding: 12px;
   border: 1px solid #ebeae0;
-  border-bottom: 4px solid #25D9B8;
-  border-radius: 5px;
+  border-radius: 7px;
   margin: 8px 10px;
 }
 
+.jan {
+  border-bottom: 6px solid #F5B46E;
 
+}
+.feb {
+  border-bottom: 6px solid #81EBA6;
 
+}
+.mar {
+  border-bottom: 6px solid #EB81A4;
+
+}
+.apr {
+  border-bottom: 6px solid #6EADF5;
+
+}
+.may {
+  border-bottom: 6px solid #F5E56E;
+
+}.jun {
+  border-bottom: 6px solid #25D9B8;
+
+}
+.jul {
+  border-bottom: 6px solid #BF6EF5;
+
+}
+.top {
+    height: 120px;
+}
+
+.bottom {
+  text-align: right;
+}
+
+.spacing40 {
+  width: 860px;
+  height: 40px;
+  background: #ffffff;
+}
+.spacing20 {
+  width: 300px;
+  height: 20px;
+  background: #ffffff;
+}
+
+.bottom-label {
+  font-size: 12px;
+  font-spacing: .2em;
+  }
 
