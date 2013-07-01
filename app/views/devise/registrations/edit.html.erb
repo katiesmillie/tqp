@@ -1,13 +1,7 @@
 
 
+<h4>Edit</h4>
 
-
-<h3>Edit <%= resource_name.to_s.humanize %></h3>
-
-
-
-<p class = "align"><%= gravatar_for @user, :size => 80 %></p>
-<p>Set your profile image at <a href="http://www.gravatar.com" target="blank">gravatar.com</a> using the same email address you used to sign up. </p>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -35,7 +29,7 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Update", :class => "btn btn-success roboto" %></div>
+  <div><%= f.submit "Update", :class => "btn" %></div>
 <% end %>
 
 <!-- <h3>Cancel my account</h3>
@@ -43,3 +37,4 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p> -->
 
 <%= link_to "Back", :back %>
+<div class="spacing40"></div>
