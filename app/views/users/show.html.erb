@@ -2,9 +2,9 @@
 <div class="row">
 
    <% if @pair.present? %>
-    <div class="btn btn-invite"><i class="icon-bullhorn"> </i>  <%=  link_to "Tell your friends about The Question Project!", new_invite_path %></div>
+      <%=  link_to "Tell your friends about The Question Project!", new_invite_path, :class => "btn btn-invite"%>
     <% else %>
-     <div class="btn btn-invite"><i class="icon-envelope"> </i>  <%=  link_to "Invite a friend", new_pair_path %></div>
+      <%=  link_to "Invite a friend", new_pair_path, :class => "btn btn-invite" %>
   <% end %>
 
 </div>
