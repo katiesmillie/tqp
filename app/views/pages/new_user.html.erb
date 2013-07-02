@@ -13,9 +13,9 @@
   <p><%= "Your partner is #{@partner.first_name} #{@partner.last_name}." %></p>
   <p>
   	<% if @partner.image.present? %>
-	  	<p><%= image_tag @partner.image %></p>
+	  	<%= image_tag @partner.image %>
 	<% else %>
-  		<p><%= gravatar_for @partner, :size => 50   %></p>
+  		<%= gravatar_for @partner, :size => 50 %>
 	<% end %>
 <% end %>
 

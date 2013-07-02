@@ -34,10 +34,11 @@
     <div class="span1">   
 
       <% if a.user.image.present? %>
-        <p><%= image_tag a.user.image %></p>
+        <%= image_tag a.user.image %>
       <% else %>
-        <p><%= gravatar_for a.user, :size => 50, user_path(@user.id) %></p>
+        <%= gravatar_for a.user, :size => 50 %>
       <% end %>
+
       <h5><%= a.user.first_name.upcase %></h5>
     </div>
     <div class="span5">
