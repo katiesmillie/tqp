@@ -17,11 +17,13 @@ class AuthenticationsController < ApplicationController
         password = Devise.friendly_token.first(password_length)
         user.password = password
         sign_in(user)
+        redirect_to new_path
       else
         sign_in(user)
+        redirect_to root_path
       end
       
-      redirect_to new_path
+      
       
   end
   
