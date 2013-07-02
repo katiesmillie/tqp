@@ -1,3 +1,19 @@
+- export nathan's setting
+- tomorrow night for sublime text
+- squeel --> for longer query types
+
+
+#NEW idea
+- branch of the question project where you answer the same questions every week and the chart is displayed. More like a "rate your week" type of idea
+
+- Add ability for users to make their own questions
+
+
+#NEW TO DO
+- Group answers by month (expandable) and 
+
+
+-----------------------
 #nathan 
 - questions controller --> #want to compare these lists to @recent_question array and eliminate any ids that match ids in the array?
 
@@ -48,9 +64,9 @@
 #generate
 DONT USE TYPE - it's reserved for some other shit
 
-rails g migration add_image_to_users image:string
-rails g migration add_round_date_to_rounds round_date:date
 rails g migration add_first_name_to_users first_name:string
+rails g migration add_round_date_to_rounds round_date:date
+rails g migration add_score_to_dish score:string
 rails g migration add_user_id_to_answers user_id:integer
 rails g mailer questions_mailer
 
@@ -63,6 +79,9 @@ rails g controller comments (plural)
 rails g migration remove_round_id_from_rounds round_id:date
 rails g migration remove_body_from_people body:string:index
 rake db:migrate
+
+change_column :dishes, :score, :integer
+
 
 #tasks
 rake email_question
@@ -158,6 +177,15 @@ User.mail_accepted(@user)
  @user ? @user.name : "unknown"
 
 # COMPLETED TASKS
+x- use different colors for differen months
+x- Add a confirmation message to the top of rounds index when someone answrs a question, then on next visit show them the I already answered message. 
+x- Add styling to emails
+x- More styling fixes throughout the app
+x- custom button
+x- fix padding
+x- research and fix icon issue
+
+
 x- recent questions is working in the console but not actually omitting the ids in display on questions#new page
 x- scope question sample should not duplicate questions
 x- make random not pick questions that have been seen in past 20-30 days
