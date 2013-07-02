@@ -17,9 +17,9 @@
 <div class="row">
   <div class="span5">
     <% if @user.image.present? %>
-      <p><%= image_tag @user.image, :class => "cropped80" %></p>
+      <p><%= image_tag @user.image %></p>
     <% else %>
-      <p><%= gravatar_for @user, :class => "cropped80" %></p>
+      <p><%= gravatar_for @user, :size => 50 %></p>
     <% end %>
     <h5>THAT'S YOU!</h5>
     <p>Set your profile image at <a href="http://www.gravatar.com" target="blank">gravatar.com</a>.</p>
@@ -29,9 +29,9 @@
 <% if @pair %>
   <div class="span5">
      <% if @partner.image.present? %>
-      <p><%= image_tag @partner.image, :class => "cropped80" %></p>
+      <p><%= image_tag @partner.image %></p>
     <% else %>
-      <p><%= gravatar_for @partner, :class => "cropped80" %></p>
+      <p><%= gravatar_for @partner, :size => 50 %></p>
     <% end %>
     <h5>YOUR PARTNER</h5>
     <p><%= "Your partner is #{@pair.partner(current_user.id).first_name} #{@pair.partner(current_user.id).last_name}!" %> <%= link_to "(delete)", pair_path(current_user.id) %></p>

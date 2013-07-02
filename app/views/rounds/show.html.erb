@@ -32,7 +32,12 @@
 <% @answers.each do |a| %> 
   <div class="row">
     <div class="span1">   
-      <%= link_to (gravatar_for a.user, :class => "cropped60"), user_path(@user.id) %>
+
+      <% if a.user.image.present? %>
+        <p><%= image_tag a.user.image %></p>
+      <% else %>
+        <p><%= gravatar_for a.user, :size => 50, user_path(@user.id) %></p>
+      <% end %>
       <h5><%= a.user.first_name.upcase %></h5>
     </div>
     <div class="span5">
