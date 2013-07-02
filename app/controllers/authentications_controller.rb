@@ -19,6 +19,9 @@ class AuthenticationsController < ApplicationController
         sign_in(user)
         redirect_to new_path
       else
+          user.image = data[:info][:image]
+          user.save
+        end 
         sign_in(user)
         redirect_to root_path
       end
