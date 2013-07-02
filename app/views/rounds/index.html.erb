@@ -94,8 +94,10 @@
         <div class="bottom">
           <% if r.answers.where(:user_id => @user.id).first %>
             <p class="bottom-label"> <%= link_to "View", round_path(r) %></p>
-          <% elsif r.answers.where(:user_id => @partner.id).first %>
-            <p class="bottom-label"><%= link_to "#{@partner.first_name}'s answer", round_path(r) %></p>
+             <% if @partner %>
+              <% elsif r.answers.where(:user_id => @partner.id).first %>
+                <p class="bottom-label"><%= link_to "#{@partner.first_name}'s answer", round_path(r) %></p>
+            <% end %>
           <% else %>
             <p class="bottom-label"><%= link_to "Answer", round_path(r) %></p>
           <% end %> 
@@ -110,4 +112,3 @@
   
 <% end %>
 
-<% end %> <!-- / if @rounds_by_month-->
