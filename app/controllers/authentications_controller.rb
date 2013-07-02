@@ -21,7 +21,7 @@ class AuthenticationsController < ApplicationController
       else
           user.image = data[:info][:image]
           user.save
-        end 
+       
         sign_in(user)
         redirect_to root_path
       end
