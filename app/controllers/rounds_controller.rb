@@ -59,7 +59,11 @@ class RoundsController < ApplicationController
   def index
       @user=current_user
       @pair=@user.pair
-      @partner=@pair.partner(@user.id) unless @pair.nil?
+
+      if @pair
+        @partner=@pair.partner(@user.id)
+      end
+
       # @recent_rounds=Round.where("created_at > ? AND pair_id = ?", 30.days.ago.midnight, @pair.id).all
       # 
       #      @recent_question_ids=[]
