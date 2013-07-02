@@ -5,19 +5,18 @@
 
 
 
-<h4>Thanks for joining The Question Project!  You can visit each day to answer a new question. </h4>
+<p>Thanks for joining The Question Project!  You can visit each day to answer a new question. </p>
 
 
 
 <% if @partner %>
-  <p class = "align"><%= gravatar_for @partner, :size => 60 %> <%= "Your partner is #{@partner.first_name} #{@partner.last_name}." %></p>
-  <p> You and your partner will get to answer the same questions, see each other's answers, and leave comments</p>
-
-<% else %>
-
-  <p><%=  link_to "Answer your first question now!", root_path, :class => "btn btn-primary" %></p>
-
+  <p><%= "Your partner is #{@partner.first_name} #{@partner.last_name}." %></p>
+  <p><%= gravatar_for @partner, :size => 60 %> </p>
 <% end %>
+
+  <p><%=  link_to "Answer a question now!", root_path, :class => "btn" %></p>
+
+
 
 
 
