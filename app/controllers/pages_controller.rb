@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     @pair=@user.pair
     
     return unless @pair
-    @partner=@pair.partner    
+    @partner=@pair.partner(@user.id)   
     
     # @round=Round.where(:pair_id => @pair.id).first
     # @question=@round.question
