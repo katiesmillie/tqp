@@ -31,15 +31,14 @@
 .index-well {
   float: left;
   diplay: inline;
-  height: 140px;
-  width: 180px;
+  height: 130px;
+  width: 160px;
   margin-right: 16px;
   margin-bottom: 20px;
   vertical-align: baseline;
   padding: 12px;
   border: 1px solid #ebeae0;
   border-radius: 7px;
-  margin: 8px 10px;
 }
 
 .jan {
@@ -70,7 +69,7 @@
 
 }
 .top {
-    height: 120px;
+    height: 110px;
 }
 
 .bottom {
@@ -92,4 +91,8 @@
   font-size: 12px;
   font-spacing: .2em;
   }
+
+ .month-label {
+  font-size: 16px;
+ } 
 
