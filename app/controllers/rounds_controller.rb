@@ -104,6 +104,11 @@ class RoundsController < ApplicationController
         @my_round=@user.rounds.where(:round_date => Time.now.midnight).first
         @question=Question.where("author_id IN (?)", [1, @user.id]).sample
       end
+
+
+    @rounds_by_month = Round.order("round_date DESC").group_by { |r| r.round_date.month }
+
+
   end
 
   
