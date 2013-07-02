@@ -4,10 +4,8 @@
 
 
 
-
   <% if params[:question_id] %>
     <h4 align="center">Nice work answering that question!</h4>
-
 
 
   <% elsif @my_answer || @my_round %>
@@ -58,7 +56,7 @@
 </div>
 
 
-
+<% if @rounds_by_month %>
 <% @rounds_by_month.each do |round_month, rounds| %>
 
   <div class="container">
@@ -112,5 +110,4 @@
   
 <% end %>
 
- 
-
+<% end %> <!-- / if @rounds_by_month-->
