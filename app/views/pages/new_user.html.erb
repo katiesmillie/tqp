@@ -11,7 +11,12 @@
 
 <% if @partner %>
   <p><%= "Your partner is #{@partner.first_name} #{@partner.last_name}." %></p>
-  <p><%= gravatar_for @partner, :size => 60 %> </p>
+  <p>
+  	<% if @partner.image.present? %>
+	  	<p><%= image_tag @partner.image, :size => 60 %></p>
+	<% else %>
+  		<p><%= gravatar_for @partner, :size => 60 %></p>
+	<% end %>
 <% end %>
 
   <p><%=  link_to "Answer a question now!", root_path, :class => "btn" %></p>
