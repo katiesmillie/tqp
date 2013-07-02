@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       @user=current_user
             
             if @pair
-              @partner=@pair.partner(@pair.id)
+              @partner=@pair.partner(@user.id)
             end
   
     end
