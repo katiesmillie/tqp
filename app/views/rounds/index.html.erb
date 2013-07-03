@@ -3,18 +3,20 @@
 </script>
 
 
+
+
   <% if params[:question_id] %>
-    <h4>Nice work answering that question!</h4>
+    <h4 align="center">Nice work answering that question!</h4>
 
 
 
   <% elsif @my_answer || @my_round %>
-    <div class ="row">
-      <h4>You've already answered a question today. Come back tomorrow!</h4>
+    <div class ="container">
+      <h4 align="center">You've already answered a question today. Come back tomorrow!</h4>
     </div> 
 
   <% elsif @partner_round %>
-    <div class ="row">
+    <div class ="container">
       <div class="span5">
         <h4><%= Time.now.to_date.to_s(:long) %></h4>
         <h3> <%= @question.body %></h3>
@@ -29,7 +31,7 @@
     </div> 
       
   <% else %>
-   <div class ="row">
+   <div class ="container">
       <div class="span5">
         <p><%= Time.now.to_date.to_s(:long) %></p>
         <h3> <%= @question.body %></h3>
@@ -51,56 +53,61 @@
   <% end %>
 
 
-<div class="row">
+<div class="container">
   <div class="spacing20"></div>
 </div>
 
-<div class="row">
-  <% @rounds.each do |r| %>
-   
 
-    <% if r.round_date.month == 1 %>
-      <div class="index-well jan"> 
-    <% elsif r.round_date.month == 2 %>
-      <div class="index-well feb"> 
-    <% elsif r.round_date.month == 3 %>
-      <div class="index-well mar">
-    <% elsif r.round_date.month == 4 %>
-      <div class="index-well apr">
-    <% elsif r.round_date.month == 5 %>
-      <div class="index-well may">
-    <% elsif r.round_date.month == 6 %>
-      <div class="index-well jun">
-    <% elsif r.round_date.month == 7 %>
-      <div class="index-well jul">
-    <% elsif r.round_date.month == 8 %>
-      <div class="index-well aug">
 
-    <%end%>
+<% @rounds_by_month.each do |round_month, rounds| %>
 
+  <div class="container">
+    <h4 class="month-label" data-toggle="collapse" data-target="#demo" ><%= Date::MONTHNAMES[round_month] %></h4>
+      <div id="demo" class="collapse in">
+
+      <% rounds.each do |r| %>
+ 
+      <% if round_month == 1 %>
+        <div class="index-well jan"> 
+      <% elsif round_month == 2 %>
+        <div class="index-well feb"> 
+      <% elsif round_month == 3 %>
+        <div class="index-well mar">
+      <% elsif round_month == 4 %>
+        <div class="index-well apr">
+      <% elsif round_month == 5 %>
+        <div class="index-well may">
+      <% elsif round_month == 6 %>
+        <div class="index-well jun">
+      <% elsif round_month== 7 %>
+        <div class="index-well jul">
+      <% elsif round_month == 8 %>
+        <div class="index-well aug">
+      <%end%>
+
+
+    
       <div class="top">
-      <h5><%= r.round_date.to_date.to_s(:short) %></h5>
-      <p> <%= r.question.body %></p>
+        <h5><%= r.round_date.to_date.to_s(:short) %></h5>
+        <p> <%= r.question.body %></p>
       </div>
 
- <div class="clearfix">
-  <div class="bottom">
-
-      <% if r.answers.where(:user_id => @user.id).first %>
-       <p class="bottom-label"> <%= link_to "View", round_path(r) %></p>
-      <% elsif r.answers.where(:user_id => @partner.id).first %>
-      <p class="bottom-label"><%= link_to "#{@partner.first_name}'s answer", round_path(r) %></p>
-      <% else %>
-        <p class="bottom-label"><%= link_to "Answer", round_path(r) %></p>
+      <div class="clearfix">
+        <div class="bottom">
+          <% if r.answers.where(:user_id => @user.id).first %>
+            <p class="bottom-label"> <%= link_to "View", round_path(r) %></p>
+          <% elsif r.answers.where(:user_id => @partner.id).first %>
+            <p class="bottom-label"><%= link_to "#{@partner.first_name}'s answer", round_path(r) %></p>
+          <% else %>
+            <p class="bottom-label"><%= link_to "Answer", round_path(r) %></p>
+          <% end %> 
+        </div> 
+      </div>
        
-      <% end %> 
-
-
-  </div> 
- </div>
-
-  
+      </div>
+      <% end %>
 
     </div>
-  <% end %>
   </div>
+  
+<% end %>
