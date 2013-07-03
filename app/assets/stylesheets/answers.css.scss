@@ -9,6 +9,15 @@
 }
 
 
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.answerbox {
+    width: 300px;
+    height: 150px;
+  }
+  }
+
+
+
 .show-well {
   float: left;
   display: inline;
