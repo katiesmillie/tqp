@@ -52,6 +52,8 @@ class RoundsController < ApplicationController
       @future_round=@user.rounds.where(:round_date => 1.day.from_now.midnight).first
       
     end
+
+    @my_answer=@answers.where(:user_id => @user.id).first
     
   end
   
