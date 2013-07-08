@@ -1,3 +1,26 @@
+July 8
+
+#Javascript checklist
+- check the js file in sources
+- always wrap the js code in "ready"
+- use an alert to verify js has loaded
+
+Understand
+- Events (.on) (.ready)
+- Selector ( how to access elements, use console to find the right one)
+- Manipulators (what you want to do to the element)
+- Traversal http://api.jquery.com/category/traversing/
+
+
+- try making document.scroll on expand
+
+
+- plugins for image gallerys, carousels, music, etc.
+
+- ajax (eg post a comment, edit in line, other stuff without reloading page...)
+
+------------
+
 - export nathan's setting
 - tomorrow night for sublime text
 - squeel --> for longer query types
