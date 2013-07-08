@@ -61,31 +61,22 @@
 
 <% @rounds_by_month.each do |round_month, rounds| %>
 
+<% @month_name=Time.parse(round_month).strftime("%B %Y") %>
+<% @month_id=Time.parse(round_month).strftime("%b") %>
+
+
+
   <div class="container">
-    <h4 class="month-label" data-toggle="collapse" data-target="#demo" ><%= Date::MONTHNAMES[round_month] %></h4>
-      <div id="demo" class="collapse in">
-
+    <h4 class="month-label" data-toggle="collapse" data-target="#<%=@month_id%>"> <%=@month_name%> <i class="icon-plus"></i></h4>
+      
+      <% if round_month ==0 %>
+        <div id="<%=@month_id%>" class="collapse in month-item">
+      <% else %>        
+        <div id="<%=@month_id%>" class="collapse month-item">
+      
+          
       <% rounds.each do |r| %>
- 
-      <% if round_month == 1 %>
-        <div class="index-well jan"> 
-      <% elsif round_month == 2 %>
-        <div class="index-well feb"> 
-      <% elsif round_month == 3 %>
-        <div class="index-well mar">
-      <% elsif round_month == 4 %>
-        <div class="index-well apr">
-      <% elsif round_month == 5 %>
-        <div class="index-well may">
-      <% elsif round_month == 6 %>
-        <div class="index-well jun">
-      <% elsif round_month== 7 %>
-        <div class="index-well jul">
-      <% elsif round_month == 8 %>
-        <div class="index-well aug">
-      <%end%>
-
-
+         <div class="index-well <%= @month_id.downcase%>"> 
     
       <div class="top">
         <h5><%= r.round_date.to_date.to_s(:short) %></h5>
@@ -105,9 +96,11 @@
       </div>
        
       </div>
-      <% end %>
+      <% end %>  
 
-    </div>
+      </div>
+      <% end %>
+  
   </div>
   
 <% end %>
