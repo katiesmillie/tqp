@@ -110,7 +110,7 @@ class RoundsController < ApplicationController
       end
 
 
-    @rounds_by_month = Round.order("round_date DESC").group_by { |r| r.round_date.month }
+    @rounds_by_month = Round.order("round_date DESC").group_by { |r| "#{r.round_date.month}/#{r.round_date.year}"}
 
 
   end
