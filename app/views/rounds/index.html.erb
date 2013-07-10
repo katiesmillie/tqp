@@ -67,16 +67,18 @@
 
 
   <div class="container">
-    <h4 class="month-label" data-toggle="collapse" data-target="#<%=@month_id%>"> <%=@month_name%> <i class="icon-plus"></i></h4>
+
+    <% if Time.parse(round_month).month == "7" %>
+      <h4 class="month-label" data-toggle="collapse" data-target="#<%=@month_id%>"> <%=@month_name%> <i class="icon-minus"></i></h4>
+      <div id="<%=@month_id%>" class="collapse in month-item">
       
-      <% if round_month ==0 %>
-        <div id="<%=@month_id%>" class="collapse in month-item">
-      <% else %>        
-        <div id="<%=@month_id%>" class="collapse month-item">
-      
+    <% else %>
+      <h4 class="month-label" data-toggle="collapse" data-target="#<%=@month_id%>"> <%=@month_name%> <i class="icon-plus"></i></h4>
+      <div id="<%=@month_id%>" class="collapse month-item">
+    <% end %>
           
       <% rounds.each do |r| %>
-         <div class="index-well <%= @month_id.downcase%>"> 
+        <div class="index-well <%= @month_id.downcase%>"> 
     
       <div class="top">
         <h5><%= r.round_date.to_date.to_s(:short) %></h5>
@@ -96,10 +98,10 @@
       </div>
        
       </div>
-      <% end %>  
-
+  
+  <% end %>
       </div>
-      <% end %>
+    
   
   </div>
   
