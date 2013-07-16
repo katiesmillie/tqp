@@ -73,8 +73,8 @@
       <div id="<%=@month_id%>" class="collapse in month-item">
       
     <% else %>
-      <h4 class="month-label" data-toggle="collapse" data-target="#<%=@month_id%>"> <%=@month_name%> <i class="icon-plus"></i></h4>
-      <div id="<%=@month_id%>" class="collapse month-item">
+      <h4 class="month-label" data-toggle="collapse" data-target="#<%=@month_id%>"> <%=@month_name%> <i class="icon-minus"></i></h4>
+      <div id="<%=@month_id%>" class="collapse in month-item">
     <% end %>
           
       <% rounds.each do |r| %>
