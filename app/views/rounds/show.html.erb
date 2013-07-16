@@ -5,7 +5,19 @@
 
 <% if @round.answers.where(:user_id => current_user.id).present? %>
 <div class = "row"> 
-    <p><%= @round.round_date.to_date.to_s(:long)%></p>    
+  <div class="span4">
+    <p><%= @round.round_date.to_date.to_s(:long)%></p> 
+  </div>  
+  <div class="span4">
+    <% answer_edit(@my_answer) do %>
+      <%= link_to "Edit Answer", edit_answer_path(@my_answer), :class => "pull-right" %>
+    <% end %>
+  </div> 
+</div> 
+
+
+<div class="spacing40"></div>
+
     <h3><%= @question.body %></h3>
 <% else %> 
 <div class = "row"> 
@@ -24,42 +36,32 @@
 <% end %>
 </div>
 
-<div class="row">
-    <div class="spacing40"></div>
-</div>
+<div class="spacing40"></div>
     
-
 <% @answers.each do |a| %> 
+<div class="container">
   <div class="row">
-    <div class="span1">   
-
+    <div class="span2">   
       <% if a.user.image.present? %>
         <%= image_tag a.user.image %>
       <% else %>
         <%= gravatar_for a.user, :size => 50 %>
       <% end %>
-
-      <h5><%= a.user.first_name.upcase %></h5>
+      <span class=""><%= a.user.first_name.upcase %></span>
     </div>
-    <div class="span5">
-      <blockquote>
-      <p><%= a.body %></p>
-      </blockquote>
-    </div>
-    <div class="span1">
-      <% answer_edit(a) do %>
-      <%= link_to "edit", edit_answer_path(a), :class => "edit pull-right" %>
-      <% end %>
-    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span2"> 
+  <p><%= a.body %></p>
+</div>
+   
   </div>
 <% end %>
   
-
+<div class="spacing40"></div>
 
 <div class="row">
-  <div class="span12">
-    <hr>
-  </div>
   <div class="span12">
       <%= form_tag comments_path do %>
       <%= text_area_tag :body, nil, :class => "input commentbox", :maxlength =>"255" %>
@@ -74,21 +76,33 @@
   <% comment_present(@round) do %>
     <% @comments.each do |c| %>
 
+
+
+  <div class="row">
+    <div class="span1">
+        <p class ="muted"><%= c.created_at.to_date.to_s(:short)%></p>
+      </div> 
+    </div>
+
     <div class="row">
-      <div class="span1">
-        <h5><%= c.author.first_name.upcase %></h5>
-        <p class ="tiny muted"><%= c.created_at.to_date.to_s(:short)%></p>
-      </div>   
+      <div class="span2">
+        <% if c.author.image.present? %>
+          <%= image_tag c.author.image, :size => 30  %>
+        <% else %>
+          <%= gravatar_for c.author, :size => 30 %>
+         <% end %>
+        <span><%= c.author.first_name.upcase %></span>
+      </div>
+    
+  
+    <div class="row"> 
       <div class="span5"> 
         <p><%= c.body %></p>
       </div>
-      <div class="span1"> 
-        <% comment_edit(c) do %>
-        <%= link_to "edit", edit_comment_path(c), :class => "edit pull-right"%></div>
-        <% end %>
-      </div>
+    </div>
     
-    
+    </div>
+
       <% end %>
     <% end %>
   <% end %>
