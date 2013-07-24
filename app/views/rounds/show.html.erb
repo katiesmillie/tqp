@@ -8,15 +8,11 @@
   <div class="span4">
     <p><%= @round.round_date.to_date.to_s(:long)%></p> 
   </div>  
-  <div class="span4">
-    <% answer_edit(@my_answer) do %>
-      <%= link_to "Edit Answer", edit_answer_path(@my_answer), :class => "pull-right" %>
-    <% end %>
-  </div> 
+
 </div> 
 
 
-<div class="spacing40"></div>
+<div class="spacing20"></div>
 
     <h3><%= @question.body %></h3>
 <% else %> 
@@ -36,33 +32,41 @@
 <% end %>
 </div>
 
-<div class="spacing40"></div>
+<div class="spacing20"></div>
     
 <% @answers.each do |a| %> 
 <div class="container">
   <div class="row">
-    <div class="span2">   
+    <div class="span1">
+    <div class="pull-right">   
       <% if a.user.image.present? %>
-        <%= image_tag a.user.image %>
+      <%= image_tag a.user.image %>
       <% else %>
         <%= gravatar_for a.user, :size => 50 %>
-      <% end %>
-      <span class=""><%= a.user.first_name.upcase %></span>
+      <% end %></div>
     </div>
+    <div class="span5"> 
+
+      <span class="name"><%= a.user.first_name %></span>
+        <p><%= a.body %></p>
+
+    </div>
+      <div class="span1">
+      <% answer_edit(@my_answer) do %>
+      <%= link_to "edit", edit_answer_path(@my_answer), :class => "muted tiny" %>
+    <% end %>
+  </div> 
   </div>
-  
-  <div class="row">
-    <div class="span2"> 
-  <p><%= a.body %></p>
-</div>
-   
-  </div>
+
+
 <% end %>
   
 <div class="spacing40"></div>
 
 <div class="row">
-  <div class="span12">
+  <div class ="span1">
+  </div>
+  <div class="span8">
       <%= form_tag comments_path do %>
       <%= text_area_tag :body, nil, :class => "input commentbox", :maxlength =>"255" %>
       <%= submit_tag "Comment", :class => "btn"%>
@@ -78,28 +82,27 @@
 
 
 
-  <div class="row">
-    <div class="span1">
-        <p class ="muted"><%= c.created_at.to_date.to_s(:short)%></p>
-      </div> 
-    </div>
-
     <div class="row">
-      <div class="span2">
+      <div class="span1">
+          <div class="pull-right">   
+
         <% if c.author.image.present? %>
-          <%= image_tag c.author.image, :size => 30  %>
+          <%= image_tag c.author.image, :size => 40  %>
         <% else %>
-          <%= gravatar_for c.author, :size => 30 %>
+          <%= gravatar_for c.author, :size => 40 %>
          <% end %>
-        <span><%= c.author.first_name.upcase %></span>
-      </div>
-    
-  
-    <div class="row"> 
-      <div class="span5"> 
+       </div>
+       </div>
+
+      <div class="span5">
+
+        <span class="name"><%= c.author.first_name%></span>
+        <span class="muted tiny"><%= c.created_at.to_date.to_s(:short)%></span>
         <p><%= c.body %></p>
-      </div>
-    </div>
+
+
+      </div> 
+    
     
     </div>
 
